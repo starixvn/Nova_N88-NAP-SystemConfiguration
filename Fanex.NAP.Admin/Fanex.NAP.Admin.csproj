@@ -559,7 +559,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.n88.config" />
-    <None Include="Web.ConnectionString.n88.config" />
+    <Content Include="Web.ConnectionString.n88.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserControl\Views\User\UserInfo.cshtml" />
