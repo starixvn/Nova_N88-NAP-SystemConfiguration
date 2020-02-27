@@ -546,10 +546,6 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.local1.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Web.pro.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -562,10 +558,8 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.ConnectionString.local1.config">
-      <SubType>Designer</SubType>
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
-    </Content>
+    <Content Include="Web.n88.config" />
+    <None Include="Web.ConnectionString.n88.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserControl\Views\User\UserInfo.cshtml" />
