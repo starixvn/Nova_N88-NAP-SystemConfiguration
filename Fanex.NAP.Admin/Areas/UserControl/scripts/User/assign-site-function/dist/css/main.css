@@ -1,0 +1,58 @@
+.save-all-row button {
+    background-color: #3C5EA5;
+    color: #fff;
+}.site-table-header a:visited {
+    color: #fff !important;
+}
+
+.site-table-header a {
+    color: #fff !important;
+}
+
+.site-table-header {
+    font-weight: bold !important;
+}.disabled-cell {
+    background-color: #fff;
+}
+
+.site-name {
+    font-weight: bold;
+}
+
+    .site-name:hover {
+        cursor: pointer;
+    }
+
+.glyphicon-calendar span {
+    display: none !important;
+}html, body, #app-main {
+    /*font-size: 13px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;*/
+}
+
+.table-icon {
+    color: #7f7575;
+    font-size: 15px;
+}
+
+.fade-enter-active {
+    transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
+/*# sourceMappingURL=main.css.map*/

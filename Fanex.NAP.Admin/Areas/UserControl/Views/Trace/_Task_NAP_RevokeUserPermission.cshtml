@@ -1,0 +1,29 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.Trace
+@model TaskNAPRevokeUserPermissionVM
+
+@if (Model.RevokedSites != null)
+{
+    <h1>@ViewResources.Revoked_Sites</h1>
+    <br />
+    <table class="grid">
+        <thead>
+            <tr>
+                <th>
+                    @ViewResources.Site_Id
+                </th>
+                <th>
+                    @ViewResources.Site_Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var site in Model.RevokedSites)
+            {
+                <tr>
+                    <td class="text-center">@site.SiteId</td>
+                    <td class="text-center">@site.SiteName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

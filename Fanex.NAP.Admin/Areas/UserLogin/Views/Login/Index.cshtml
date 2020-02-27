@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewResources.Log_In</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Areas/UserLogin/themes/login")
+</head>
+<body>
+    <div id='divWarningPanel' class="not-supported-browser-panel">
+        Your browser is no longer supported. Some parts will not work and you may experience
+        problems.<br />
+        If you are having problems, try <a href='http://browsehappy.com/'>this</a> for full
+        browsing experience. Thank you!
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="login-box">
+            <div id="divMessage" class="msg">
+                <span id="divInnerMsg">@ViewBag.Message</span>
+            </div>
+            <div class="header">
+                <div class="welcome">
+                </div>
+                <div class="secure">
+                </div>
+            </div>
+            <div class="auth">
+                <input type="text" id="txtUsername" name="username" class="username" autocomplete="off" />
+                <input type="password" id="txtPassword" class="password" />
+                <input type ="hidden" id="hdnPassword" name="password" />
+                <input type ="hidden" id="hdnLoginToken" name="loginToken" value="@ViewBag.LoginToken" />
+                <input type="submit" id="btnSubmit" value="@ViewResources.Log_In" class="submit" />
+            </div>
+        </div>
+    }
+    @Scripts.Render("~/Areas/UserLogin/js/login")
+@*<script type="text/javascript">    eval(function (p, a, c, k, e, r) { e = function (c) { return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36)) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] } ]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p } ('3 6,2,4,A;p.12=g(){w(\'p.11.Z()\',0);6=7.f(\'6\');E=7.f(\'X-6\');2=7.f(\'2\');4=7.f(\'4\');A=7.f(\'W\');H();e(E.R.q>0){6.d.k=\'C\';o(\'6\',5,v)}t{6.d.k=\'r\'}};7.Q[0].P=g(){6.d.k=\'r\';3 a=O;2.l=2.l.B();e(2.l.q==0){2.h+=" n";a=D;o(\'2\',5,v)}t{2.h=2.h.m("n","")}e(4.l.q==0){4.h+=" n";a=D;o(\'4\',5,v)}t{4.h=4.h.m("n","")}u a};N.M.B=g(){u L.m(/^\\s*/,"").m(/\\s*$/,"")};g o(a,b,c){U(3 i=b,j=0;i>=0;i--){w(a+".d.z = \'-"+i+"x\'",j++*c);w(a+".d.z = \'"+i+"x\'",j++*c)}}g H(){3 a=J();e(a!=-1&&a<8.0){3 b=7.f(\'S-T-K-V\');e(b.d.k==\'r\'){b.d.k=\'C\'}}};g J(){3 a=-1;e(p.G.F.Y("y")>0){3 b=G.F;3 c=10 I("y ([0-9]{1,}[\\.0-9]{0,})");e(c.13(b)!=14)a=15(I.$1)}u a};', 62, 68, '||username|var|password||msg|document||||||style|if|getElementById|function|className|||display|value|replace|err|shake|window|length|none||else|return|100|setTimeout|0px|MSIE|left|btnSubmit|trim|block|false|innerMsg|userAgent|navigator|checkBrowser|RegExp|getIeVersion|browser|this|prototype|String|true|onsubmit|forms|innerHTML|not|supported|for|panel|submit|inner|indexOf|forward|new|history|onload|exec|null|parseFloat'.split('|'), 0, {}))</script>
+<script type="text/javascript">
+
+    var msg, username, password, btnSubmit;
+
+    window.onload = function () {
+        setTimeout('window.history.forward()', 0);
+
+        msg = document.getElementById('msg');
+        innerMsg = document.getElementById('inner-msg');
+        username = document.getElementById('username');
+        password = document.getElementById('password');
+        btnSubmit = document.getElementById('submit');
+
+        checkBrowser(); // check if the client's browser is supported
+
+        if (innerMsg.innerHTML.length > 0) {
+            msg.style.display = 'block';
+            shake('msg', 5, 100);
+        }
+        else {
+            msg.style.display = 'none';
+        }
+    };
+
+    document.forms[0].onsubmit = function () {
+        msg.style.display = 'none';
+
+        var isValid = true;
+
+        username.value = username.value.trim();
+
+        if (username.value.length == 0) {
+            username.className += " err";
+            isValid = false;
+            shake('username', 5, 100);
+        } else {
+            username.className = username.className.replace("err", "");
+        }
+
+        if (password.value.length == 0) {
+            password.className += " err";
+
+            isValid = false;
+            shake('password', 5, 100);
+        } else {
+            password.className = password.className.replace("err", "");
+        }
+
+        return isValid;
+    };
+
+    String.prototype.trim = function () {
+        return this.replace(/^\s*/, "").replace(/\s*$/, "");
+    };
+
+    function shake(target, times, duration) {
+        for (var i = times, j = 0; i >= 0; i--) {
+            setTimeout(target + ".style.left = '-" + i + "0px'", j++ * duration);
+            setTimeout(target + ".style.left = '" + i + "0px'", j++ * duration);
+        }
+    }
+
+    function checkBrowser() {
+        var msieVersion = getIeVersion();
+
+        if (msieVersion != -1 && msieVersion < 8.0) {
+            var warnPnl = document.getElementById('not-supported-browser-panel');
+            if (warnPnl.style.display == 'none') { warnPnl.style.display = 'block' }
+        }
+    };
+
+    // Returns the version of Internet Explorer or -1
+    // (indicating the use of another browser).
+    function getIeVersion() {
+        var version = -1; // Return value assumes failure.
+
+        if (window.navigator.userAgent.indexOf("MSIE") > 0) {
+            var usrAgent = navigator.userAgent;
+            var reg = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+
+            if (reg.exec(usrAgent) != null) version = parseFloat(RegExp.$1);
+        }
+
+        return version;
+    };
+
+</script>*@
+
+</body>
+</html>

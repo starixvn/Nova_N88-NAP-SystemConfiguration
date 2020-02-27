@@ -1,0 +1,103 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@model EditUserVM
+
+@{
+    ViewBag.Title = ViewResources.Update_User;
+    bool success = ViewBag.Success != null && ViewBag.Success;
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}
+@section Headline {
+    <span class="title">
+        <span class="first">@ViewResources.User_Management /</span>
+        @ViewBag.Title
+    </span>
+    <div class="button-action">
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "User",
+                new
+                {
+                    userName = Model.ReturnData.ReturnUserName,
+                    siteId = Model.ReturnData.ReturnSiteId,
+                    groupId = Model.ReturnData.ReturnGroupId,
+                    id = Model.ReturnData.ReturnPageIndex,
+                }, new { @class = "back-button" })
+    </div>
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-7 col-md-5 common-form" }))
+{
+    @Html.HiddenFor(c => c.Criteria.CustId)
+    @Html.HiddenFor(c => c.Criteria.Username)
+    @Html.HiddenFor(m => m.ReturnData.ReturnUserName)
+    @Html.HiddenFor(m => m.ReturnData.ReturnSiteId)
+    @Html.HiddenFor(m => m.ReturnData.ReturnGroupId)
+    @Html.HiddenFor(m => m.ReturnData.ReturnPageIndex)
+
+
+    <div class="form-group summary">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-8">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+    <div class="form-group required">
+        <div class="col-xs-3 col-sm-3 lbl-field">@Html.LabelFor(m => m.Criteria.CustId, ViewResources.Username, new { @class = "read-only" })</div>
+        <div class="col-xs-9 col-sm-8">
+            @Html.Label(Model.Criteria.Username, new { @class = "read-only pull-left" })
+        </div>
+    </div>
+    <div class="form-group summary">
+        <div class="col-xs-12 col-sm-3">
+            @Html.LabelFor(c => c.Criteria.FirstName)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(c => c.Criteria.FirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group summary">
+        <div class="col-xs-12 col-sm-3">
+            @Html.LabelFor(c => c.Criteria.LastName)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(c => c.Criteria.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group summary">
+        <div class="col-xs-12 col-sm-3">
+            @Html.LabelFor(c => c.Criteria.Email)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(c => c.Criteria.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group summary">
+        <div class="col-xs-12 col-sm-3">
+            @Html.LabelFor(c => c.Criteria.GroupId)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(c => c.Criteria.GroupId, (List<SelectListItem>)ViewBag.Groups, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-xs-12 col-sm-8">
+            @if (!success)
+            {
+                <input type="submit" value="@ViewResources.Save" />
+                <button class="cancel-button" onclick="NAP.redirect('User/Manage/@Model.ReturnData.ReturnPageIndex?userName=@Model.ReturnData.ReturnUserName&siteId=@Model.ReturnData.ReturnSiteId&groupId=@Model.ReturnData.ReturnGroupId', 0); return false;">@ViewResources.Cancel</button>
+            }
+        </div>
+    </div>
+}
+@section Foot {
+    @if (success)
+    {
+        string dialogMsg = string.Format(ViewResources.EditSuccessMsg, Model.Criteria.Username, 3);
+
+        <script type="text/javascript">
+            $(function () {
+                NAP.showSuccessMsg('@dialogMsg', 'User/Manage/@Model.ReturnData.ReturnPageIndex?userName=@Model.ReturnData.ReturnUserName&siteId=@Model.ReturnData.ReturnSiteId&groupId=@Model.ReturnData.ReturnGroupId', 4000);
+            });
+        </script>
+    }
+}

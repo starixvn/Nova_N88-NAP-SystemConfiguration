@@ -1,0 +1,80 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@model AddExistingUserVM
+@{
+    ViewBag.Title = ViewResources.Add_Existing_User;
+
+    var returnData = Model.ReturnData ?? new ReturnData();
+    //var filterUserName = ViewBag.UserName != null ? (string)ViewBag.UserName : string.Empty;
+    //var filterGroupId = ViewBag.GroupId != null ? (int)ViewBag.GroupId : 0;
+    //var filterSiteId = ViewBag.SiteId != null ? (int)ViewBag.SiteId : 0;
+    //var returnPageIndex = ViewBag.PageIndex != null ? (int)ViewBag.PageIndex : 1;
+
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    var groups = ViewBag.Groups as IList<SelectListItem> ?? new List<SelectListItem>();
+}
+@section Head {
+    <link href="~/Areas/UserControl/themes/nap/user/add-existing.less" rel="stylesheet"
+          type="text/css" />
+}
+@section Headline {
+    <span class="title">
+        <span class="first">@ViewResources.User_Management /</span>
+        @ViewBag.Title
+    </span>
+    <div class="button-action">
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "User",
+            new
+            {
+                userName = returnData.ReturnUserName,
+                siteId = returnData.ReturnSiteId,
+                groupId = returnData.ReturnGroupId,
+                returnPageIndex = returnData.ReturnPageIndex
+            },
+            new { @class = "back-button" })
+    </div>
+}
+@using (Html.BeginForm("AddExisting", "User", FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
+{
+    <div class="form-group">
+        @Html.Label(ViewResources.Username)
+        <input type="hidden" value="@(ViewBag.UserName)" id="hdnUsename" />
+        <input type="text" value="@(ViewBag.UserName)" name="userName" id="Username" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@ViewResources.Search" />
+    </div>
+    <div class="form-group">
+        @Html.HiddenFor(m => m.ReturnData.ReturnUserName, new { id = "ReturnUserName"})
+        @Html.HiddenFor(m => m.ReturnData.ReturnSiteId, new { id = "ReturnSiteId" })
+        @Html.HiddenFor(m => m.ReturnData.ReturnGroupId, new { id = "ReturnGroupId" })
+        @Html.HiddenFor(m => m.ReturnData.ReturnPageIndex, new { id = "ReturnPageIndex" })
+    </div>
+}
+<div id="grid-wrp">
+    @{Html.RenderPartial("AddExisting_UserList", Model); }
+</div>
+
+<div id="form-wrp" class="col-sm-7 col-md-5" style="display: none">
+    <div id="form" class="form-horizontal common-form">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-3 col-md-2 lbl-field">
+                    <label>@ViewResources.Group</label>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-9 chk-field">
+                    @Html.DropDownList("Group", groups, new { @class = "form-control valid" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-3 col-md-2">
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-9">
+                    <input type="submit" value="@ViewResources.Save" />
+                    <button class="cancel-button" onclick="NAP.closePopup()">@ViewResources.Cancel</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/User/AddExisting.js" type="text/javascript"></script>
+}

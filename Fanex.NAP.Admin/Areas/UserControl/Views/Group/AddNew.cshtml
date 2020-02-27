@@ -1,0 +1,71 @@
+﻿@using Fanex.NAP.Core.Criteria.Group
+@model InsertGroupCriteria
+@{
+    ViewBag.Title = ViewResources.Create_New_Group;
+    bool success = ViewBag.Success != null && ViewBag.Success;
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}
+@section Headline {
+    <span class="title">
+		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+    </span>
+    <div class="button-action">
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })
+    </div>
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-6 col-md-4 common-form" }))
+{
+    <div class="form-group summary">
+        @Html.ValidationSummary()
+    </div>
+    <div class="form-group required">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.GroupName)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(g => g.GroupName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.Description)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(g => g.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.IsActive)
+        </div>
+        <div class="col-xs-12 col-sm-8 chk-field">
+            @Html.CheckBoxFor(g => g.IsActive, new { @class = "chkActive" })
+            @Html.LabelFor(g => g.IsActive, ViewResources.Active)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @if (!success)
+            {
+                <input type="submit" value="@ViewResources.Save" />
+                <button class="cancel-button" onclick="NAP.redirect('Group/Manage', 0); return false;">@ViewResources.Cancel</button>
+            }
+        </div>
+    </div>
+}
+@section Foot {
+    @if (success)
+    {
+        string dialogMsg = string.Format(ViewResources.AddSuccessMsg, ViewResources.Group + " '" + Model.GroupName + "'", 3);
+
+        <script type="text/javascript">
+            $(function () {
+                NAP.showSuccessMsg('@dialogMsg', 'Group/Manage', 4000);
+            });
+        </script>
+    }
+}

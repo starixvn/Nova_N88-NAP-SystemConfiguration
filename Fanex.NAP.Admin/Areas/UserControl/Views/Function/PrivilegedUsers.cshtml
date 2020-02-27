@@ -1,0 +1,127 @@
+﻿@model PagerList<UserLevel>
+@{
+    Layout = null;
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+}
+<table class="grid">
+    <thead>
+        <tr>
+            <th class="first">
+                <input type="checkbox" />
+            </th>
+            <th>
+                @ViewResources.Username
+            </th>
+            <th>
+                @ViewResources.First_Name
+            </th>
+            <th>
+                @ViewResources.Last_Name
+            </th>
+            <th>
+                @ViewResources.Email
+            </th>
+            <th>
+                @ViewResources.Group
+            </th>
+            <th>
+                @ViewResources.Level
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+            <th>
+                @ViewResources.Policy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!ReferenceEquals(Model, null) && Model.Any())
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    <input type="checkbox" uid="@item.User.Id" />
+                </td>
+                <td>
+                    @item.User.Username
+                </td>
+                <td>
+                    @item.User.FirstName
+                </td>
+                <td>
+                    @item.User.LastName
+                </td>
+                <td>
+                    @item.User.Email
+                </td>
+                <td>
+                    @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                </td>
+                <td class="text-center">
+                    @item.Level.ToUserLevel()
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                    }
+                </td>
+                <td>
+                    @if (ViewBag.IsReadonlyAssign)
+                    {
+                        @ViewResources.Readonly
+                    }
+                    else
+                    {
+                        <input type="radio" name="rdo-policy-@item.User.Id" id="rdo-read-@item.User.Id" checked="checked" />
+                        <label for="rdo-read-@item.User.Id">@ViewResources.Read</label>
+                        <input type="radio" name="rdo-policy-@item.User.Id" id="rdo-host-@item.User.Id" />
+                        <label for="rdo-host-@item.User.Id">@ViewResources.Host</label>
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+        else
+        {
+            <tr class="no-info">
+                <td colspan="10" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                @if (Model != null && Model.Any())
+                {
+                    @Html.AjaxPager(Model, new PagerOptions()
+                    {
+                        PageIndexParameterName = "id",
+                        ShowFirstLast = true,
+                        CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>",
+                        NumericPagerItemCount = 5
+                    }, new AjaxOptions
+                    {
+                        UpdateTargetId = "user-grid-wrp",
+                        OnBegin = "NAP.loadingBox.show()",
+                        OnComplete = "NAP.loadingBox.close()"
+                    }, new { @class = "jpages" })
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@if (!ReferenceEquals(Model, null) && Model.Count() > 0)
+{
+    <div class="button-list">
+        <input type="submit" value="@ViewResources.Add_Selected_Users" disabled="disabled" />
+    </div>
+}

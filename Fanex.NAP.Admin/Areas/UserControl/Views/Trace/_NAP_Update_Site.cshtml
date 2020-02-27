@@ -1,0 +1,121 @@
+﻿@{
+    var newSite = ViewBag.NewSite as SiteLevel;
+    var oldSite = ViewBag.OldSite as SiteLevel;
+}
+
+@if (oldSite != null)
+{
+    <h1>@ViewResources.Site @ViewResources.Old_Value</h1>
+    <br />
+    <table class="grid">
+        <thead>
+                <tr>
+                    <th>
+                        @ViewResources.Site_Name
+                    </th>
+                    <th>
+                        @ViewResources.Level
+                    </th>
+                    <th>
+                        @ViewResources.Active
+                    </th>
+                    <th>
+                        @ViewResources.Expired_Date
+                    </th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@oldSite.Site.Name</td>
+                <td class="text-center">@oldSite.Level.ToUserLevel()</td>
+                <td class="text-center">
+                    @if (oldSite.IsActive)
+                    {
+                        <img class="ico-tick" alt="" src="~/Areas/UserControl/themes/nap/img/blank.png" />
+                    }
+                </td>
+                <td class="text-center">
+                    @if (oldSite.IsNeverExpired)
+                    {
+                        <span>@ViewResources.Never_Expired</span>
+                    }
+                    else
+                    {
+                        var expiredDate = oldSite.ExpiredDate;
+                        if (expiredDate.Year != 1)
+                        {
+                            <span>
+                                @expiredDate.ToShortMonthFormatedDate()
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @ViewResources.NA
+                            </span>
+                        }
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@if (newSite != null)
+{
+    <br />
+    <h1>@ViewResources.Site @ViewResources.New_Value</h1>
+    <br />
+    <table class="grid">
+        <thead>
+                <tr>
+                    <th>
+                        @ViewResources.Site_Name
+                    </th>
+                    <th>
+                        @ViewResources.Level
+                    </th>
+                    <th>
+                        @ViewResources.Active
+                    </th>
+                    <th>
+                        @ViewResources.Expired_Date
+                    </th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@newSite.Site.Name</td>
+                <td class="text-center">@newSite.Level.ToUserLevel()</td>
+                <td class="text-center">
+                    @if (newSite.IsActive)
+                    {
+                        <img class="ico-tick" alt="" src="~/Areas/UserControl/themes/nap/img/blank.png" />
+                    }
+                </td>
+                <td class="text-center">
+                    @if (newSite.IsNeverExpired)
+                    {
+                        <span>@ViewResources.Never_Expired</span>
+                    }
+                    else
+                    {
+                        var expiredDate = newSite.ExpiredDate;
+                        if (expiredDate.Year != 1)
+                        {
+                            <span>
+                                @expiredDate.ToShortMonthFormatedDate()
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @ViewResources.NA
+                            </span>
+                        }
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

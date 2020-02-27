@@ -1,0 +1,15 @@
+﻿.disabled-cell {
+    background-color: #fff;
+}
+
+.site-name {
+    font-weight: bold;
+}
+
+    .site-name:hover {
+        cursor: pointer;
+    }
+
+.glyphicon-calendar span {
+    display: none !important;
+}

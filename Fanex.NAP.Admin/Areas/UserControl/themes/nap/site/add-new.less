@@ -1,0 +1,39 @@
+﻿@import "../style.less";
+
+form .form-group{
+	.btn-add-url {
+		float: left;
+		width: 15px;
+		height: 15px;
+		margin: 4px 0 0;
+		background: url(../img/sprites.png) no-repeat;
+
+		&:focus, &:active {
+			.box-shadow(0 0 2px @primary-color);
+		}
+	}
+
+	.btn-remove-url {
+		.btn-add-url;
+		background-position: 0 -25px;
+		display: none;
+	}
+}
+
+form .form-group .urls {
+	table {
+		th, td {
+			padding: 0 3px 5px;
+		}
+
+		th {
+			padding: 5px 3px 5px;
+			font-weight: normal;
+			text-shadow: 0 1px #fafafa;
+		}
+
+		td.first {
+			padding: 0 3px 5px 0;
+		}
+	}
+}

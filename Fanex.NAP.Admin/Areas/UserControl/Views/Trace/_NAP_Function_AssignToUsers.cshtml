@@ -1,0 +1,80 @@
+﻿@{
+    var listUserOld = (List<UserPolicy>)ViewBag.UserPolicyOld ?? null;
+    var ListUserNew = (List<UserPolicy>)ViewBag.UserPolicyNew ?? null;
+}
+<br />
+<h1>@ViewResources.User @ViewResources.Old_Value</h1>
+<br />
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.Name
+            </th>
+            <th>
+                @ViewResources.Policy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            foreach (UserPolicy item in listUserOld)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @i
+                </td>
+                <td>@item.User.Username
+                </td>
+                <td class="text-center">@item.Policy.ToPolicy()
+                </td>
+            </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+<br />
+<h1>@ViewResources.User @ViewResources.Add_New</h1>
+<br />
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.Name
+            </th>
+            <th>
+                @ViewResources.Policy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            i = 1;
+            foreach (UserPolicy item in ListUserNew)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @i
+                </td>
+                <td>@item.User.Username
+                </td>
+                <td class="text-center">@item.Policy.ToPolicy()
+                </td>
+            </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>

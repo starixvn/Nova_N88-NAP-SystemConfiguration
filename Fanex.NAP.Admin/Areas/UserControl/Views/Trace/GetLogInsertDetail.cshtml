@@ -1,0 +1,120 @@
+﻿@using Fanex.NAP.Admin.Core.Configuration
+@{
+    Layout = null;
+}
+@model LogExecSp
+@if (!ReferenceEquals(Model, null))
+{
+    if (Model.ActionId == (int)LogAction.NAP_Cust_Insert)
+    { 
+    @Html.Action("NAPCustInsert", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_User_Insert)
+    { 
+    @Html.Action("NAPUserInsert", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Function_Insert)
+    { 
+    @Html.Action("NAPFunctionInsert", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Group_Insert)
+    { 
+    @Html.Action("NAPGroupInsert", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_MenuItem_Insert)
+    { 
+    @Html.Action("NAPMenuItemInsert", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Site_InsertWithSiteURL)
+    {
+    @Html.Action("NAPSiteInsertWithSiteUrl", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_MenuItem_Update)
+    { 
+    @Html.Action("NAPMenuItemUpdate", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_MenuItem_UpdateStatus)
+    { 
+    @Html.Action("NAPMenuItemUpdateStatus", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Function_Update
+        || Model.ActionId == (int)LogAction.NAP_Function_Duplicate)
+    { 
+    @Html.Action("NAPFunctionUpdate", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Function_UpdateStatus)
+    { 
+    @Html.Action("NAPFunctionUpdateStatus", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Site_Update)
+    { 
+    @Html.Action("NAPSiteUpdate", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Site_UpdateStatus)
+    { 
+    @Html.Action("NAPSiteUpdateStatus", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Group_Update)
+    { 
+    @Html.Action("NAPGroupUpdate", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Group_UpdateStatus)
+    { 
+    @Html.Action("NAPGroupUpdateStatus", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Cust_Update)
+    { 
+    @Html.Action("NAPCustUpdate", "Trace", Model)
+    }
+
+    if (Model.ActionId == (int)LogAction.NAP_Site_UpdateSiteURL
+        || Model.ActionId == (int)LogAction.NAP_Site_InsertSiteURL
+        || Model.ActionId == (int)LogAction.NAP_Site_UpdateDefaultSiteURL)
+    {
+    @Html.Action("NAPSiteUrl", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_Group_AssignFunction
+        || Model.ActionId == (int)LogAction.NAP_User_AssignFunction
+        || Model.ActionId == (int)LogAction.NAP_Function_CopyPermission)
+    {
+    @Html.Action("NAPAssignPermission", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_User_AssignNewSite)
+    {
+        @Html.Action("NAPAssignNewSite", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_User_UpdateSite)
+    {
+        @Html.Action("NAPUpdateSite", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_User_AssignSite)
+    {
+    @Html.Action("NAPAssignSite", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_Function_AssignFunctionToUsers)
+    {
+    @Html.Action("NAPFunctionAssignToUsers", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.NAP_Function_AssignFunctionToGroups)
+    {
+    @Html.Action("NAPFunctionAssignFunctionToGroups", "Trace", Model)
+    }
+    if (Model.ActionId == (int)LogAction.Task_NAP_RevokeUserPermission)
+    {
+        @Html.Action("TaskNAPRevokeUserPermission", "Trace", Model)
+    }
+}

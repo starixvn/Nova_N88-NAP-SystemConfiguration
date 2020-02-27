@@ -1,0 +1,61 @@
+﻿<thead class="site-table-header">
+    <tr>
+        <th rowspan="3">
+            Function
+            <a href="#">
+                <span class="glyphicon glyphicon-resize-full" @click="OnClickShowAllSiteFunctions()"></span>
+            </a>
+        </th>
+        <th colspan="5">
+            Permission on Functions
+        </th>
+        <th colspan="4">
+            Permission on Sites
+        </th>
+    </tr>
+    <tr>
+        <th colspan="2">
+            User Permission
+        </th>
+        <th colspan="2">
+            Group Permission
+        </th>
+        <th rowspan="2">
+            Save
+        </th>
+        <th rowspan="2">
+            Level
+        </th>
+        <th rowspan="2">
+            Active
+        </th>
+        <th class="expired-date-header" rowspan="2" v-show="ShowExpiredDateColumn()">
+            Expired Date (GMT+7)
+        </th>
+        <th rowspan="2">
+            Edit
+        </th>
+    </tr>
+    <tr>
+        <th style="width: 50px">
+            Read
+            <input title="Check/Uncheck All" id="all-read-function-policies-for-all-sites-checkbox" type="checkbox"
+                   v-on:click="OnCheckAllFunctionsForAllSites(SelectAllReadFunctionsForAllSites, true)"
+                   :disabled="DisableSelectAllReadFunctionsForAllSites"
+                   :checked="SelectAllReadFunctionsForAllSites" />
+        </th>
+        <th style="width: 50px">
+            Host
+            <input title="Check/Uncheck All" id="all-host-function-policies-for-all-sites-checkbox" type="checkbox"
+                   v-on:click="OnCheckAllFunctionsForAllSites(SelectAllHostFunctionsForAllSites, false)"
+                   :disabled="DisableSelectAllHostFunctionsForAllSites"
+                   :checked="SelectAllHostFunctionsForAllSites" />
+        </th>
+        <th style="width: 50px">
+            Read
+        </th>
+        <th style="width: 50px">
+            Host
+        </th>
+    </tr>
+</thead>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<IUser>
+@{
+    Layout = null;
+}
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.Username
+            </th>
+            <th>
+                @ViewResources.First_Name
+            </th>
+            <th>
+                @ViewResources.Last_Name
+            </th>
+            <th>
+                @ViewResources.Email
+            </th>
+            <th>
+                @ViewResources.Creator
+            </th>
+            <th>
+                @ViewResources.Created_Date
+            </th>
+            <th>
+                @ViewResources.Last_Login_Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@if (Model != null && Model.Count() > 0)
+{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        string rowCss = i % 2 == 0 ? string.Empty : "class=\"alt\"";
+        
+        <tr @Html.Raw(rowCss)>
+            <td class="text-center">
+                @(i + 1)
+            </td>
+            <td>
+                @item.Username
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @(item.Creator != null ? item.Creator.Username : string.Empty)
+            </td>
+            <td>
+                @item.CreatedDate.ToFullDateString()
+            </td>
+            <td class="text-center">
+                @if (item.LastLoginDate != DateTime.MinValue)
+    {
+                    @item.LastLoginDate.ToFullDateString()
+    }
+    else
+    {
+                    @ViewResources.NA
+    }
+            </td>
+        </tr>
+        
+    i++;
+    }
+}
+else
+{
+        <tr>
+            <td colspan="8" class="text-center">
+                @ViewResources.NoInformationAvailable
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

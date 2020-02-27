@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+    var listData = (List<LogData>)ViewBag.LogData ?? new List<LogData>();
+    var listSiteUrl = (List<SiteUrl>)ViewBag.SiteUrl ?? null;
+}
+@model List<LogData>
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                @ViewResources.Field_Name
+            </th>
+            <th>
+                @ViewResources.Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            foreach (LogData item in listData)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @item.FieldName
+                </td>
+                <td>
+                    @item.NewValue
+                </td>
+            </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+<br />
+<h1>@ViewResources.Site @ViewResources.URL</h1>
+<br />
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.URL
+            </th>
+            <th>
+                @ViewResources.Environment
+            </th>
+            <th>
+                @ViewResources.Default
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            i = 1;
+            foreach (SiteUrl item in listSiteUrl)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @item.Url
+                </td>
+                <td class="text-center">
+                    @item.Environment
+                </td>
+                <td class="text-center">
+                    @item.IsDefault
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/Areas/UserControl/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+    </tbody>
+</table>

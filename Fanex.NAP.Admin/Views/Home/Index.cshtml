@@ -1,0 +1,16 @@
+﻿@using Fanex.NAP.Core.Web
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/UserControl/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = string.Format("{0}", ViewResources.Home);
+}
+@section Headline {
+    <span class="title">@ViewBag.Title</span>
+}
+
+@section Head {
+    @System.Web.Optimization.Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}

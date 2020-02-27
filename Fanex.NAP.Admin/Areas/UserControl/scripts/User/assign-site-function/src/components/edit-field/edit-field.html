@@ -1,0 +1,19 @@
+﻿<div v-show="IsAllowEdit()">
+    <transition name="fade">
+        <a v-if="!enableEditSite" class="btn-edit table-icon" @click="OnClickEditButton()" style="cursor: pointer">
+        </a>
+    </transition>
+    <transition name="fade">
+        <div v-if="enableEditSite">
+            <button type="button" class="btn btn-info btn-sm" v-if="!enableAssignSite" @click="OnClickSaveSite()">
+                <span class="glyphicon glyphicon-ok"></span> Save
+            </button>
+            <button type="button" class="btn btn-info btn-sm" v-else @click="OnClickAssignSite(site)">
+                <span class="glyphicon glyphicon-ok"></span> Assign
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" @click="OnClickCancelEditSite(site)">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </div>
+    </transition>
+</div>

@@ -1,0 +1,66 @@
+﻿/********************************************************/
+/*                     Functions                        */
+/********************************************************/
+
+.bg-linear-gradient (@value, @value_light) {
+	background: @value;
+	background: -moz-linear-gradient(@value_light, @value) @value;
+	background: -webkit-linear-gradient(@value_light, @value) @value;
+}
+
+.box-shadow (@value: 0 0 1px rgba(0,0,0,0.5)) {
+	box-shadow: @value;
+	-moz-box-shadow: @value;
+	-webkit-box-shadow: @value;
+}
+
+.border-radius (@value: 3px) {
+	border-radius: @value;
+	-moz-border-radius: @value;
+	-webkit-border-radius: @value;
+}
+
+.transition (@value: all .2s ease-in-out) {
+	transition: @value;
+	-moz-transition: @value;
+	-webkit-transition: @value;
+	-o-transition: @value;
+}
+
+.user-select (@value) {
+	-moz-user-select: @value;
+	-webkit-user-select: @value;
+}
+
+.button (@color: @primary-color, @text: @white) {
+	background-color: @color;
+	border: 1px solid @color;
+
+	color: @white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	font-family: Tahoma;
+
+	height: 25px;
+	min-width: 80px;
+	padding: 0 16px;
+
+	&:hover {
+		background-color: @color + #080808;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	&:active, &:focus {
+		.box-shadow(0 0 0 1px @white inset);
+	}
+
+	&:disabled {
+		background: @border-color + #222;
+		border-color: @border-color - #222;
+		color: @border-color - #222;
+		text-shadow: 0 -1px 0 @border-color + #333;
+		cursor: default;
+	}
+}

@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+    var listData = (List<LogData>)ViewBag.LogData ?? new List<LogData>();
+}
+@model List<LogData>
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                @ViewResources.Field_Name
+            </th>
+            <th>
+                @ViewResources.Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            foreach (var item in listData)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+            <tr @Html.Raw(rowCss)>
+                <td>@item.FieldName
+                </td>
+                <td>
+                    @item.NewValue
+                </td>
+            </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,108 @@
+﻿@{
+    var listSiteUrlOld = (List<SiteUrl>)ViewBag.SiteUrlOld ?? null;
+    var listSiteUrl = (List<SiteUrl>)ViewBag.SiteUrl ?? null;
+}
+<br />
+<h1>@ViewResources.Site @ViewResources.URL @ViewResources.Old_Value</h1>
+<br />
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.URL
+            </th>
+            <th>
+                @ViewResources.Environment
+            </th>
+            <th>
+                @ViewResources.Default
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            foreach (var item in listSiteUrlOld)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @i
+                </td>
+                <td>@item.Url
+                </td>
+                <td class="text-center">@item.Environment
+                </td>
+                <td class="text-center">@item.IsDefault
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/Areas/UserControl/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+    </tbody>
+</table>
+<br />
+<h1>@ViewResources.Site @ViewResources.URL @ViewResources.New_Value</h1>
+<br />
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.URL
+            </th>
+            <th>
+                @ViewResources.Environment
+            </th>
+            <th>
+                @ViewResources.Default
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            i = 1;
+            foreach (var item in listSiteUrl)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+            <tr @Html.Raw(rowCss)>
+                <td>
+                    @i
+                </td>
+                <td>@item.Url
+                </td>
+                <td class="text-center">@item.Environment
+                </td>
+                <td class="text-center">@item.IsDefault
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+    </tbody>
+</table>

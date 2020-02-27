@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.NAP.Core</RootNamespace>
+    <AssemblyName>Fanex.NAP.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Couchbase">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Couchbase.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Fanex.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UMControllerLibrary.1.0.0.1\lib\net40\UMControllerLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\Constant.cs" />
+    <Compile Include="Command\CommandResult.cs" />
+    <Compile Include="Command\CommandResultBase.cs" />
+    <Compile Include="Command\ICommandResult.cs" />
+    <Compile Include="Configuration\DomainElement.cs" />
+    <Compile Include="Configuration\DomainCollection.cs" />
+    <Compile Include="Configuration\NapSettings.cs" />
+    <Compile Include="Criteria\Function\AssignFunctionToUsersCriteria.cs" />
+    <Compile Include="Criteria\Function\AssignFunctionToGroupsCriteria.cs" />
+    <Compile Include="Criteria\Function\DuplicateFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByGroupAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByParentKeyAndSiteCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByUserAndFunctionKeyIncludeGroupFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetParentByIdFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\UpdateStatusFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByIdFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\UpdateFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\InsertFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByUserAndSiteIncludeGroupFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByUserAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByGroupFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByUserFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetAllFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByKeyAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByNameAndSiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetByParentFunctionCriteria.cs" />
+    <Compile Include="Criteria\Function\GetBySiteFunctionCriteria.cs" />
+    <Compile Include="Criteria\Group\AssignFunctionGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetByFunctionAndSiteGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetAllWithNumOfUserGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetAllGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetByIdGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetByNameGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\GetByUserGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\SearchGroupExcludeFunctionCriteria.cs" />
+    <Compile Include="Criteria\Group\UpdateGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\UpdateStatusGroupCriteria.cs" />
+    <Compile Include="Criteria\Group\InsertGroupCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetParentByIdMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\SearchAllMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\UpdateStatusMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\UpdateMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\InsertMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetByUserAndSiteIncludeGroupMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetBySiteMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetAllMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetByNameAndSiteMenuItemCriteria.cs" />
+    <Compile Include="Criteria\MenuItem\GetByIdMenuItemCriteria.cs" />
+    <Compile Include="Criteria\Misc\LogExecSpCriteria.cs" />
+    <Compile Include="Criteria\Misc\ResultCriteria.cs" />
+    <Compile Include="Criteria\Site\GetAllSiteUrlCriteria.cs" />
+    <Compile Include="Criteria\Site\GetBySiteKeyCriteria.cs" />
+    <Compile Include="Criteria\Site\InsertSiteUrlCriteria.cs" />
+    <Compile Include="Criteria\Site\UpdateDefaultSiteUrlCriteria.cs" />
+    <Compile Include="Criteria\Site\UpdateSiteUrlCriteria.cs" />
+    <Compile Include="Criteria\Site\GetSiteUrlBySiteIdCriteria.cs" />
+    <Compile Include="Criteria\Site\GetSiteUrlByIdCriteria.cs" />
+    <Compile Include="Criteria\Site\GetSiteUrlByUserCriteria.cs" />
+    <Compile Include="Criteria\Site\GetAllSiteWithNumOfUserCriteria.cs" />
+    <Compile Include="Criteria\Site\GetByIdSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\GetUserSiteLevelSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\UpdateStatusSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\UpdateSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\GetAllSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\GetByUserSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\GetByNameSiteCriteria.cs" />
+    <Compile Include="Criteria\Site\InsertSiteCriteria.cs" />
+    <Compile Include="Criteria\Trace\GetAllLogFunctionCriteria.cs" />
+    <Compile Include="Criteria\Trace\GetAllLogUserLoginCriteria.cs" />
+    <Compile Include="Criteria\Trace\GetByIdLogCriteria.cs" />
+    <Compile Include="Criteria\Trace\GetAllLogCriteria.cs" />
+    <Compile Include="Criteria\Trace\InsertLogUserLoginCriteria.cs" />
+    <Compile Include="Criteria\User\AssignFunctionUserCriteria.cs" />
+    <Compile Include="Criteria\User\AssignSiteUserCriteria.cs" />
+    <Compile Include="Criteria\User\ChangeUserSiteStatusUserCriteria.cs" />
+    <Compile Include="Criteria\User\UpdateSiteToUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetAvailableSitesCriteria.cs" />
+    <Compile Include="Criteria\User\UserSSOGetTimeUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetUserListSiteFunctionKeyPolicyUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetAllByUsernameGroupSiteUserCriteria.cs" />
+    <Compile Include="Criteria\User\SearchUserExcludeFunctionCriteria.cs" />
+    <Compile Include="Criteria\User\GetUserSiteFunctionKeyPolicyUserCriteria.cs" />
+    <Compile Include="Criteria\User\ResetPasswordCustCriteria.cs" />
+    <Compile Include="Criteria\User\GetByFunctionAndSiteUserCriteria.cs" />
+    <Compile Include="Criteria\User\UpdatePasswordCustCriteria.cs" />
+    <Compile Include="Criteria\User\UpdateCustCriteria.cs" />
+    <Compile Include="Criteria\User\InsertCustCriteria.cs" />
+    <Compile Include="Criteria\User\InsertUserCriteria.cs" />
+    <Compile Include="Criteria\User\SearchByUsernameUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetUserFunctionPolicyUserCriteria.cs" />
+    <Compile Include="Criteria\User\UserSSOCheckInUserCriteria.cs" />
+    <Compile Include="Criteria\User\LogOutUserCriteria.cs" />
+    <Compile Include="Criteria\User\UserReCheckInUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetAllUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetByGroupAndSiteUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetByIdUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetBySiteUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetByUsernameUserCriteria.cs" />
+    <Compile Include="Criteria\User\GetUserSiteLevelUserCriteria.cs" />
+    <Compile Include="Criteria\User\SearchUserCriteria.cs" />
+    <Compile Include="Criteria\User\UserCheckInUserCriteria.cs" />
+    <Compile Include="Domain\EntityBase.cs" />
+    <Compile Include="Domain\IEntity.cs" />
+    <Compile Include="Domain\IGroup.cs" />
+    <Compile Include="Domain\IFunction.cs" />
+    <Compile Include="Domain\IMenuItem.cs" />
+    <Compile Include="Domain\ISite.cs" />
+    <Compile Include="Domain\IUser.cs" />
+    <Compile Include="Properties\GlobalSuppressions.cs" />
+    <Compile Include="Model\ValueObject\LogFunction.cs" />
+    <Compile Include="Model\ValueObject\LogUserLogin.cs" />
+    <Compile Include="Model\ValueObject\Downtime.cs" />
+    <Compile Include="Model\ValueObject\LogData.cs" />
+    <Compile Include="Model\ValueObject\LogExecSp.cs" />
+    <Compile Include="Model\ValueObject\SiteUrl.cs" />
+    <Compile Include="Model\Function.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\MenuItem.cs" />
+    <Compile Include="Model\Site.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\ValueObject\FunctionPolicy.cs" />
+    <Compile Include="Model\ValueObject\GroupPolicy.cs" />
+    <Compile Include="Model\ValueObject\SiteLevel.cs" />
+    <Compile Include="Model\ValueObject\UserLevel.cs" />
+    <Compile Include="Model\ValueObject\UserPolicy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Impl\TraceRepository.cs" />
+    <Compile Include="Repository\Impl\FunctionRepository.cs" />
+    <Compile Include="Repository\Impl\GroupRepository.cs" />
+    <Compile Include="Repository\Impl\MenuItemRepository.cs" />
+    <Compile Include="Repository\Impl\BaseRepository.cs" />
+    <Compile Include="Repository\Impl\SiteRepository.cs" />
+    <Compile Include="Repository\Impl\UserRepository.cs" />
+    <Compile Include="Repository\Interface\ITraceRepository.cs" />
+    <Compile Include="Repository\Interface\IGroupRepository.cs" />
+    <Compile Include="Repository\Interface\IFunctionRepository.cs" />
+    <Compile Include="Repository\Interface\IMenuItemRepository.cs" />
+    <Compile Include="Repository\Interface\ISiteRepository.cs" />
+    <Compile Include="Repository\Interface\IUserRepository.cs" />
+    <Compile Include="Service\Impl\TraceService.cs" />
+    <Compile Include="Service\Impl\MaintenanceService.cs" />
+    <Compile Include="Service\Impl\FunctionService.cs" />
+    <Compile Include="Service\Impl\GroupService.cs" />
+    <Compile Include="Service\Impl\MenuItemService.cs" />
+    <Compile Include="Service\Impl\ServiceContext.cs" />
+    <Compile Include="Service\Impl\SiteService.cs" />
+    <Compile Include="Service\Impl\BaseService.cs" />
+    <Compile Include="Service\Impl\UserService.cs" />
+    <Compile Include="Service\Interface\ITraceService.cs" />
+    <Compile Include="Service\Interface\IGroupService.cs" />
+    <Compile Include="Service\Interface\IFunctionService.cs" />
+    <Compile Include="Service\Interface\IMaintenanceService.cs" />
+    <Compile Include="Service\Interface\IMenuItemService.cs" />
+    <Compile Include="Service\Interface\IBaseService.cs" />
+    <Compile Include="Service\Interface\IServiceContext.cs" />
+    <Compile Include="Service\Interface\ISiteService.cs" />
+    <Compile Include="Service\Interface\IUserService.cs" />
+    <Compile Include="Web\Attribute\NapAuthAttribute.cs" />
+    <Compile Include="Web\Attribute\NapSuperAuthAttribute.cs" />
+    <Compile Include="Web\Auth\AuthInfo.cs" />
+    <Compile Include="Web\Auth\INapPrincipal.cs" />
+    <Compile Include="Web\Auth\NapPrincipal.cs" />
+    <Compile Include="Web\Context\CurrentContext.cs" />
+    <Compile Include="Web\DateTimeExtensions.cs" />
+    <Compile Include="Web\NumberExtensions.cs" />
+    <Compile Include="Web\Session\CurrentSession.cs" />
+    <Compile Include="Web\Context\ICurrentContext.cs" />
+    <Compile Include="Web\Session\ICurrentSession.cs" />
+    <Compile Include="Web\ViewFlags.cs" />
+    <Compile Include="Web\ViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Web\ViewResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>ViewResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

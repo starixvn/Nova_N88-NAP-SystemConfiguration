@@ -1,0 +1,86 @@
+﻿@import "../style.less";
+
+.grid {
+	border: solid 1px @grid-border;
+	border: 0;
+	.box-shadow(none);
+
+	thead {
+		tr {
+			&:hover {
+				background: none;
+			}
+		}
+	}
+
+	tr {
+		border-bottom: dotted 1px @grid-border;
+
+		&:hover {
+			background: @form-bg;
+		}
+	}
+	tr.last {
+		border: 0;
+
+		&:hover {
+			background: none;
+		}
+	}
+
+	th {
+		background: none;
+		border: 0;
+		color: @text;
+		font-weight: bold;
+		padding: 10px 8px;
+	}
+
+	td {
+		padding: 4px 8px;
+		height: 40px;
+		border: 0;		
+
+		label {
+			display: block;
+			margin-top: 2px;
+		}
+
+		select {
+			border: solid 1px @primary-color;
+			color: @text;
+			font-size: 0.9em;
+			padding: 3px 5px 4px;
+			.border-radius;
+			height: 2.4em;
+
+			option {
+				padding-top: 4px;
+				padding-bottom: 4px;
+			}
+		}
+
+		input[type=text] {
+			width: 180px;
+			padding: 4px 5px 5px;
+			border: 1px solid @form-border;
+			font-family: Tahoma;
+		}
+
+		.btn-apply, .btn-cancel {
+			display: block;
+			height: 19px;
+
+			&:hover {
+				background-position: center -65px;
+			}
+
+			display: none;
+		}
+
+		.btn-apply {
+			border-right: solid 1px @link;
+			padding-right: 4px;
+		}
+	}
+}

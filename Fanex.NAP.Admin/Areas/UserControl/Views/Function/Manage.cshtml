@@ -1,0 +1,245 @@
+﻿@using Fanex.NAP.Core.Criteria.Function
+@model GetBySiteFunctionCriteria
+@{
+    ViewBag.Title = ViewResources.Manage_Function;
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    var functionList = (List<IFunction>)ViewBag.FunctionList;
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}
+@section Headline {
+        <span class="title"><span class="first">@ViewResources.Function @ViewResources.Management
+            /</span> @ViewBag.Title
+        </span>
+        <div class="button-action">
+        @if (viewFlags.HasEditRight)
+        {
+            @Html.ActionLink("+ " + ViewResources.Create_New + " " + ViewResources.Function, "AddNew", "Function", new { siteId = Model.SiteId },
+                            new { @class = "add-button" })
+        }
+        </div>
+}
+@if (viewFlags.IsNapAdminSite)
+{
+    using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
+    {
+    <div class="form-group">
+        @Html.LabelFor(m => m.SiteId, ViewResources.Site)
+        @Html.DropDownListFor(m => m.SiteId, (List<SelectListItem>)ViewBag.SiteItemList)
+        @Html.HiddenFor(m => m.Environment)
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@ViewResources.Submit" />
+    </div>
+    }
+    
+    <div class="col-sm-12 grid-title grid-view-mode">
+        <a href="javascript:;" class="tree-mode active tip" id="btnTreeView" title="@ViewResources.Tree_View">
+            @ViewResources.Tree_View
+        </a><a href="javascript:;" class="grid-mode tip" id="btnGridView" title="@ViewResources.Grid_View">
+            @ViewResources.Grid_View
+        </a>
+    </div>
+}
+<table class="col-sm-12 grid">
+    <thead>
+        <tr>
+            <th style="width: auto">
+                @ViewResources.Name
+            </th>
+            <th class="grid-mode-only" style="display: none; width: auto">
+                @ViewResources.Parent
+            </th>
+            <th style="width: 60px">
+                @ViewResources.Order
+            </th>
+            <th style="width: 80px">
+                @ViewResources.Read_only
+            </th>
+            <th style="width: 140px">
+                @ViewResources.Modified_Date
+            </th>
+            <th style="width: 120px">
+                @ViewResources.Modified_By
+            </th>
+            @if (!viewFlags.IsLive)
+            {
+                <th style="width: 100px">
+                    @ViewResources.Environment
+                </th>
+            }
+            <th style="width: 60px">
+                @ViewResources.Active
+            </th>
+            <th style="width: 60px">
+                @ViewResources.Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var functionCount = functionList.Count;
+            int i = 0;
+            string rowBg = "class='alt'";
+
+            foreach (IFunction function in functionList)
+            {
+                var funcNameStyle = i == functionCount - 1 ? "nbt" : "nbt nbb";
+
+                if (function.Parent == null)
+                {
+                    funcNameStyle = i == functionCount - 1 ? string.Empty : "nbb";
+                    rowBg = rowBg == string.Empty ? "class='alt'" : string.Empty;
+                }
+
+            <tr @Html.Raw(rowBg)>
+                <td class="@Html.Raw(funcNameStyle)">
+                    @IndentChildFunction(function, functionList, 0)
+                </td>
+                <td class="grid-mode-only" style="display: none">
+                    @(function.Parent != null ? function.Parent.Name : string.Empty)
+                </td>
+                <td class="text-center">
+                    @function.DisplayOrder
+                </td>
+                <td class="text-center">
+                    @if (function.Readonly)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                    }
+                </td>
+                <td class="text-center">
+                    @function.ModifiedDate.ToFullDateString()
+                </td>
+                <td>
+                    @(function.Modifier == null ? string.Empty : function.Modifier.Username)
+                </td>
+                @if (!viewFlags.IsLive)
+                {
+                    <td class="text-center">
+                        @function.Environment
+                    </td>
+                }
+                <td class="text-center">
+                    @if (viewFlags.HasEditRight)
+                    {
+                        string activateText = function.IsActive ? "Deactivate" : "Activate";
+
+                        @Html.CheckBox(string.Format("chk-function-{0}", function.Id),
+                        function.IsActive, new
+                        {
+                            fid = function.Id,
+                            fname = function.Name,
+                            title = string.Format("{0} '{1}'", activateText, function.Name)
+                        })
+                    }
+                    else
+                    {
+                        if (function.IsActive)
+                        {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                        }
+                    }
+                </td>
+                <td>
+                    <div class="action-wrp">
+                        <span class="btn-action">@ViewResources.Action</span>
+                        <div class="relative">
+                            <ul class="actions">
+                                <li>
+                                    @Html.ActionLink(ViewResources.View_privileged_groups_and_users,
+                                    "PrivilegedGroupsAndUsers",
+                                    new { id = function.Id, siteId = Model.SiteId }, new { @class = "dd-user-info" })
+                                </li>
+                                @if (viewFlags.HasEditRight)
+                                {
+                                    <li>
+                                        @Html.ActionLink(string.Format("{0} '{1}'", ViewResources.Edit, function.Name),
+                                            "Edit", new { id = function.Id, siteId = Model.SiteId },
+                                        new
+                                        {
+                                            @class = "dd-edit"
+                                        })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(string.Format("{0} '{1}'", ViewResources.Duplicate, function.Name),
+                                            "Duplicate", new { id = function.Id, siteId = Model.SiteId },
+                                        new
+                                        {
+                                            @class = "dd-duplicate",
+                                            title = string.Format("Duplicate '{0}'", function.Name)
+                                        })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(string.Format("{0} '{1}'", ViewResources.Copy_Permission, function.Name),
+                                            "CopyPermission", new { id = function.Id, siteId = Model.SiteId },
+                                        new
+                                        {
+                                            @class = "dd-duplicate",
+                                            title = string.Format("Copy permission '{0}'", function.Name)
+                                        })
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+                                i++;
+            }
+
+            if (i == 0)
+            {
+            <tr>
+                <td colspan="12" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/Function/Manage.js" type="text/javascript"></script>
+}
+@helper IndentChildFunction(IFunction function, IEnumerable<IFunction> functionList, int level = 0)
+    {
+        if (function.Parent != null)
+        {
+            if (function.Parent.Id > 0)
+            {
+                var parent = functionList.Where(f => f.Id == function.Parent.Id).FirstOrDefault();
+
+    @IndentChildFunction(parent, functionList, level + 1)
+            }
+        }
+        else
+        {
+            for (int i = 0; i < level; i++)
+            {
+                if (i == level - 1)
+                {
+    <span class="tree-mode-only" lvl="@level">&#9492;&#9472;&#9472;</span>
+                }
+                else
+                {
+    <span class="invisible tree-mode-only">&#9492;&#9472;&#9472;</span>
+                }
+            }
+        }
+
+        if (level == 0)
+        {
+            bool functionHasKids = functionList.Where(f => f.Parent != null && f.Parent.Id == function.Id).Count() > 0;
+
+            if (functionHasKids)
+            {
+    <a href="javascript:;" class="tree-grid-toggle"></a>@function.Name
+            }
+            else
+            {
+    @function.Name
+            }
+        }
+}

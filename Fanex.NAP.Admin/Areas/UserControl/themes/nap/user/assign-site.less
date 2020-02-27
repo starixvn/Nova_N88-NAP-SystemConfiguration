@@ -1,0 +1,75 @@
+﻿@import "../style.less";
+
+.grid {
+    .box-shadow(none);
+
+    tr {
+        border-bottom: dotted 1px @grid-border;
+
+        &:hover {
+            background: @form-bg;
+        }
+    }
+
+    th {
+        padding: 10px 8px;
+    }
+
+    td {
+        padding: 4px 8px;
+
+        label {
+            display: block;
+            margin-top: 2px;
+        }
+
+        select {
+            border: solid 1px @primary-color;
+            color: @text;
+            font-size: 0.9em;
+            padding: 3px 5px 4px;
+            .border-radius;
+            height: 2.4em;
+
+            option {
+                padding-top: 4px;
+                padding-bottom: 4px;
+            }
+        }
+    }
+
+    .btn-apply {
+        background: url("../img/accept.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        padding: 0 0 0 18px;
+    }
+
+    .btn-cancel {
+        background: url("../img/delete.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        padding: 0 0 0 18px;
+    }
+
+    .txtExpiredDatePicker {
+        border: solid 1px @primary-color;
+        color: @text;
+        font-size: 0.9em;
+        padding: 3px 5px 4px;
+        .border-radius;
+        height: 2.4em;
+        width: 100px;
+        margin-left: 15px;
+    }
+}
+
+.datetime {
+    position: relative;
+
+    img {
+        position: relative;
+        right: 20px;
+        top: 6px;
+    }
+
+	.time {
+		font-size: .85em;
+	}
+}

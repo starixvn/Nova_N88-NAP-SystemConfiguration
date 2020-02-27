@@ -1,0 +1,267 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@model AssignSiteVM
+
+@{
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+
+    ViewBag.Title = ViewResources.NAP_Admin;
+    string headline = viewFlags.HasAssignSiteRight
+        ? string.Format("Assign Site to User '{0}'", Model.UserName)
+        : string.Format("Sites of User '{0}'", Model.UserName);
+
+    var level = Model.CurrentSessionLevel;
+    var isSelftEdit = Model.IsSelfEdit;
+    var isPortalAdmin = Model.IsPortalAdmin;
+    var siteList = Model.SiteList;                // list of site which current login user has Assign User To Site permission
+    var editableSiteList = Model.EditableSiteList; // list of site which current login user has Assign User To Site "Host" permission
+    var siteLevelList = Model.SiteLevelList;
+
+    var currentUserSiteLevelList = Model.CurrentUserSiteLevelList;
+    var currentSiteId = Model.CurrentSiteId;
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/AssignSite")
+}
+@section Headline {
+    <span class="title">
+        <span class="first">@ViewResources.User_Management /</span>
+        @headline
+    </span>
+    <div class="button-action">
+        @if (viewFlags.HasAssignSiteRight && Model.UserId != 0 && !isSelftEdit)
+        {
+        @Html.ActionLink("+ " + ViewResources.Assign_New_Site, "GetAvailableSitesForUser", "User",
+                new
+                {
+                    userId = Model.UserId,
+                    userName = Model.UserName,
+                    returnUserName = Model.ReturnData.ReturnUserName,
+                    returnSiteId = Model.ReturnData.ReturnSiteId,
+                    returnGroupId = Model.ReturnData.ReturnGroupId,
+                    returnPageIndex = Model.ReturnData.ReturnPageIndex,
+                    level = level
+                }, new { @class = "add-button" })
+        }
+
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "User",
+                new
+                {
+                    userName = Model.ReturnData.ReturnUserName,
+                    siteId = Model.ReturnData.ReturnSiteId,
+                    id = Model.ReturnData.ReturnPageIndex,
+                    groupId = Model.ReturnData.ReturnGroupId
+                }, new { @class = "back-button" })
+    </div>
+}
+@Html.Hidden("UserId", Model.UserId)
+@Html.Hidden("HasAssignSiteRight", viewFlags.HasAssignSiteRight)
+@Html.Hidden("ReturnUserName", Model.ReturnData.ReturnUserName)
+@Html.Hidden("ReturnSiteId", Model.ReturnData.ReturnSiteId)
+@Html.Hidden("ReturnGroupId", Model.ReturnData.ReturnGroupId)
+@Html.Hidden("ReturnPageIndex", Model.ReturnData.ReturnPageIndex)
+
+<div class="grid-wrp pnl-wrp no-scale">
+    <div class="pnl-header">
+        <div class="pnl-header-content"></div>
+        <div class="pnl-header-toggle"></div>
+    </div>
+    <div class="pnl-body">
+        <table class="grid no-scale">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        @ViewResources.Site
+                    </th>
+                    <th>
+                        @ViewResources.Level
+                    </th>
+                    <th>
+                        @ViewResources.Active
+                    </th>
+                    @if (Model.UserName.StartsWith("starix"))
+                    {
+                        <th>
+                            @ViewResources.Expired_Date (GMT+7)
+                        </th>
+                    }
+
+                    @if (viewFlags.HasAssignSiteRight)
+                    {
+                        <th>
+                            @ViewResources.Edit
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (siteLevelList != null && siteLevelList.Any())
+                {
+                    var index = 0;
+                    var isChecked = false;
+                    var isEnabled = false;
+                    var isEditEnabled = false;
+                    string checkedAttribute = string.Empty;
+                    string disabledAttribute = string.Empty;
+                    string disabledClass = string.Empty;
+                    string userSelected = string.Empty;
+                    bool hasRenderHtml = false;
+
+                    foreach (var siteLevel in siteLevelList)
+                    {
+                        string rowCss = index % 2 == 0 ? string.Empty : "class=\"alt\"";
+                        isChecked = siteLevel != null && siteLevel.IsActive;
+                        var hasHostRightInSiteOfLoginUser = editableSiteList != null && editableSiteList.Count(s => s.Id == siteLevel.Site.Id) > 0;
+                        var isSelectedUserInSite = siteLevel.Level == (int)Constant.Level.User;
+
+                        if (!isSelftEdit)                   // if user is not edit himself
+                        {
+                            var site = siteList.Where(s => s.Id == siteLevel.Site.Id).FirstOrDefault();
+
+                            if (site != null)               // if siteLevel is belong to list site has Assign Site to User
+                            {
+                                var currentUserSiteLevel = currentUserSiteLevelList.Where(s => s.Site.Id == siteLevel.Site.Id).FirstOrDefault();
+
+                                isEnabled = (isPortalAdmin && (siteLevel == null || siteLevel.Level < (int)Constant.Level.PortalAdmin))     // portal admin
+                                        ||
+                                        (viewFlags.HasAssignSiteRight && currentUserSiteLevel != null       // have edit right and greater level in that site
+                                            && hasHostRightInSiteOfLoginUser && currentUserSiteLevel.IsActive &&
+                                            (siteLevel == null || currentUserSiteLevel.Level > siteLevel.Level
+                                            || (currentUserSiteLevel.Level == (int)Constant.Level.User && isSelectedUserInSite)
+                                            )
+                                        );
+
+                                isEditEnabled = isEnabled ? isEnabled
+                                                           : !isChecked && currentUserSiteLevel != null && currentUserSiteLevel.IsActive
+                                                             && viewFlags.HasAssignSiteRight && hasHostRightInSiteOfLoginUser;
+
+                                userSelected = isChecked && siteLevel.Level == (int)Constant.Level.User
+                                                            ? "selected=\"selected\"" : string.Empty;
+                                hasRenderHtml = true;
+                            }
+                        }
+                        else
+                        {
+                            isEnabled = currentSiteId != siteLevel.Site.Id && isPortalAdmin;
+                            isEditEnabled = isEnabled;
+                            hasRenderHtml = true;
+                        }
+
+                        if (hasRenderHtml)
+                        {
+                            index++;
+                            checkedAttribute = isChecked ? "checked=\"checked\"" : string.Empty;
+                            disabledAttribute = !isEnabled ? "disabled=\"disabled\"" : string.Empty;
+                            disabledClass = !isEditEnabled ? "disabled" : string.Empty;
+
+                            <tr @Html.Raw(rowCss)>
+                                <td class="text-center">
+                                    @index
+                                </td>
+                                <td>
+                                    <span id="lbSite_@siteLevel.Site.Id">@siteLevel.Site.Name</span>
+                                </td>
+                                <td class="text-center">
+                                    <span id="lbLevel_@siteLevel.Site.Id">
+                                        @siteLevel.Level.ToUserLevel()
+                                    </span>
+                                    <select id="ddlSiteLevel_@siteLevel.Site.Id" style="display: none;">
+                                        <option value="0" @Html.Raw(userSelected)>@ViewResources.User</option>
+                                        @if (level > (int)Constant.Level.SiteAdmin)
+                                        {
+                                            string siteAdminSelected = siteLevel.Level == (int)Constant.Level.SiteAdmin
+                                                                ? "selected=\"selected\"" : string.Empty;
+                                            <option value="50" @Html.Raw(siteAdminSelected)>@ViewResources.Site_Admin</option>
+                                        }
+                                    </select>
+                                </td>
+
+                                @if (viewFlags.HasAssignSiteRight)
+                                {
+                                    <td class="text-center">
+                                        <input type="checkbox" id="chbSite_@siteLevel.Site.Id" class="chbSite" name="@siteLevel.Site.Name"
+                                               value="@siteLevel.Level" @Html.Raw(checkedAttribute) @Html.Raw(disabledAttribute) />
+                                    </td>
+                                }
+                                else if (viewFlags.HasAssignSiteReadRight)
+                                {
+                                    if (isChecked)
+                                    {
+                                        <td class="text-center">
+                                            <img class="ico-tick" alt="" src="" />
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"></td>
+                                    }
+                                }
+                                @if (Model.UserName.StartsWith("starix"))
+                                {
+                                    <td class="text-center">
+                                        @if (siteLevel.IsNeverExpired)
+                                        {
+                                            <span id="lbExpiredDate_@siteLevel.Site.Id">
+                                                @ViewResources.Never_Expired
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            var expiredDate = siteLevel.ExpiredDate;
+                                            if (expiredDate.Year != 1)
+                                            {
+                                                <span id="lbExpiredDate_@siteLevel.Site.Id">
+                                                    @expiredDate.ToShortMonthFormatedDate()
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span id="lbExpiredDate_@siteLevel.Site.Id">
+                                                    @ViewResources.NA
+                                                </span>
+                                            }
+                                        }
+                                        <div id="dtpExpiredDate_@siteLevel.Site.Id" style="display:none" class="expiredDatePickerArea datetime">
+                                            <input readonly type="text" id="datepicker_@siteLevel.Site.Id" placeholder="Expired Date" class="txtExpiredDatePicker" />
+                                            <div>
+                                                <input type="checkbox" class="cbNeverExpired" />  @ViewResources.Never_Expired
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+
+                                @if (viewFlags.HasAssignSiteRight)
+                                {
+                                    <td>
+                                        @if (isEditEnabled)
+                                        {
+                                            <a class="btn-edit @Html.Raw(disabledClass)" href="javascript:;"></a>
+                                            <a class="btn-apply" href="javascript:;" style="display:none;">@ViewResources.Save</a>
+                                            <a class="btn-cancel" href="javascript:;" style="display:none;">@ViewResources.Cancel</a>
+                                        }
+                                    </td>
+                                }
+                            </tr>}
+
+                        hasRenderHtml = false;
+
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            @ViewResources.NoInformationAvailable
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Hidden("imagePath", (string)@Url.Content("~/Areas/UserControl/themes/img/smoothness/icon-calendar.png"))
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/User/AssignSite.js" type="text/javascript"></script>
+}

@@ -1,0 +1,167 @@
+﻿@using Fanex.NAP.Core.Criteria.Trace
+@using Fanex.NAP.Admin.Core.Configuration
+@model GetAllLogCriteria
+@{
+    ViewBag.Title = ViewResources.Log_Management;
+    var listLog = (PagerList<LogExecSp>)ViewBag.ListLog;
+}
+@section Head {
+   @Styles.Render("~/Areas/UserControl/themes/Trace/logexecsp")
+}
+@section Headline {
+        <span class="title"><span class="first">@ViewResources.Log_Management / </span>
+            @ViewResources.Execute_SP_Log
+        </span>
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
+    </div>
+    <div class="form-group datetime">
+        @Html.LabelFor(m => m.From)
+        @Html.EditorFor(m => m.From)
+    </div>
+    <div class="form-group datetime">
+        @Html.LabelFor(m => m.To)
+        @Html.EditorFor(m => m.To)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FilterType)
+        @Html.DropDownListFor(m => m.FilterType, new List<SelectListItem>() { 
+                    new SelectListItem { Text = ViewResources.User, Value = "1"}, 
+                    new SelectListItem { Text = ViewResources.Group, Value = "2"}, 
+                    new SelectListItem { Text = ViewResources.Site, Value = "3"}, 
+                    new SelectListItem { Text = ViewResources.Function, Value = "4"}, 
+                    new SelectListItem { Text = ViewResources.Menu, Value = "5"} })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@ViewResources.Submit" />
+    </div>
+        
+    @Html.HiddenFor(m => m.PageIndex, new { Value = 1 })
+    @Html.HiddenFor(m => m.PageSize)
+}
+<table class="col-sm-12 grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.Log_ID
+            </th>
+            <th>
+                @ViewResources.Log_Date
+            </th>
+            @switch (Model.FilterType)
+            {
+                case 1:
+                <th>@ViewResources.User
+                </th>
+               break;
+                case 2:
+                <th>@ViewResources.Group
+                </th>
+               break;
+                case 3:
+                <th>@ViewResources.Site
+                </th>
+               break;
+                case 4:
+                <th>@ViewResources.Function
+                </th>
+               break;
+                case 5:
+                <th>@ViewResources.Menu
+                </th>
+               break;
+            }
+            <th>
+                @ViewResources.Modified_By
+            </th>
+            <th>
+                @ViewResources.Action
+            </th>
+            <th>
+                @ViewResources.Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!ReferenceEquals(listLog, null) && listLog.Count() > 0)
+        {
+            int i = 0;
+            foreach (var item in listLog)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    @((i + 1) + ((Model.PageIndex - 1) * Model.PageSize))
+                </td>
+                <td>
+                    @item.Id
+                </td>
+                <td style="width: 150px" class="text-center">
+                    @item.LogDate.ToFullDateString()
+                </td>
+                <td style="width: 200px">
+                    @item.Name
+                </td>
+                <td style="width: 200px">
+                    @item.Modifier
+                </td>
+                <td>
+                    @item.ActionName
+                </td>
+                <td class="text-center" style="width: 100px">
+                    @if (item.ActionId != (int)LogAction.NAP_Cust_UpdatePassword)
+                    { 
+                        <a href="#" logid="@item.Id" class="loginsert">@ViewResources.Details</a>
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+        else
+        {
+            <tr class="no-info">
+                <td colspan="12" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12">
+                @if (listLog != null && listLog.Count() > 0)
+                {
+                    <span class="items-per-page-wrp">@ViewResources.PageSize
+                        @Html.DropDownList("items-per-page", new List<SelectListItem> { 
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() }, 
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() }, 
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() } 
+                        }, new { id = string.Empty, @class = "items-per-page" })</span>
+                    @Html.Pager(listLog, new PagerOptions()
+{
+    PageIndexParameterName = "id",
+    ShowFirstLast = true,
+    CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
+}, new { @class = "jpages" })
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@Html.Hidden("imagePath", (string)@Url.Content("~/Areas/UserControl/themes/img/smoothness/icon-calendar.png"))
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/Trace/LogExecSp.js" type="text/javascript"></script>
+}

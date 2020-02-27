@@ -1,0 +1,13 @@
+﻿<div>
+    <div v-if="!enableEditSite">
+        {{GetSiteLevel()}}
+    </div>
+    <select v-else v-model="site.SiteLevel.Level">
+        <option value="0">
+            User
+        </option>
+        <option value="50" v-show="LoginUserIsPortalAdmin">
+            Site Admin
+        </option>
+    </select>
+</div>

@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = string.Format("{0}", ViewResources.Home);
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}
+@section Headline {
+        <span class="title">@ViewBag.Title</span>
+}

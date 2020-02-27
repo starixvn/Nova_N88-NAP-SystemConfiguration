@@ -1,0 +1,103 @@
+﻿@model IEnumerable<UserLevel>
+@{
+    Layout = null;
+}
+<table class="grid">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @ViewResources.Username
+            </th>
+            <th>
+                @ViewResources.First_Name
+            </th>
+            <th>
+                @ViewResources.Last_Name
+            </th>
+            <th>
+                @ViewResources.Group
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+            <th>
+                @ViewResources.Level
+            </th>
+            <th>
+                @ViewResources.Creator
+            </th>
+            <th>
+                @ViewResources.Created_Date
+            </th>
+            <th>
+                @ViewResources.Last_Login_Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class=\"alt\"";
+        
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    @(i + 1)
+                </td>
+                <td>
+                    @item.User.Username
+                </td>
+                <td>
+                    @item.User.FirstName
+                </td>
+                <td>
+                    @item.User.LastName
+                </td>
+                <td>
+                    @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                    }
+                </td>
+                <td>
+                    @item.Level.ToUserLevel()
+                </td>
+                <td>
+                    @(item.User.Creator != null ? item.User.Creator.Username : string.Empty)
+                </td>
+                <td>
+                    @item.User.CreatedDate.ToFullDateString()
+                </td>
+                <td class="text-center">
+                    @if (item.User.LastLoginDate != DateTime.MinValue)
+                    {
+                        @item.User.LastLoginDate.ToFullDateString()
+                    }
+                    else
+                    {
+                        @ViewResources.NA
+                    }
+                </td>
+            </tr>
+
+                    i++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

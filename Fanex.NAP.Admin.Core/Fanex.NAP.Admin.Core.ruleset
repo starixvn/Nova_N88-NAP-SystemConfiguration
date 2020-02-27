@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - R&amp;D / NAP System Configuration Sonar way" ToolsVersion="14.0">
+  <Include Path="..\sonarqube\nap_system_configurationcsharp.ruleset" Action="Default" />
+</RuleSet>

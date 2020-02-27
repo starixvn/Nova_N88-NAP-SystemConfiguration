@@ -1,0 +1,170 @@
+﻿@model GetAllSiteCriteria
+@{
+    ViewBag.Title = ViewResources.Manage_Site;
+    var siteList = ViewBag.SiteList as List<ISite>;
+    var siteUrlList = ViewBag.SiteUrlList as List<SiteUrl>;
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    var listSiteHasManageUser = ViewBag.Site as List<byte> ?? new List<byte>();
+}
+@section Head {
+   @Styles.Render("~/Areas/UserControl/themes/Site/manage")
+}
+@section Headline {
+    <span class="title">
+		<span class="first">@ViewResources.Site @ViewResources.Management /</span> @ViewBag.Title
+    </span>
+	@if (viewFlags.HasEditRight)
+	{
+		<div class="button-action">
+            @Html.ActionLink("+ " + ViewResources.Create_New + " " + ViewResources.Site, "AddNew", "Site", null, 
+				new { @class = "add-button" })
+		</div>
+	}
+}
+<table class="col-sm-12 grid">
+    <thead>
+        <tr>
+            <th style="width: 50px">
+                @ViewResources.ID
+            </th>
+            <th style="width: 200px">
+                @ViewResources.Name
+            </th>
+            <th style="width: 80px">
+                @ViewResources.Users
+            </th>
+            <th style="width: 200px">
+                @ViewResources.Description
+            </th>
+            <th style="width: auto">
+                @ViewResources.URL
+            </th>
+            <th style="width: 80px">
+                @ViewResources.Active
+            </th>
+            @if (!viewFlags.IsLive)
+			{
+                <th style="width: 80px">
+                    @ViewResources.Environment
+                </th>
+			}
+            @if (viewFlags.HasEditRight)
+			{
+                <th style="width: 80px">
+                    @ViewResources.Edit @ViewResources.URL
+                </th>
+                <th style="width: 80px">
+                    @ViewResources.Edit
+                </th>
+			}
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < siteList.Count; i++)
+		{
+			string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+			var site = siteList[i];
+
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    @site.Id
+                </td>
+                <td>
+                    @site.Name
+                </td>
+                <td class="text-center">
+                    @if (site.NumOfUser > 0)
+					{
+						string title = string.Format("View users of '{0}'", site.Name);
+						if (listSiteHasManageUser.Contains(site.Id) && viewFlags.HasManageUserRight)
+						{ 
+                        <a href="@Url.Action("Manage", "User", new { siteId = site.Id })" target="_blank"
+                            sid="@site.Id" sname="@site.Name" class="num-of-user" title="@title">@site.NumOfUser</a>
+						}
+						else
+						{
+                        @site.NumOfUser
+						}
+					}
+					else
+					{
+                        @site.NumOfUser
+					}
+                </td>
+                <td>
+                    @site.Description
+                </td>
+                <td>
+                    @{
+					var siteUrls = siteUrlList.Where(x => x.Site.Id == site.Id);
+					var defaultUrl = siteUrls.Where(x => x.IsDefault).FirstOrDefault() ?? siteUrls.FirstOrDefault();
+
+					if (siteUrls.Count() > 1)
+					{
+                        <div class="site-url">@defaultUrl.Url
+                            <a href="javascript:;" class="url-toggle" title="@ViewResources.Alternative_URLs">
+                            </a>
+                            <ul class="alt-urls">
+                                @foreach (var url in siteUrls.Where(x => x.SiteUrlId != defaultUrl.SiteUrlId))
+								{
+                                    <li>@url.Url</li>
+								}
+                            </ul>
+                        </div>
+					}
+					else if (siteUrls.Count() > 0)
+					{
+                        @defaultUrl.Url
+					}
+                    }
+                </td>
+                <td class="text-center">
+                    @if (viewFlags.HasEditRight)
+					{
+						string activateTitle = site.IsActive ? ViewResources.Deactivate : ViewResources.Activate;
+
+                        @Html.CheckBox(string.Format("chk-site-{0}", site.Id), site.IsActive,
+							new
+							{
+								sid = site.Id,
+								sname = site.Name,
+								title = string.Format("{0} '{1}'", activateTitle, site.Name)
+							})
+					}
+					else if (site.IsActive)
+					{
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+					}
+                </td>
+                @if (!viewFlags.IsLive)
+				{
+                    <td class="text-center">
+                        @site.Environment
+                    </td>
+				}
+                @if (viewFlags.HasEditRight)
+				{
+                    <td>
+                        @Html.ActionLink(".", "EditUrl", new { id = site.Id },
+							new
+							{
+								@class = "btn-url tip",
+								title = string.Format("Edit URL of '{0}'", site.Name)
+							})
+                    </td>
+                    <td>
+                        @Html.ActionLink(".", "Edit", new { id = site.Id },
+							new
+							{
+								@class = "btn-edit tip",
+								title = string.Format("{0} '{1}'", ViewResources.Edit, site.Name)
+							})
+                    </td>
+				}
+            </tr>
+		}
+    </tbody>
+</table>
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/Site/Manage.js" type="text/javascript"></script>
+}

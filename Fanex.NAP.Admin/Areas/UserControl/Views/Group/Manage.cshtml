@@ -1,0 +1,164 @@
+﻿@using Fanex.NAP.Core.Model
+@using Fanex.NAP.Core.Business
+@using Fanex.NAP.Core.Criteria.Group
+@model GetAllWithNumOfUserGroupCriteria
+@{
+    ViewBag.Title = string.Format("{0} {1}", ViewResources.Manage, ViewResources.Group);
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    var groupList = (IEnumerable<IGroup>)ViewBag.GroupList;
+}
+@section Head {
+     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+}
+@section Headline {
+    <span class="title">
+		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+    </span>
+    <div class="button-action">
+        @if (viewFlags.HasEditRight)
+        {
+            @Html.ActionLink("+ " + ViewResources.Create_New + " " + ViewResources.Group,
+                            "AddNew", "Group", null, new { @class = "add-button" })
+        }
+    </div>
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-inline col-sm-12 filter-form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupName)
+        @Html.TextBoxFor(m => m.GroupName)
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@ViewResources.Submit" />
+    </div>
+}
+<table class="col-sm-12 grid">
+    <thead>
+        <tr>
+            <th class="first">
+                #
+            </th>
+            <th>
+                @ViewResources.Name
+            </th>
+            <th>
+                @ViewResources.Users
+            </th>
+            <th>
+                @ViewResources.Description
+            </th>
+            <th>
+                @ViewResources.Modified_Date
+            </th>
+            <th>
+                @ViewResources.Modifier
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+            <th class="text-center">
+                @if (viewFlags.HasEditRight)
+                {
+                    @ViewResources.Action
+                }
+                else
+                {
+                    @ViewResources.Permission
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody id="contentMenuItem">
+        @{
+            int i = 0;
+            foreach (Group group in groupList)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    @(i + 1)
+                </td>
+                <td>
+                    <a href="javascript:;" gid="@group.Id" class="lnk-group-info"
+                    title="@ViewResources.View_details_of '@group.Name'">@group.Name</a>
+                </td>
+                <td class="text-center">
+                    @if (group.NumOfUser > 0 && viewFlags.HasManageUserRight)
+                    {
+                        string title = string.Format("View users of '{0}'", group.Name);
+
+                        <a href="@Url.Action("Manage", "User", new { groupId = group.Id, siteid = -9999 })" target="_blank"
+                            gid="@group.Id" gname="@group.Name" class="num-of-user" title="@title">@group.NumOfUser</a>
+                    }
+                    else
+                    {
+                        @group.NumOfUser
+                    }
+                </td>
+                <td>
+                    @group.Description
+                </td>
+                <td class="text-center">
+                    @group.ModifiedDate.ToFullDateString()
+                </td>
+                <td>
+                    @(group.Modifier == null ? string.Empty : group.Modifier.Username)
+                </td>
+                <td class="text-center">
+                    @if (viewFlags.HasEditRight)
+                    {
+                        string activateText = group.IsActive ? "Deactivate" : "Activate";
+
+                        @Html.CheckBox(string.Format("chk-group-{0}", group.Id), group.IsActive,
+                            new
+                            {
+                                gid = group.Id,
+                                gname = group.Name,
+                                title = string.Format("{0} '{1}'", activateText, group.Name)
+                            })
+                    }
+                    else if (group.IsActive)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                    }
+                </td>
+                <td class="text-center">
+                    <div class="action-wrp">
+                        <span class="btn-action">@ViewResources.Action</span>
+                        <div class="relative">
+                            <ul class="actions">
+                                @if (viewFlags.HasEditRight)
+                                {
+                                    <li>
+                                        @Html.ActionLink(string.Format("Edit '{0}' Details", group.Name),
+                                            "Edit", new { id = group.Id }, new { @class = "dd-edit" })
+                                    </li>
+                                }
+                                <li>
+                                    @Html.ActionLink(string.Format("View Permission of '{0}'", group.Name),
+                                        "AssignPermission", new { id = group.Id }, new { @class = "dd-permission" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+                                i++;
+            }
+
+            if (i == 0)
+            {
+            <tr>
+                <td colspan="10" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/Group/Manage.js" type="text/javascript"></script>
+}

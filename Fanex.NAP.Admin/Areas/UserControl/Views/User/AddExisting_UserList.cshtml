@@ -1,0 +1,87 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@model AddExistingUserVM
+
+<table class="grid no-scale">
+    <thead>
+        <tr>
+            <th class="first">
+                @ViewResources.Username
+            </th>
+            <th>
+                @ViewResources.First_Name
+            </th>
+            <th>
+                @ViewResources.Last_Name
+            </th>
+            <th>
+                @ViewResources.Closed
+            </th>
+            <th>
+                @ViewResources.Add
+            </th>
+        </tr>
+    </thead>
+    <tbody id="grid-user">
+        @if (Model.UserList != null && Model.UserList.Count() > 0)
+        {
+            int i = 0;
+
+            foreach (var item in Model.UserList)
+            {
+                string row_class = i % 2 == 0 ? "class='alt'" : string.Empty;
+
+            <tr @Html.Raw(row_class)>
+                <td>
+                    @item.Username
+                </td>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td class="text-center">
+                    @if (item.Closed)
+                    {
+                        <img class="ico-tick" alt="" src="" />
+                    }
+                </td>
+                <td class="text-center">
+                    <a uid="@item.Id" uname="@item.Username" href="javascript:;" class="btn-add-user">@ViewResources.Add</a>
+                </td>
+            </tr>
+
+                i++;
+            }
+        }
+        else
+        {
+            <tr class="no-info">
+                <td class="text-center" colspan="4">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12">
+                @if (Model.UserList != null && Model.UserList.Count() > 0)
+                {
+                    <span class="items-per-page-wrp">@ViewResources.PageSize
+                        @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.UserList.PageSize.ToString() },
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.UserList.PageSize.ToString() },
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.UserList.PageSize.ToString() }
+                        }, new { id = string.Empty, @class = "items-per-page" })</span>
+
+                    @Html.Pager(Model.UserList, new PagerOptions() {
+                            PageIndexParameterName = "id",
+                            ShowFirstLast = true,
+                            CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
+                        }, new { @class = "jpages" })
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>

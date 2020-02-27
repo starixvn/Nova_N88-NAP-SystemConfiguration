@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+@model IUser
+@if (!ReferenceEquals(Model, null))
+{
+    <form class="form-horizontal info-form" role="form">
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.Username, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                <label>@Model.Username</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.FirstName, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                <label>@Model.FirstName</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.LastName)
+            </div>
+            <div class="col-sm-8">
+                <label>@Model.LastName</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div class="col-sm-8">
+                <label>@Model.Email</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.Group, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                <label>@(Model.Group != null ? Model.Group.Name : string.Empty)</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.LastLoginDate, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                @if (Model.LastLoginDate != DateTime.MinValue)
+                {
+                    @Model.LastLoginDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.CreatedDate, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                @if (Model.CreatedDate != DateTime.MinValue)
+                {
+                    @Model.CreatedDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.Creator, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                <label>@(Model.Creator != null ? Model.Creator.Username : string.Empty)</label>
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.ModifiedDate, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                @if (Model.ModifiedDate != DateTime.MinValue)
+                {
+                    @Model.ModifiedDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">
+                @Html.LabelFor(m => m.Modifier, new { @for = "" })
+            </div>
+            <div class="col-sm-8">
+                <label>@(Model.Modifier != null ? Model.Modifier.Username : string.Empty)</label>
+            </div>
+        </div>
+    </form>
+}

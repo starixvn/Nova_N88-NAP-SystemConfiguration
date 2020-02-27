@@ -1,0 +1,106 @@
+﻿@{
+    var listSiteUrlOld = (List<SiteLevel>)ViewBag.SiteUrlOld ?? new List<SiteLevel>();
+    var listSiteUrl = (List<SiteLevel>)ViewBag.SiteUrl ?? new List<SiteLevel>();
+}
+@if (listSiteUrlOld.Count > 0)
+{
+    <br />
+    <h1>@ViewResources.Site @ViewResources.Old_Value</h1>
+    <br />
+    <table class="grid">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewResources.Site_Name
+                </th>
+                <th>
+                    @ViewResources.Level
+                </th>
+                <th>
+                    @ViewResources.Active
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int i = 1;
+    foreach (SiteLevel item in listSiteUrlOld)
+    {
+        string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+                <tr @Html.Raw(rowCss)>
+                    <td>
+                        @i
+                    </td>
+                    <td>@item.Site.Name
+                    </td>
+                    <td class="text-center">
+                        @item.Level.ToUserLevel()
+                    </td>
+                    <td class="text-center">
+                        @if (item.IsActive)
+                        {
+                            <img src="~/Areas/UserControl/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                        }
+                    </td>
+                </tr>
+        i++;
+    }
+            }
+        </tbody>
+    </table>
+}
+@if (listSiteUrl.Any())
+{ 
+    <br />
+    <h1>@ViewResources.Site @ViewResources.New_Value</h1>
+    <br />
+    <table class="grid">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewResources.Site_Name
+                </th>
+                <th>
+                    @ViewResources.Level
+                </th>
+                <th>
+                    @ViewResources.Active
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int i = 1;
+    foreach (SiteLevel item in listSiteUrl)
+    {
+        string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+                <tr @Html.Raw(rowCss)>
+                    <td>
+                        @i
+                    </td>
+                    <td>@item.Site.Name
+                    </td>
+                    <td class="text-center">
+                        @item.Level.ToUserLevel()
+                    </td>
+                    <td class="text-center">
+                        @if (item.IsActive)
+                        {
+                            <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                        }
+                    </td>
+                </tr>
+        i++;
+    }
+            }
+        </tbody>
+    </table>
+}

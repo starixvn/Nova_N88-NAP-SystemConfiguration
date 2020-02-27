@@ -1,0 +1,65 @@
+﻿@model Group
+@{
+    Layout = null;
+}
+@if (!ReferenceEquals(Model, null))
+{
+    <div class="form-horizontal info-form">
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Name)</div>
+            <div class="col-sm-8">
+                @Html.Label(Model.Name)
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Description)</div>
+            <div class="col-sm-8">
+                @(Model.Description != null ? Model.Description : string.Empty)
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Status)</div>
+            <div class="col-sm-8">
+                @(Model.IsActive ? ViewResources.Active : ViewResources.Inactive)
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Created_Date)</div>
+            <div class="col-sm-8">
+                @if (Model.CreatedDate != DateTime.MinValue)
+                {
+                    @Model.CreatedDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Creator)</div>
+            <div class="col-sm-8">
+                @(Model.Creator != null ? Model.Creator.Username : string.Empty)
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Modified_Date)</div>
+            <div class="col-sm-8">
+                @if (Model.ModifiedDate != DateTime.MinValue)
+                {
+                    @Model.ModifiedDate.ToFullDateString()
+                }
+                else
+                {
+                    <label>@ViewResources.NA</label>
+                }
+            </div>
+        </div>
+        <div class="form-group line">
+            <div class="col-sm-4 text-right">@Html.Label(ViewResources.Modifier)</div>
+            <div class="col-sm-8">
+                @(Model.Modifier != null ? Model.Modifier.Username : string.Empty)
+            </div>
+        </div>
+    </div>
+}

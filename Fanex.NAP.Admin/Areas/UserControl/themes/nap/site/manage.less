@@ -1,0 +1,33 @@
+﻿@import "../style.less";
+
+.site-url {
+	position: relative;
+	padding-right: 20px;
+
+	.url-toggle {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 15px;
+		height: 15px;
+		background: url(../img/sprites.png) no-repeat;
+	}
+
+	.url-toggle.expand {
+		background-position: 0 -25px;
+	}
+
+	.alt-urls {
+		margin: 10px 0 5px;
+		padding: 5px 10px;
+		display: none;
+        background-color: #efefef;
+		border: 1px solid @border-color;
+		box-shadow: 1px 1px 0 @border-color + #333 inset, 1px 1px 0 #fff;
+        .border-radius;
+
+		li {
+			padding: 5px 0;
+		}
+	}
+}

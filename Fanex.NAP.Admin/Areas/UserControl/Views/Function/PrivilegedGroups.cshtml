@@ -1,0 +1,94 @@
+﻿@model IEnumerable<IGroup>
+@{
+    Layout = null;
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+}
+<table class="grid">
+    <thead>
+        <tr>
+            <th class="first">
+                #
+            </th>
+            <th>
+                @ViewResources.Name
+            </th>
+            <th>
+                @ViewResources.Description
+            </th>
+            <th>
+                @ViewResources.Modified_Date
+            </th>
+            <th>
+                @ViewResources.Modifier
+            </th>
+            <th>
+                @ViewResources.Active
+            </th>
+            <th>
+                @ViewResources.Policy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!ReferenceEquals(Model, null) && Model.Any())
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+                string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+        
+            <tr @Html.Raw(rowCss)>
+                <td class="text-center">
+                    <input type="checkbox" gid="@item.Id" />
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.ModifiedDate.ToFullDateString()
+                </td>
+                <td>
+                    @(item.Modifier != null ? item.Modifier.Username : string.Empty)
+                </td>
+                <td class="text-center">
+                    @if (item.IsActive)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                    }
+                </td>
+                <td>
+                    @if (ViewBag.IsReadonlyAssign)
+                    {
+                        @ViewResources.Readonly
+                    }
+                    else
+                    {
+                        <input type="radio" name="rdo-policy-@item.Id" id="rdo-read-@item.Id" checked="checked" />
+                        <label for="rdo-read-@item.Id">@ViewResources.Read</label>
+                        <input type="radio" name="rdo-policy-@item.Id" id="rdo-host-@item.Id" />
+                        <label for="rdo-host-@item.Id">@ViewResources.Host</label>
+                    }
+                </td>
+            </tr>
+                    i++;
+            }
+        }
+        else
+        {
+            <tr class="no-info">
+                <td colspan="10" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (!ReferenceEquals(Model, null) && Model.Any())
+{
+    <div class="button-list">
+        <input type="submit" value="@ViewResources.Add_Selected_Groups" disabled="disabled" />
+    </div>
+}

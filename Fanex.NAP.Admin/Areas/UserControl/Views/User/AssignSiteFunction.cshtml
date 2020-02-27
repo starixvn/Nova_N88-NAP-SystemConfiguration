@@ -1,0 +1,58 @@
+﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@model AssignSiteFunctionViewModel
+
+@section Head {
+
+    @if (Model.IsDevelopingVueJS)
+    {
+        @*Run %current_project_dir%build/dev.bat for development*@
+        @Styles.Render("~/Areas/UserControl/themes/AssignSite")
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/main.css">
+    }
+    else
+    {
+        @Styles.Render("~/Areas/UserControl/themes/AssignSiteFunction")
+    }
+}
+@section Headline {
+    <span class="title">
+        <span class="first">@ViewResources.User_Management /</span>
+        Site/Function of User '@Model.UserName'
+    </span>
+    <div class="button-action">
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "User",
+                new
+                {
+                    userName = Model.ReturnData.ReturnUserName,
+                    siteId = Model.ReturnData.ReturnSiteId,
+                    id = Model.ReturnData.ReturnPageIndex,
+                    groupId = Model.ReturnData.ReturnGroupId
+                }, new { @class = "back-button" })
+    </div>
+}
+
+@Html.HiddenFor(m => m.UserName, new { @id = "viewed-user-name" })
+@Html.HiddenFor(m => m.UserId, new { @id = "viewed-user-id" })
+@Html.HiddenFor(m => m.LoginUserId, new { @id = "login-user-id" })
+@Html.HiddenFor(m => m.CurrentSiteId, new { @id = "current-site-id" })
+@Html.HiddenFor(m => m.LoginUserIsPortalAdmin, new { @id = "login-user-is-portal-admin" })
+@Html.HiddenFor(m => m.LoginUserHasAssignSitePermission, new { @id = "login-user-has-assign-site-permission" })
+@Html.HiddenFor(m => m.LoginUserHasAssignSiteReadPermission, new { @id = "login-user-has-assign-site-read-permission" })
+@Html.HiddenFor(m => m.LoginUserAssignFunctionPermission, new { @id = "login-user-assign-function-permission" })
+
+<div id="app-main">
+    <site-list>loading...</site-list>
+</div>
+
+@section Foot {
+
+    @if (Model.IsDevelopingVueJS)
+    {
+        @*Run %current_project_dir%build/dev.bat for development*@
+        <script src="http://localhost:8080/main.js"></script>
+    }
+    else
+    {
+        @Scripts.Render("~/Areas/UserControl/js/User/AssignSiteFunction")
+    }
+}

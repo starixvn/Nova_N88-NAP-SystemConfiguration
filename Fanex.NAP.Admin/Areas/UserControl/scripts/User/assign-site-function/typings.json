@@ -1,0 +1,12 @@
+{
+  "globalDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20170217154556",
+    "moment": "registry:dt/moment#2.11.1+20161010105546",
+    "sweetalert": "registry:dt/sweetalert#1.1.3+20160510002910",
+    "webpack-env": "registry:dt/webpack-env#1.13.0+20170105061735"
+  },
+  "dependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160723033700",
+    "lodash": "registry:dt/lodash#4.14.0+20170324155812"
+  }
+}

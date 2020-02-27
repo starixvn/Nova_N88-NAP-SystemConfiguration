@@ -1,0 +1,11 @@
+﻿.site-table-header a:visited {
+    color: #fff !important;
+}
+
+.site-table-header a {
+    color: #fff !important;
+}
+
+.site-table-header {
+    font-weight: bold !important;
+}

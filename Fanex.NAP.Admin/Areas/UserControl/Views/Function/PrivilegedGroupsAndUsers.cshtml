@@ -1,0 +1,297 @@
+﻿@{
+    ViewBag.Title = ViewResources.Privileged_Groups_and_Users;
+
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    var userList = (List<UserPolicy>)ViewBag.Users;
+    var userSiteLevels = (Dictionary<int, int>)ViewBag.UserSiteLevels;
+    var groupList = (List<GroupPolicy>)ViewBag.Groups;
+    var function = (IFunction)ViewBag.Function;
+    var enableRemovePermission = !function.IsActive;
+}
+@section Head {
+    @Styles.Render("~/Areas/UserControl/themes/Function/PrivilegedGroupsAndUsers")
+}
+@section Headline {
+    <span class="title">
+        <span class="first">
+            @ViewResources.Function @ViewResources.Management
+            /
+        </span>
+        @string.Format("Privileged Groups and Users of '{0}' Function", function.Name)
+    </span>
+    <div class="button-action">
+        @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Function", new { siteId = ViewBag.SiteId }, new { @class = "back-button" })
+    </div>
+}
+<div class="list-wrp">
+    <div class="grid-title" id="grid-title">
+        <span class="title">@ViewResources.Group_List</span>
+        <ul class="list-inline list-unstyled pull-right">
+            <li>
+                @if (viewFlags.HasAssignFunctionToGroupRight)
+                {
+                    <a href="javascript:;" id="btn-add-group" class="last">@ViewResources.Add_groups_to_list</a>
+                }
+            </li>
+            <li>|</li>
+            <li><a href="javascript:;" id="btn-toggle-group">@ViewResources.Collapse_list</a></li>
+            <li>|</li> 
+            @if (enableRemovePermission && viewFlags.HasAssignFunctionToGroupRight && groupList.Count > 0)
+            {
+                <li><a href="javascript:;" id="btn-remove-group" style="display: none">Remove all group permissions</a></li>
+            }
+        </ul>
+    </div>
+
+    <table class="grid no-scale" id="group-grid" style="min-width: 600px">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewResources.Group_Name
+                </th>
+                <th>
+                    @ViewResources.Policy
+                </th>
+                <th>
+                    @ViewResources.Assigned_Date
+                </th>
+                <th>
+                    @ViewResources.Assigned_By
+                </th>
+                @if (enableRemovePermission && viewFlags.HasAssignFunctionToGroupRight && groupList.Count > 0)
+                {
+                    <th>
+                        <input type="checkbox" id="group-check-all" />
+                    </th>
+                }
+        </thead>
+        <tbody>
+            @if (groupList != null && groupList.Count > 0)
+            {
+                int i = 0;
+                foreach (GroupPolicy item in groupList)
+                {
+                    string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+
+                    <tr @Html.Raw(rowCss)>
+                        <td class="text-center">
+                            @(i + 1)
+                        </td>
+                        <td class="group-name-@item.Group.Id">
+                            @item.Group.Name
+                        </td>
+                        <td class="text-center">
+                            @if (item.Policy == (int)Constant.Policy.Host)
+                            {
+                                <span class="crud-host">@ViewResources.Host</span>
+                            }
+                            else
+                            {
+                                <span class="crud-read">@ViewResources.Read</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.Raw(item.ModifiedDate.ToFullDateString())
+                        </td>
+                        <td>
+                            @(item.Creator != null ? item.Creator.Username : string.Empty)
+                        </td>
+                        @if (enableRemovePermission && viewFlags.HasAssignFunctionToGroupRight)
+                        {
+                            <td class="text-center">
+                                <input type="checkbox" class="group-id" data-group-id="@item.Group.Id" />
+                            </td>
+                        }
+                    </tr>
+
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center" style="min-width: 600px;">
+                        @ViewResources.NoInformationAvailable
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="list-wrp">
+    <div class="grid-title" id="grid-title">
+        <span class="title">@ViewResources.User_List</span>
+        <ul class="list-inline list-unstyled pull-right">
+            <li>
+                @if (viewFlags.HasAssignFunctionToUserRight)
+                {
+                    <a href="javascript:;" id="btn-add-user" class="last">@ViewResources.Add_users_to_list</a>
+                }
+            </li>
+            <li>|</li>
+            <li><a href="javascript:;" id="btn-toggle-user">@ViewResources.Collapse_list</a></li>
+            <li>|</li>
+            @if (enableRemovePermission && viewFlags.HasAssignFunctionToUserRight && userList.Count > 0)
+            {
+                <li><a href="javascript:;" id="btn-remove-user" style="display: none">Remove all user permissions</a></li>
+            }
+        </ul>
+    </div>
+    <table class="grid no-scale" id="user-grid">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @ViewResources.Username
+                </th>
+                <th>
+                    @ViewResources.First_Name
+                </th>
+                <th>
+                    @ViewResources.Last_Name
+                </th>
+                <th>
+                    @ViewResources.Email
+                </th>
+                <th>
+                    @ViewResources.Group
+                </th>
+                <th>
+                    @ViewResources.User @ViewResources.Policy
+                </th>
+                <th>
+                    @ViewResources.Group @ViewResources.Policy
+                </th>
+                <th>
+                    @ViewResources.Assigned_Date
+                </th>
+                <th>
+                    @ViewResources.Assigned_By
+                </th>
+                @if (enableRemovePermission && viewFlags.HasAssignFunctionToUserRight && userList.Count > 0 )
+                {
+                    <th>
+                        <input type="checkbox" id="user-check-all" />
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (userList != null && userList.Count > 0)
+            {
+                int i = 0;
+                foreach (var item in userList)
+                {
+                    string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
+                    var groupPolicy = groupList == null || item.User.Group == null ? null
+                        : groupList.Where(g => g.Group.Id == item.User.Group.Id).FirstOrDefault();
+
+                    <tr @Html.Raw(rowCss)>
+                        <td class="text-center">
+                            @(i + 1)
+                        </td>
+                        <td class="user-name-@item.User.Id">
+                            @item.User.Username
+                        </td>
+                        <td>
+                            @item.User.FirstName
+                        </td>
+                        <td>
+                            @item.User.LastName
+                        </td>
+                        <td>
+                            @item.User.Email
+                        </td>
+                        <td>
+                            @(item.User.Group != null ? item.User.Group.Name : string.Empty)
+                        </td>
+                        <td class="text-center">
+                            @if (item.Policy == (int)Constant.Policy.Host)
+                            {
+                                <span class="crud-host">@ViewResources.Host</span>
+                            }
+                            else
+                            {
+                                <span class="crud-read">@ViewResources.Read</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (groupPolicy != null)
+                            {
+                                if (groupPolicy.Policy == (int)Constant.Policy.Host)
+                                {
+                                    <span class="crud-host">@ViewResources.Host</span>
+                                }
+                                else
+                                {
+                                    <span class="crud-read">@ViewResources.Read</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.Raw(item.ModifiedDate.ToFullDateString())
+                        </td>
+                        <td class="text-center">
+                            @(item.Modifier != null ? item.Modifier.Username : string.Empty)
+                        </td>
+                        @if (enableRemovePermission && viewFlags.HasAssignFunctionToUserRight)
+                        {
+                            <td class="text-center">
+                                @if (userSiteLevels[item.User.Id] == 0)
+                                {
+                                    <input type="checkbox" class="user-id" data-user-id="@item.User.Id" />
+                                }                                
+                            </td>
+                        }                        
+                    </tr>
+
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10" class="text-center" style="min-width: 600px;">
+                        @ViewResources.NoInformationAvailable
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="add-user-box" style="display: none">
+    <div class="filter-form">
+        <div class="form-group">
+            @Html.Label(ViewResources.Username)
+            <input type="text" value="" name="Username" />
+        </div>
+        <div class="form-group">
+            @Html.Label("GroupId", ViewResources.Group, new { id = string.Empty })
+            @Html.DropDownList("GroupId", (List<SelectListItem>)ViewBag.GroupSelectList, ViewResources.All_Groups)
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@ViewResources.Search" name="user" />
+        </div>
+    </div>
+</div>
+<div id="add-group-box" style="display: none">
+    <div class="filter-form">
+        <div class="form-group">
+            @Html.Label(ViewResources.Group_Name)
+            <input type="text" value="" name="Groupname" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@ViewResources.Search" name="group" />
+        </div>
+    </div>
+</div>
+@Html.Hidden("fid", function.Id)
+@Html.Hidden("fname", function.Name)
+@section Foot {
+    <script src="~/Areas/UserControl/scripts/Function/PrivilegedGroupsAndUsers.js" type="text/javascript"></script>
+}

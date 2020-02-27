@@ -1,0 +1,15 @@
+﻿@using System.Web.WebPages.Html
+@using System.Collections.Generic;
+
+@helper BuildSiteEnvironmentDropDownList(string selected, IDictionary<string, object> htmlAttributies)
+{
+htmlAttributies = htmlAttributies ?? new Dictionary<string, object>();
+var style = htmlAttributies.ContainsKey("style") ? " style=" + htmlAttributies["style"] : string.Empty;
+var @class = htmlAttributies.ContainsKey("class") ? " class=" + htmlAttributies["class"] : string.Empty;
+var id = htmlAttributies.ContainsKey("id") ? "id=" + htmlAttributies["id"] : string.Empty;
+    <select name="site-url-environment" @(id) @(style) @(@class)>
+        <option value="UAT" @(string.IsNullOrEmpty(selected) || selected.ToUpper() == "UAT" ? "selected=selected" : string.Empty)>UAT</option>
+        <option value="LIVE" @(selected.ToUpper() == "LIVE" ? "selected=selected" : string.Empty)>LIVE</option>
+        <option value="MNL" @(selected.ToUpper() == "MNL" ? "selected=selected" : string.Empty)>MNL</option>
+    </select>
+}

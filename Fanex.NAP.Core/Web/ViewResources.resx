@@ -1,0 +1,750 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Add_New" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Created_Date" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="CRUD" xml:space="preserve">
+    <value>CRUD</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Display_Order" xml:space="preserve">
+    <value>Display Order</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Environment" xml:space="preserve">
+    <value>Environment</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Function_Key" xml:space="preserve">
+    <value>Function Key</value>
+  </data>
+  <data name="Function_Name" xml:space="preserve">
+    <value>Function Name</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Group_Name" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="InputLengthValidationMsg" xml:space="preserve">
+    <value>The {0} field must be at least {2} and maximum {1} characters long.</value>
+  </data>
+  <data name="InvalidNameValidationMsg" xml:space="preserve">
+    <value>The Name field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="LIVE" xml:space="preserve">
+    <value>LIVE</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Menu_Item" xml:space="preserve">
+    <value>Menu Item</value>
+  </data>
+  <data name="Menu_Item_Name" xml:space="preserve">
+    <value>Menu Item Name</value>
+  </data>
+  <data name="Modified_Date" xml:space="preserve">
+    <value>Modified Date</value>
+  </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="Site_Name" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="UAT" xml:space="preserve">
+    <value>UAT</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="DuplicateMsg" xml:space="preserve">
+    <value>'{0}' already exists. Please choose another!</value>
+  </data>
+  <data name="AddSuccessMsg" xml:space="preserve">
+    <value>{0} has been added successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Back_To_List" xml:space="preserve">
+    <value>Back To List</value>
+  </data>
+  <data name="No_Of_Users" xml:space="preserve">
+    <value>No. Of Users</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UnauthorizeMsg" xml:space="preserve">
+    <value>You are not authorized to access the requested resource!</value>
+  </data>
+  <data name="EditSuccessMsg" xml:space="preserve">
+    <value>'{0}' has been updated successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Test_URL" xml:space="preserve">
+    <value>Test URL</value>
+  </data>
+  <data name="NoInformationAvailable" xml:space="preserve">
+    <value>No Information Available</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Last_Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Assign_Site" xml:space="preserve">
+    <value>Assign Site</value>
+  </data>
+  <data name="Last_Login_Date" xml:space="preserve">
+    <value>Last Login Date</value>
+  </data>
+  <data name="Assign_Permission" xml:space="preserve">
+    <value>Assign Permission</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid Password !</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>Invalid Username !</value>
+  </data>
+  <data name="Portal_Admin" xml:space="preserve">
+    <value>Portal Admin</value>
+  </data>
+  <data name="Site_Admin" xml:space="preserve">
+    <value>Site Admin</value>
+  </data>
+  <data name="Add_Existing" xml:space="preserve">
+    <value>Add Existing</value>
+  </data>
+  <data name="Tree_View" xml:space="preserve">
+    <value>Tree View</value>
+  </data>
+  <data name="Grid_View" xml:space="preserve">
+    <value>Grid View</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Confirm_Password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="New_Password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Old_Password" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Invalid_Username_or_Password" xml:space="preserve">
+    <value>Invalid Username or Password</value>
+  </data>
+  <data name="Common_Error" xml:space="preserve">
+    <value>Common Error</value>
+  </data>
+  <data name="Not_Found" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Create_New" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPasswordSuccessMsg" xml:space="preserve">
+    <value>{0} password has been updated successfully</value>
+  </data>
+  <data name="WrongPasswordConfirmation" xml:space="preserve">
+    <value>New password and confirm password do not match</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="Back_To" xml:space="preserve">
+    <value>Back To</value>
+  </data>
+  <data name="Manage_Function" xml:space="preserve">
+    <value>Manage Function</value>
+  </data>
+  <data name="Read_only" xml:space="preserve">
+    <value>Read-only</value>
+  </data>
+  <data name="View_privileged_groups_and_users" xml:space="preserve">
+    <value>View privileged groups &amp; users</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="Add_Existing_User" xml:space="preserve">
+    <value>Add Existing User</value>
+  </data>
+  <data name="All_Groups" xml:space="preserve">
+    <value>All Groups</value>
+  </data>
+  <data name="Create_New_User" xml:space="preserve">
+    <value>Create New User</value>
+  </data>
+  <data name="No_Site" xml:space="preserve">
+    <value>[No Site]</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>Of</value>
+  </data>
+  <data name="View_details_of" xml:space="preserve">
+    <value>View details of</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ResetPwdSuccessMsg" xml:space="preserve">
+    <value>'{0}' password has been reset successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="Reset_Password" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="User_Management" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="AssignPermissionSuccessMsg" xml:space="preserve">
+    <value>{0} has been updated permission successfully.</value>
+  </data>
+  <data name="Your_changes_were_saved" xml:space="preserve">
+    <value>Your changes were saved</value>
+  </data>
+  <data name="EmailFormatValidationMsg" xml:space="preserve">
+    <value>The {0} field is invalid.</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Server_Error" xml:space="preserve">
+    <value>Server Error</value>
+  </data>
+  <data name="Unauthorize" xml:space="preserve">
+    <value>Unauthorize</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Sign_Out" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="Change_Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="PropertiesMustMatchErrMsg" xml:space="preserve">
+    <value>'{0}' and '{1}' do not match.</value>
+  </data>
+  <data name="Wrong_password" xml:space="preserve">
+    <value>Wrong password</value>
+  </data>
+  <data name="You_have_no_authorization" xml:space="preserve">
+    <value>You have no authorization</value>
+  </data>
+  <data name="Assigned_By" xml:space="preserve">
+    <value>Assigned By</value>
+  </data>
+  <data name="Assigned_Date" xml:space="preserve">
+    <value>Assigned Date</value>
+  </data>
+  <data name="Modified_By" xml:space="preserve">
+    <value>Modified By</value>
+  </data>
+  <data name="Sites" xml:space="preserve">
+    <value>Sites</value>
+  </data>
+  <data name="Log_In" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Log_Out" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Howdy" xml:space="preserve">
+    <value>Howdy</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="New_Accounting_Portal" xml:space="preserve">
+    <value>New Accounting Portal</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="Alternative_URLs" xml:space="preserve">
+    <value>Alternative URLs</value>
+  </data>
+  <data name="Add_alternative_URL" xml:space="preserve">
+    <value>Add alternative URL</value>
+  </data>
+  <data name="The_Urls_must_be_unique" xml:space="preserve">
+    <value>The Urls must be unique.</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Your_account_was_suspended" xml:space="preserve">
+    <value>Your account was suspended</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="Privileged_Groups_and_Users" xml:space="preserve">
+    <value>Privileged Groups and Users</value>
+  </data>
+  <data name="Group_List" xml:space="preserve">
+    <value>Group List</value>
+  </data>
+  <data name="User_List" xml:space="preserve">
+    <value>User List</value>
+  </data>
+  <data name="Create_New_Function" xml:space="preserve">
+    <value>Create New Function</value>
+  </data>
+  <data name="Update_Function" xml:space="preserve">
+    <value>Update Function</value>
+  </data>
+  <data name="Create_New_Group" xml:space="preserve">
+    <value>Create New Group</value>
+  </data>
+  <data name="Update_Group" xml:space="preserve">
+    <value>Update Group</value>
+  </data>
+  <data name="Create_New_Menu_Item" xml:space="preserve">
+    <value>Create New Menu Item</value>
+  </data>
+  <data name="Create_New_Site" xml:space="preserve">
+    <value>Create New Site</value>
+  </data>
+  <data name="Manage_Menu" xml:space="preserve">
+    <value>Manage Menu</value>
+  </data>
+  <data name="Manage_Site" xml:space="preserve">
+    <value>Manage Site</value>
+  </data>
+  <data name="Manage_User" xml:space="preserve">
+    <value>Manage User</value>
+  </data>
+  <data name="NAP_Admin" xml:space="preserve">
+    <value>NAP Admin</value>
+  </data>
+  <data name="Update_Menu_Item" xml:space="preserve">
+    <value>Update Menu Item</value>
+  </data>
+  <data name="Update_Site" xml:space="preserve">
+    <value>Update Site</value>
+  </data>
+  <data name="Update_URL" xml:space="preserve">
+    <value>Update URL</value>
+  </data>
+  <data name="Update_User" xml:space="preserve">
+    <value>Update User</value>
+  </data>
+  <data name="User_Profile" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="NAP" xml:space="preserve">
+    <value>NAP</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Duplicate_Function" xml:space="preserve">
+    <value>Duplicate Function</value>
+  </data>
+  <data name="Add_groups_to_list" xml:space="preserve">
+    <value>Add groups to list</value>
+  </data>
+  <data name="Add_users_to_list" xml:space="preserve">
+    <value>Add users to list</value>
+  </data>
+  <data name="Collapse_list" xml:space="preserve">
+    <value>Collapse list</value>
+  </data>
+  <data name="InvalidURLValidationMsg" xml:space="preserve">
+    <value>Invalid Url</value>
+  </data>
+  <data name="Add_Selected_Users" xml:space="preserve">
+    <value>Add Selected Users</value>
+  </data>
+  <data name="Unexpected_Error" xml:space="preserve">
+    <value>Unexpected Error</value>
+  </data>
+  <data name="Readonly" xml:space="preserve">
+    <value>Readonly</value>
+  </data>
+  <data name="Add_Selected_Groups" xml:space="preserve">
+    <value>Add Selected Groups</value>
+  </data>
+  <data name="Privileged_User_Group_Message" xml:space="preserve">
+    <value>Privileged groups/users of this function found. Cannot change read-only status.</value>
+  </data>
+  <data name="All_Site" xml:space="preserve">
+    <value>All Sites</value>
+  </data>
+  <data name="Log_Management" xml:space="preserve">
+    <value>Log Management</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>View Log</value>
+  </data>
+  <data name="Log_Date" xml:space="preserve">
+    <value>Log Date</value>
+  </data>
+  <data name="Log_ID" xml:space="preserve">
+    <value> Log ID</value>
+  </data>
+  <data name="Field_Name" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
+  <data name="New_Value" xml:space="preserve">
+    <value>New Value</value>
+  </data>
+  <data name="Old_Value" xml:space="preserve">
+    <value>Old Value</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Execute_SP_Log" xml:space="preserve">
+    <value>Execute Sp Log</value>
+  </data>
+  <data name="User_Function_Log" xml:space="preserve">
+    <value>User Function Log</value>
+  </data>
+  <data name="User_Login_Log" xml:space="preserve">
+    <value>User Login Log</value>
+  </data>
+  <data name="Browser_Name" xml:space="preserve">
+    <value>Browser Name</value>
+  </data>
+  <data name="Country_Code" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Domain_Name" xml:space="preserve">
+    <value>Domain Name</value>
+  </data>
+  <data name="Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="InvalidFieldValidationConfirmPassword" xml:space="preserve">
+    <value>The 'Confirm Password' field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
+  </data>
+  <data name="InvalidFieldValidationNewPassword" xml:space="preserve">
+    <value>The 'New Password' field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
+  </data>
+  <data name="InvalidFieldValidationOldPassword" xml:space="preserve">
+    <value>The 'Old Password' field can only contain A-Z, a-z, 0-9, underscore, and spaces.</value>
+  </data>
+  <data name="Log_User_Function" xml:space="preserve">
+    <value>Log User Function</value>
+  </data>
+  <data name="Param" xml:space="preserve">
+    <value>Param</value>
+  </data>
+  <data name="Site_Id" xml:space="preserve">
+    <value>Site ID</value>
+  </data>
+  <data name="Add_New_User_Success" xml:space="preserve">
+    <value>'{0}' account has been created successfully. You will be redirected in &lt;span class='msec'&gt;{1}&lt;/span&gt; seconds.</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="NAP_Hub" xml:space="preserve">
+    <value>NAP Hub</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="Maintenance" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="Bcc" xml:space="preserve">
+    <value>Bcc</value>
+  </data>
+  <data name="Cc" xml:space="preserve">
+    <value>Cc</value>
+  </data>
+  <data name="Field_Required" xml:space="preserve">
+    <value>The {0} field is required.</value>
+  </data>
+  <data name="ListFunction" xml:space="preserve">
+    <value>List Function</value>
+  </data>
+  <data name="Internal" xml:space="preserve">
+    <value>Internal</value>
+  </data>
+  <data name="Internal_Only" xml:space="preserve">
+    <value>Internal-only</value>
+  </data>
+  <data name="List_Key" xml:space="preserve">
+    <value>List Key</value>
+  </data>
+  <data name="List_Name" xml:space="preserve">
+    <value>List Name</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page size</value>
+  </data>
+  <data name="Assign_New_Site" xml:space="preserve">
+    <value>Assign New Site</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Site_Key" xml:space="preserve">
+    <value>Site Key</value>
+  </data>
+  <data name="Secret_Access_Key" xml:space="preserve">
+    <value>Secret Key</value>
+  </data>
+  <data name="System_Error" xml:space="preserve">
+    <value>Oops... you are here because of a system error, please notify system administrator.</value>
+  </data>
+</root>

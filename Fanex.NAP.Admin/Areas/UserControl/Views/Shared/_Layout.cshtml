@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<!--[if (IE 7)]><html lang="en" class="ie7 oldie"><![endif]-->
+<!--[if (IE 8)]><html lang="en" class="ie8 oldie"><![endif]-->
+<!--[if (IE 9)]><html lang="en" class="ie9"><![endif]-->
+<!--[if (gt IE 9)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/areas/usercontrol/themes/nap/img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--[if lt IE 9]><script src="~/areas/usercontrol/scripts/lib/html5shiv.min.js" type="text/javascript"></script><![endif]-->
+    @Styles.Render("~/areas/usercontrol/themes/styles")
+    @RenderSection("Head", false)
+</head>
+<body>
+    <div class="container page">
+        <header class="row header">
+            <a class="logo" href="~/">
+                System
+                <span> configuration</span>
+                @if (ViewBag.ViewFlags != null && !ViewBag.ViewFlags.IsLive)
+                {
+                    <div class="uat">
+                    </div>
+                }
+            </a>
+            @Html.Action("Menu", "Shared")
+            <div class="user-info">
+                <div class="greeting">
+                    <h2>
+                        Howdy, <span class="info-acc">@HttpContext.Current.User.Identity.Name</span>
+                        <span class="info-more"></span>
+                    </h2>
+                    <ul>
+                        <li>@Html.ActionLink(ViewResources.Profile, "UserProfile", "User", new { Area = "UserControl" }, new { })</li>
+                        <li>@Html.ActionLink(ViewResources.Change_Password, "ChangePassword", "User", new { Area = "UserControl" }, new { })</li>
+                        <li>@Html.ActionLink(ViewResources.Sign_Out, "LogOut", "Login", new { Area = "UserLogin" }, new { })</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section id="headline" class="row headline">
+            @RenderSection("Headline", false)
+        </section>
+        <section id="body" class="row body">
+            @RenderBody()
+        </section>
+    </div>
+    @Html.Hidden("NapAdminRoot", Url.Content("~/admin/"))
+    @Html.Hidden("NapRoot", Url.Content("~/"))
+    @Scripts.Render("~/areas/usercontrol/jquery")
+    @Scripts.Render("~/areas/usercontrol/js")
+
+    @if (ViewBag.ViewFlags != null && ViewBag.ViewFlags.IsReCheckin && Fanex.NAP.Core.Configuration.NapSettings.Settings.EnableReCheckIn)
+    {
+        <script src="~/Areas/UserLogin/scripts/ReCheckIn.js" type="text/javascript"></script>
+    }
+    @RenderSection("Foot", false)
+</body>
+</html>
