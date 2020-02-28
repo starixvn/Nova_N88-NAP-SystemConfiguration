@@ -2,17 +2,7 @@
 @model AssignSiteFunctionViewModel
 
 @section Head {
-
-    @if (Model.IsDevelopingVueJS)
-    {
-        @*Run %current_project_dir%build/dev.bat for development*@
-        @Styles.Render("~/Areas/UserControl/themes/AssignSite")
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/main.css">
-    }
-    else
-    {
-        @Styles.Render("~/Areas/UserControl/themes/AssignSiteFunction")
-    }
+    @Styles.Render("~/Areas/UserControl/themes/AssignSiteFunction")
 }
 @section Headline {
     <span class="title">
@@ -45,14 +35,5 @@
 </div>
 
 @section Foot {
-
-    @if (Model.IsDevelopingVueJS)
-    {
-        @*Run %current_project_dir%build/dev.bat for development*@
-        <script src="http://localhost:8080/main.js"></script>
-    }
-    else
-    {
-        @Scripts.Render("~/Areas/UserControl/js/User/AssignSiteFunction")
-    }
+    @Scripts.Render("~/Areas/UserControl/js/User/AssignSiteFunction")
 }

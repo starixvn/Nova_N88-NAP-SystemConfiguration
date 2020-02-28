@@ -63,11 +63,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="DbParams\Commands\User\InsertUserToOWPCommand.cs" />
     <Compile Include="Helpers\PagerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Impl\EmailService.cs" />
-    <Compile Include="Service\UserService.cs" />
     <Compile Include="Web\HtmlHelperExtensions.cs" />
     <Compile Include="Web\UserAgentTools.cs" />
   </ItemGroup>

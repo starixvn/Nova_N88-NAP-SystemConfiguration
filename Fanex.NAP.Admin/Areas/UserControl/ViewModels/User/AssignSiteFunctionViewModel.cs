@@ -1,6 +1,4 @@
-﻿using Fanex.NAP.Admin.Configurations;
-
-namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+﻿namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
 {
     public class AssignSiteFunctionViewModel
     {
@@ -23,7 +21,5 @@ namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
         public bool IsSelfEdit { get; set; }
 
         public int CurrentSiteId { get; set; }
-
-        public bool IsDevelopingVueJS { get; } = AppSettings.VueJSEnvironment == "DEV";
     }
 }

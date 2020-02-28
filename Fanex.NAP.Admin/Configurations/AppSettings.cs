@@ -16,23 +16,6 @@
             set { appSettingValues = value; }
         }
 
-        public static string VueJSEnvironment => GetConfigValue("VueJSEnvironment") ?? "PRO";
-
-        public static int OWPSiteID
-        {
-            get
-            {
-                try
-                {
-                    return Convert.ToInt32(GetConfigValue("OWPSiteId"));
-                }
-                catch
-                {
-                    throw new InvalidOperationException($"Missing config for OWPSiteID");
-                }
-            }
-        }
-
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
     }
 }

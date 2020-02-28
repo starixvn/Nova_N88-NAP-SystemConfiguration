@@ -13,7 +13,6 @@
     using Common;
     using Common.Extensions;
     using Core.Configuration;
-    using Fanex.NAP.Admin.Configurations;
     using NAP.Core.Business;
     using NAP.Core.Command;
     using NAP.Core.Criteria.User;
@@ -26,9 +25,6 @@
     using NAP.Core.Web.Attribute;
     using ViewModels.User;
 
-    /// <summary>
-    /// User controller.
-    /// </summary>
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed")]
     [NapSuperAuth]
     public class UserController : BaseController
@@ -42,14 +38,13 @@
         private readonly ISiteService _siteService;
         private readonly IFunctionService _functionService;
         private readonly HashAlgorithm _hashAlgorithm;
-        private readonly Core.Service.IUserService adminUserService;
 
         #endregion Member
 
         #region Constructors
 
         public UserController()
-            : this(null, null, null, null, null)
+            : this(null, null, null, null)
         {
         }
 
@@ -57,15 +52,13 @@
             IUserService userService,
             IGroupService groupService,
             ISiteService siteService,
-            IFunctionService functionService,
-            Core.Service.IUserService adminUserService)
+            IFunctionService functionService)
         {
             _userService = userService ?? new UserService { ServiceContext = ServiceContext };
             _groupService = groupService ?? new GroupService { ServiceContext = ServiceContext };
             _siteService = siteService ?? new SiteService { ServiceContext = ServiceContext };
             _functionService = functionService ?? new FunctionService { ServiceContext = ServiceContext };
             _hashAlgorithm = new SHA256Managed();
-            this.adminUserService = adminUserService ?? new Core.Service.UserService();
         }
 
         #endregion Constructors
@@ -1077,7 +1070,6 @@
 #pragma warning restore S3776 // Cognitive Complexity of methods should not be too high
 #pragma warning restore S1541 // Methods and properties should not be too complex
         {
-
             IUser user = _userService.GetById(userId);
             var function = _functionService.GetById(functionId);
             ISite site = function.Site;
@@ -1124,11 +1116,6 @@
 
             if (result != null && result.IsSuccessful)
             {
-                if (siteId == AppSettings.OWPSiteID)
-                {
-                    adminUserService.SyncUserToOWP(userId);
-                }
-
                 return Constant.Ok;
             }
 

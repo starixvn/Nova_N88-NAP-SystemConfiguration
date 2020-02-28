@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{D19C1772-9060-4A65-A07F-0363C1B6AF2E}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 		SonarQube\NAP_System_ConfigurationCSharp.ruleset = SonarQube\NAP_System_ConfigurationCSharp.ruleset
 		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.NAP.Core", "Fanex.NAP.Core\Fanex.NAP.Core.csproj", "{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,8 +52,23 @@ Global
 		{C8213D62-4705-4F59-AD0A-22E8D058EE18}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C8213D62-4705-4F59-AD0A-22E8D058EE18}.Release|x86.ActiveCfg = Release|x86
 		{C8213D62-4705-4F59-AD0A-22E8D058EE18}.Release|x86.Build.0 = Release|x86
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Debug|x86.Build.0 = Debug|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|x86.ActiveCfg = Release|Any CPU
+		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1163D13B-4DCE-497C-97E8-B827C1CE8755}
 	EndGlobalSection
 EndGlobal

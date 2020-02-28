@@ -43,7 +43,4 @@
     <Setting Key="NAP_Cust_Update" SpName="NAP_Cust_Update" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
     <Setting Key="NAP_Cust_UpdatePassword" SpName="NAP_Cust_UpdatePassword" DbName="DBPOL.NAP_UserControl.bodbAdminNet" />
   </Function>
-  <Function Name="OWP">
-    <Setting Key="OWP_UserInsert" SpName="OWP_UserInsert" DbName="DBOWP.bodb_OWP.bodbAdminNet" />
-  </Function>
 </Functions>
