@@ -34,7 +34,7 @@
             @Html.LabelFor(c => c.Criteria.Username)
         </div>
         <div class="col-xs-12 col-sm-8">
-            @Html.TextBoxFor(c => c.Criteria.Username, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.Criteria.Username, new { @class = "form-control", @autocomplete = "off" })
         </div>
     </div>
     <div class="form-group required">
@@ -50,12 +50,14 @@
             @Html.LabelFor(c => c.Criteria.FirstName)
         </div>
         <div class="col-xs-12 col-sm-8">
-            @Html.TextBoxFor(c => c.Criteria.FirstName, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.Criteria.FirstName, new { @class = "form-control", @autocomplete = "off" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.Criteria.LastName)</div>
-        <div class="col-xs-12 col-sm-8">@Html.TextBoxFor(c => c.Criteria.FirstName, new { @class = "form-control" })</div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.TextBoxFor(c => c.Criteria.LastName, new { @class = "form-control", @autocomplete = "off" })
+        </div>
     </div>
     <div class="form-group">
         <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.Criteria.Email)</div>
