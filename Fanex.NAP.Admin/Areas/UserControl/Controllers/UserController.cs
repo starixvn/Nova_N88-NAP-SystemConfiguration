@@ -13,6 +13,7 @@
     using Common;
     using Common.Extensions;
     using Core.Configuration;
+    using Fanex.NAP.Admin.Configurations;
     using NAP.Core.Business;
     using NAP.Core.Command;
     using NAP.Core.Criteria.User;
