@@ -557,6 +557,7 @@
             };
 
             ViewBag.Groups = _groupService.GetAllSelectListItem();
+            ViewBag.UsernamePrefix = AppSettings.GetConfigValue("CoreSiteUsernamePrefix") ?? string.Empty;
 
             return View(new AddNewUserVM
             {
@@ -580,6 +581,7 @@
 
             if (ModelState.IsValid)
             {
+                criteria.Username = string.Format("{0}{1}", AppSettings.GetConfigValue("CoreSiteUsernamePrefix"), criteria.Username);
                 // check username duplication
                 if (_userService.CheckUsernameExist(criteria.Username))
                 {
@@ -600,6 +602,7 @@
                 {
                     ViewBag.Success = true;
                     ViewBag.UserId = criteria.CustId;
+                    ViewBag.UsernamePrefix = AppSettings.GetConfigValue("CoreSiteUsernamePrefix") ?? string.Empty;
                 }
             }
 
