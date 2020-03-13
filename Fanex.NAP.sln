@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.NAP.Core", "Fanex.NAP.Core\Fanex.NAP.Core.csproj", "{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{0A2A47F5-6E33-4758-AB01-9B6407EC6DBB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "N88_UserControl", "N88_UserControl\N88_UserControl.sqlproj", "{77C803A9-B36B-4B0F-9469-143E817ED0B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,9 +68,30 @@ Global
 		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{2136E1D1-DB76-4365-9B4F-C1DDCFF376A8}.Release|x86.Build.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|x86.Build.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|x86.ActiveCfg = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|x86.Build.0 = Release|Any CPU
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{77C803A9-B36B-4B0F-9469-143E817ED0B6} = {0A2A47F5-6E33-4758-AB01-9B6407EC6DBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1163D13B-4DCE-497C-97E8-B827C1CE8755}

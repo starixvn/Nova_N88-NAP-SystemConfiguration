@@ -11,7 +11,6 @@ namespace Fanex.NAP.Core.Web.Attribute
 {
     using System;
     using System.Web;
-    using System.Web.Mvc;
     using System.Web.Security;
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Configuration;
