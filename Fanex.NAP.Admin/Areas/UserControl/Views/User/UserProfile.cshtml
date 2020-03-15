@@ -1,16 +1,19 @@
-﻿@using Fanex.NAP.Core.Criteria.User
+﻿@using Fanex.N88.Core.Criteria.User
 @model UpdateCustCriteria
 @{
-    ViewBag.Title = ViewResources.User_Profile;
-    bool success = ViewBag.Success != null && ViewBag.Success;
+                /**/
+
+                ViewBag.Title = ViewResources.User_Profile;
+                bool success = ViewBag.Success != null && ViewBag.Success;
 }
 @section Head {
-     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
 }
 @section Headline {
-        <span class="title"><span class="first">@HttpContext.Current.User.Identity.Name /</span>
-            @ViewResources.Profile
-        </span>
+    <span class="title">
+        <span class="first">@HttpContext.Current.User.Identity.Name /</span>
+        @ViewResources.Profile
+    </span>
 }
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-7 col-md-5 common-form" }))
 {
@@ -45,7 +48,7 @@
             <button class="cancel-button" onclick="NAP.navigateToRoot('', 0); return false;">@ViewResources.Cancel</button>
         </div>
     </div>
-    
+
     @Html.HiddenFor(m => m.GroupId)
 }
 @section Foot {

@@ -5,11 +5,11 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using Common;
-    using NAP.Core.Criteria.User;
-    using NAP.Core.Model;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web.Session;
+    using N88.Core.Criteria.User;
+    using N88.Core.Model;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web.Session;
 
     /// <summary>
     /// SSO controller.

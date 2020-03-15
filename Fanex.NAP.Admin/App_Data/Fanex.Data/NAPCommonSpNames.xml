@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Site">
-    <Setting Key="NAP_Site_GetAll" SpName="N88_Site_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetAll" SpName="N88_Site_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-    <Setting Key="NAP_Site_GetAllWithNumOfUser" SpName="N88_Site_GetAllWithNumOfUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetAllWithNumOfUser" SpName="N88_Site_GetAllWithNumOfUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-    <Setting Key="NAP_Site_GetById" SpName="N88_Site_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetById" SpName="N88_Site_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-    <Setting Key="NAP_Site_GetByName" SpName="N88_Site_GetByName" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetByName" SpName="N88_Site_GetByName" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-    <Setting Key="NAP_Site_GetSiteURLByUser" SpName="N88_Site_GetSiteURLByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetSiteURLByUser" SpName="N88_Site_GetSiteURLByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteIsActive" ObjectProperty="IsActive" />
       <Mapping DataField="SiteEnvironment" ObjectProperty="Environment" />
     </Setting>
-    <Setting Key="NAP_Site_GetSiteURLBySiteId" SpName="N88_Site_GetSiteURLBySiteId" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetSiteURLBySiteId" SpName="N88_Site_GetSiteURLBySiteId" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteIsActive" ObjectProperty="IsActive" />
       <Mapping DataField="SiteEnvironment" ObjectProperty="Environment" />
     </Setting>
-    <Setting Key="NAP_Site_GetSiteURLById" SpName="N88_Site_GetSiteURLById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetSiteURLById" SpName="N88_Site_GetSiteURLById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteIsActive" ObjectProperty="IsActive" />
       <Mapping DataField="SiteEnvironment" ObjectProperty="Environment" />
     </Setting>
-    <Setting Key="NAP_Site_GetAllSiteUrl" SpName="N88_Site_GetAllSiteUrl" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetAllSiteUrl" SpName="N88_Site_GetAllSiteUrl" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteIsActive" ObjectProperty="IsActive" />
       <Mapping DataField="SiteEnvironment" ObjectProperty="Environment" />
     </Setting>
-    <Setting Key="NAP_Site_GetUserSiteLevel" SpName="N88_Site_GetUserSiteLevel" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Site_GetSiteKey" SpName="N88_Site_GetByKey" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetUserSiteLevel" SpName="N88_Site_GetUserSiteLevel" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Site_GetSiteKey" SpName="N88_Site_GetByKey" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
   </Function>
   <Function Name="Function">
-    <Setting Key="NAP_Function_GetAll" SpName="N88_Function_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetAll" SpName="N88_Function_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -53,9 +53,9 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetByGroup" SpName="N88_Function_GetByGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_GetById" SpName="N88_Function_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetByGroup" SpName="N88_Function_GetByGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByGroupAndSite" SpName="N88_Function_GetByGroupAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetById" SpName="N88_Function_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -68,7 +68,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetByKeyAndSite" SpName="N88_Function_GetByKeyAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetByKeyAndSite" SpName="N88_Function_GetByKeyAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -81,7 +81,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetByNameAndSite" SpName="N88_Function_GetByNameAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetByNameAndSite" SpName="N88_Function_GetByNameAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -94,7 +94,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetBySite" SpName="N88_Function_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -107,7 +107,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetParentById" SpName="N88_Function_GetParentById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Function_GetParentById" SpName="N88_Function_GetParentById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="FunctionId" ObjectProperty="Id" />
       <Mapping DataField="FunctionName" ObjectProperty="Name" />
       <Mapping DataField="FunctionKey" ObjectProperty="Key" />
@@ -120,22 +120,22 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Function_GetByUser" SpName="N88_Function_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_GetByUserAndFunctionKeyIncludeGroup" SpName="N88_Function_GetByUserAndFunctionKeyIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_AssignFunctionToGroups" SpName="N88_Function_AssignFunctionToGroups" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_Function_AssignFunctionToUsers" SpName="N88_Function_AssignFunctionToUsers" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByUser" SpName="N88_Function_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByUserAndSite" SpName="N88_Function_GetByUserAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByUserAndSiteIncludeGroup" SpName="N88_Function_GetByUserAndSiteIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_GetByUserAndFunctionKeyIncludeGroup" SpName="N88_Function_GetByUserAndFunctionKeyIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_AssignFunctionToGroups" SpName="N88_Function_AssignFunctionToGroups" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_Function_AssignFunctionToUsers" SpName="N88_Function_AssignFunctionToUsers" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
   </Function>
   <Function Name="MenuItem">
-    <Setting Key="NAP_MenuItem_GetAll" SpName="N88_MenuItem_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_MenuItem_GetById" SpName="N88_MenuItem_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_MenuItem_GetByNameAndSite" SpName="N88_MenuItem_GetByNameAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_MenuItem_GetBySite" SpName="N88_MenuItem_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="NAP_MenuItem_GetByUserAndSiteIncludeGroup" SpName="N88_MenuItem_GetByUserAndSiteIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetAll" SpName="N88_MenuItem_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetById" SpName="N88_MenuItem_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetByNameAndSite" SpName="N88_MenuItem_GetByNameAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetBySite" SpName="N88_MenuItem_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetByUserAndSiteIncludeGroup" SpName="N88_MenuItem_GetByUserAndSiteIncludeGroup" DbName="DBPOL.N88_UserControl.bodbAdminNet"></Setting>
   </Function>
   <Function Name="Group">
-    <Setting Key="NAP_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetAll" SpName="N88_Group_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -143,7 +143,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetAllWithNumOfUser" SpName="N88_Group_GetAllWithNumOfUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -151,7 +151,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetById" SpName="N88_Group_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetById" SpName="N88_Group_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -159,7 +159,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetByUser" SpName="N88_Group_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetByUser" SpName="N88_Group_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -167,7 +167,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetByName" SpName="N88_Group_GetByName" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -175,7 +175,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetGroupByFunctionAndSite" SpName="N88_Group_GetGroupByFunctionAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetGroupByFunctionAndSite" SpName="N88_Group_GetGroupByFunctionAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -183,7 +183,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_GetGroupByFunction" SpName="N88_Group_GetGroupByFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_GetGroupByFunction" SpName="N88_Group_GetGroupByFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -191,7 +191,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_Group_SearchExcludeFunction" SpName="N88_Group_SearchExcludeFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Group_SearchExcludeFunction" SpName="N88_Group_SearchExcludeFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="GroupId" ObjectProperty="Id" />
       <Mapping DataField="GroupName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -201,7 +201,7 @@
     </Setting>
   </Function>
   <Function Name="User">
-    <Setting Key="NAP_User_GetById" SpName="N88_User_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetById" SpName="N88_User_GetById" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -211,7 +211,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername_xtest" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -222,15 +222,15 @@
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
 
-    <Setting Key="NAP_User_CheckIn" SpName="N88_User_CheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_ReCheckIn" SpName="N88_User_ReCheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_SSOCheckIn" SpName="N88_User_SSOCheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_Logout" SpName="N88_User_Logout" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_GetUserFunctionPolicy" SpName="N88_User_GetUserFunctionPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_GetUserSiteFunctionKeyPolicy" SpName="N88_User_GetUserSiteFunctionKeyPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_GetUserListSiteFunctionKeyPolicy" SpName="N88_User_GetUserListSiteFunctionKeyPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_GetAll" SpName="N88_User_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_CheckIn" SpName="N88_User_CheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_ReCheckIn" SpName="N88_User_ReCheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_SSOCheckIn" SpName="N88_User_SSOCheckIn" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_Logout" SpName="N88_User_Logout" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserSiteLevel" SpName="N88_User_GetUserSiteLevel" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserFunctionPolicy" SpName="N88_User_GetUserFunctionPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserSiteFunctionKeyPolicy" SpName="N88_User_GetUserSiteFunctionKeyPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserListSiteFunctionKeyPolicy" SpName="N88_User_GetUserListSiteFunctionKeyPolicy" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetAll" SpName="N88_User_GetAll" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -240,7 +240,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_User_GetBySite" SpName="N88_User_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetBySite" SpName="N88_User_GetBySite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -250,7 +250,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_User_GetByGroupAndSite" SpName="N88_User_GetByGroupAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetByGroupAndSite" SpName="N88_User_GetByGroupAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -260,22 +260,12 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_User_Search" SpName="N88_User_Search" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
-    <Setting Key="NAP_User_SearchExcludeFunction" SpName="N88_User_SearchExcludeFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
-    <Setting Key="NAP_User_SearchByUsername" SpName="N88_User_SearchByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
+    <Setting Key="N88_User_SearchExcludeFunction" SpName="N88_User_SearchExcludeFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
+    <Setting Key="N88_User_SearchByUsername" SpName="N88_User_SearchByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
     </Setting>
-    <Setting Key="NAP_User_GetUserByFunctionAndSite" SpName="N88_User_GetUserByFunctionAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
-      <Mapping DataField="UserId" ObjectProperty="Id" />
-      <Mapping DataField="userpwd" ObjectProperty="Password" />
-      <Mapping DataField="GroupId" ObjectProperty="Id" />
-      <Mapping DataField="GroupName" ObjectProperty="Name" />
-      <Mapping DataField="CreatorId" ObjectProperty="Id" />
-      <Mapping DataField="CreatorUsername" ObjectProperty="Username" />
-      <Mapping DataField="ModifierId" ObjectProperty="Id" />
-      <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
-    </Setting>
-    <Setting Key="NAP_User_GetUserByFunction" SpName="N88_User_GetUserByFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetUserByFunctionAndSite" SpName="N88_User_GetUserByFunctionAndSite" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -285,11 +275,21 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="NAP_User_GetAllByUsernameGroupSite" SpName="N88_User_GetAllByUsernameGroupSite" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="NAP_User_SSOGetTime" SpName="N88_User_SSOGetTime" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetUserByFunction" SpName="N88_User_GetUserByFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+      <Mapping DataField="UserId" ObjectProperty="Id" />
+      <Mapping DataField="userpwd" ObjectProperty="Password" />
+      <Mapping DataField="GroupId" ObjectProperty="Id" />
+      <Mapping DataField="GroupName" ObjectProperty="Name" />
+      <Mapping DataField="CreatorId" ObjectProperty="Id" />
+      <Mapping DataField="CreatorUsername" ObjectProperty="Username" />
+      <Mapping DataField="ModifierId" ObjectProperty="Id" />
+      <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
+    </Setting>
+    <Setting Key="N88_User_GetAllByUsernameGroupSite" SpName="N88_User_GetAllByUsernameGroupSite" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_SSOGetTime" SpName="N88_User_SSOGetTime" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
   </Function>
   <Function Name="Site">
-    <Setting Key="NAP_Site_GetByUser" SpName="N88_Site_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetByUser" SpName="N88_Site_GetByUser" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
       <Mapping DataField="CreatorId" ObjectProperty="Id" />
@@ -299,15 +299,15 @@
     </Setting>
   </Function>
   <Function Name="Cust">
-    <Setting Key="NAP_Cust_GetByUsername" SpName="N88_Cust_GetByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_Cust_GetByUsername" SpName="N88_Cust_GetByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet" />
   </Function>
   <Function Name="LogExecSp">
-    <Setting Key="NAP_LogExecSp_Search" SpName="N88_LogExecSp_Search" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
-    <Setting Key="NAP_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
+    <Setting Key="N88_LogExecSp_Search" SpName="N88_LogExecSp_Search" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
+    <Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
   </Function>
   <Function Name="LogUserLogin">
-    <Setting Key="NAP_LogUserLogin_Insert" SpName="N88_LogUserLogin_Insert" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
-    <Setting Key="NAP_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88.bodb_N88LOG.bodbAdminNet">
+    <Setting Key="N88_LogUserLogin_Insert" SpName="N88_LogUserLogin_Insert" DbName="DBN88.bodb_N88LOG.bodbAdminNet" />
+    <Setting Key="N88_LogUserLogin_Search" SpName="N88_LogUserLogin_Search" DbName="DBN88.bodb_N88LOG.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />

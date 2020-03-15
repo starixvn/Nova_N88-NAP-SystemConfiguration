@@ -1,8 +1,8 @@
 ﻿namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
 {
-    using NAP.Core.Domain;
-    using NAP.Core.Model.ValueObject;
     using System.Collections.Generic;
+    using N88.Core.Domain;
+    using N88.Core.Model.ValueObject;
 
     public class AssignSiteVM
     {

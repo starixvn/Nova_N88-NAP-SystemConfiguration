@@ -4,12 +4,12 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
-    using NAP.Core.Configuration;
-    using NAP.Core.Model;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Auth;
-    using NAP.Core.Web.Context;
-    using NAP.Core.Web.Session;
+    using N88.Core.Configuration;
+    using N88.Core.Model;
+    using N88.Core.Web;
+    using N88.Core.Web.Auth;
+    using N88.Core.Web.Context;
+    using N88.Core.Web.Session;
 
     public class BaseController : Controller
     {

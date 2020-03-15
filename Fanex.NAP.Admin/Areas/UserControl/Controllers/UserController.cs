@@ -14,16 +14,16 @@
     using Common.Extensions;
     using Core.Configuration;
     using Fanex.NAP.Admin.Configurations;
-    using NAP.Core.Business;
-    using NAP.Core.Command;
-    using NAP.Core.Criteria.User;
-    using NAP.Core.Domain;
-    using NAP.Core.Helpers;
-    using NAP.Core.Model.ValueObject;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Attribute;
+    using Fanex.NAP.Core.Helpers;
+    using N88.Core.Business;
+    using N88.Core.Command;
+    using N88.Core.Criteria.User;
+    using N88.Core.Domain;
+    using N88.Core.Model.ValueObject;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
+    using N88.Core.Web.Attribute;
     using ViewModels.User;
 
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed")]

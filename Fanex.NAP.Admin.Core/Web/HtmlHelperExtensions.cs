@@ -3,8 +3,8 @@
     using System;
     using System.Globalization;
     using System.Web;
-    using Fanex.NAP.Core.Business;
-    using Fanex.NAP.Core.Web;
+    using Fanex.N88.Core.Business;
+    using Fanex.N88.Core.Web;
 
     /// <summary>
     /// HTML Helpers.

@@ -9,15 +9,15 @@
     using System.Xml.Linq;
     using Core.Configuration;
     using Core.Web;
-    using NAP.Core.Criteria.Trace;
-    using NAP.Core.Domain;
-    using NAP.Core.Helpers;
-    using NAP.Core.Model;
-    using NAP.Core.Model.ValueObject;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Attribute;
+    using Fanex.NAP.Core.Helpers;
+    using N88.Core.Criteria.Trace;
+    using N88.Core.Domain;
+    using N88.Core.Model;
+    using N88.Core.Model.ValueObject;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
+    using N88.Core.Web.Attribute;
     using ViewModels.Trace;
 
     /// <summary>

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
 {
-    using NAP.Core.Criteria.User;
-    using NAP.Core.Domain;
-    using NAP.Core.Model.ValueObject;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using N88.Core.Criteria.User;
+    using N88.Core.Domain;
+    using N88.Core.Model.ValueObject;
 
     public class AssignPermissionVM
     {

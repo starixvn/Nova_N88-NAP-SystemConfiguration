@@ -1,7 +1,7 @@
 ﻿namespace Fanex.NAP.Admin.Areas.UserControl.Controllers
 {
     using System.Web.Mvc;
-    using NAP.Core.Web.Attribute;
+    using N88.Core.Web.Attribute;
 
     /// <summary>
     /// Shared controller.

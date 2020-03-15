@@ -1,11 +1,13 @@
-﻿@using Fanex.NAP.Core.Criteria.Function
-@using Fanex.NAP.Core.Business
+﻿@using Fanex.N88.Core.Criteria.Function
+@using Fanex.N88.Core.Business
 @model CopyPermissionCriteria
 @{
-    ViewBag.Title = ViewResources.Copy_Permission;
-    bool success = ViewBag.Success != null && ViewBag.Success;
+                /**/
 
-    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+                ViewBag.Title = ViewResources.Copy_Permission;
+                bool success = ViewBag.Success != null && ViewBag.Success;
+
+                var viewFlags = (ViewFlags)ViewBag.ViewFlags;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")

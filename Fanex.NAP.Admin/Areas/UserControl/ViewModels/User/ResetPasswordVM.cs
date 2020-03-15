@@ -1,6 +1,6 @@
 ﻿namespace Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
 {
-    using NAP.Core.Criteria.User;
+    using N88.Core.Criteria.User;
 
     public class ResetPasswordVM
     {

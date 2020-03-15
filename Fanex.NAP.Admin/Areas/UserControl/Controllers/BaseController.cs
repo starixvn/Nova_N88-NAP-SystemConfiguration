@@ -2,13 +2,13 @@
 {
     using System.Text;
     using System.Web.Mvc;
-    using NAP.Core.Business;
-    using NAP.Core.Configuration;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Context;
-    using NAP.Core.Web.Session;
+    using N88.Core.Business;
+    using N88.Core.Configuration;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
+    using N88.Core.Web.Context;
+    using N88.Core.Web.Session;
 
     /// <summary>
     /// Base controller.
@@ -18,17 +18,11 @@
         protected const string EmptyString = "";
 
         protected const int NapAdminId = 1;
-
         private readonly int _siteId = NapSettings.Settings.SiteId;
-
         private readonly string _environment = NapSettings.Settings.Environment;
-
         private readonly ICurrentContext _currentContext;
-
         private readonly ICurrentSession _currentSession;
-
         private readonly IServiceContext _serviceContext;
-
         private readonly IUserService _userService;
 
         public BaseController()

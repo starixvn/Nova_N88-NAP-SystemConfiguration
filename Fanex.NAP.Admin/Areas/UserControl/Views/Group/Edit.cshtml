@@ -1,15 +1,17 @@
-﻿@using Fanex.NAP.Core.Criteria.Group
+﻿@using Fanex.N88.Core.Criteria.Group
 @model UpdateGroupCriteria
 @{
-    ViewBag.Title = ViewResources.Update_Group;
-    bool success = ViewBag.Success != null && ViewBag.Success;
+                /**/
+
+                ViewBag.Title = ViewResources.Update_Group;
+                bool success = ViewBag.Success != null && ViewBag.Success;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
 }
 @section Headline {
     <span class="title">
-		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+        <span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
     </span>
     <div class="button-action">
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })

@@ -9,13 +9,13 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using Common.Extensions;
-    using NAP.Core.Configuration;
-    using NAP.Core.Criteria.User;
-    using NAP.Core.Model;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Session;
+    using N88.Core.Configuration;
+    using N88.Core.Criteria.User;
+    using N88.Core.Model;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
+    using N88.Core.Web.Session;
     using ONEbook.UM.Services;
     using ONEbook.UM.Services.Impl;
 
@@ -131,7 +131,7 @@
             {
                 if (!username.IsNullOrTrimEmpty() && !password.IsNullOrTrimEmpty() && CheckValidToken(loginToken))
                 {
-                    var user = _userService.GetByUsername(username.Trim()) as User;
+                    var user = _userService.GetByUsername(username.Trim(), false) as User;
 
                     if (user != null)
                     {

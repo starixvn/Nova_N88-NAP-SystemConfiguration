@@ -1,6 +1,10 @@
-﻿@using Fanex.NAP.Core.Criteria.Group
+﻿@using Fanex.N88.Core.Criteria.Group
 @model InsertGroupCriteria
 @{
+    /**/
+
+    /**/
+
     ViewBag.Title = ViewResources.Create_New_Group;
     bool success = ViewBag.Success != null && ViewBag.Success;
 }
@@ -9,7 +13,7 @@
 }
 @section Headline {
     <span class="title">
-		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+        <span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
     </span>
     <div class="button-action">
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })

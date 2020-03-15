@@ -6,15 +6,15 @@
     using System.Web.Mvc;
     using Common.Extensions;
     using Core.Configuration;
-    using NAP.Core.Business;
-    using NAP.Core.Command;
-    using NAP.Core.Criteria.Group;
-    using NAP.Core.Domain;
-    using NAP.Core.Model.ValueObject;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Attribute;
+    using N88.Core.Business;
+    using N88.Core.Command;
+    using N88.Core.Criteria.Group;
+    using N88.Core.Domain;
+    using N88.Core.Model.ValueObject;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
+    using N88.Core.Web.Attribute;
 
     /// <summary>
     /// Group controller.
@@ -66,7 +66,7 @@
             ViewFlags.HasAssignFunctionRight = HasRight(FunctionKeys.AssignFunctionToGroup, Constant.Policy.Read);
             ViewFlags.HasManageUserRight = HasRight(FunctionKeys.ManageUser, Constant.Policy.Read);
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, Environment);
+            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, Environment, isLicenseeGroup: false);
 
             return View(new GetAllWithNumOfUserGroupCriteria());
         }
@@ -86,7 +86,7 @@
             ViewFlags.HasAssignFunctionRight = HasRight(FunctionKeys.AssignFunctionToGroup, Constant.Policy.Read);
             ViewFlags.HasManageUserRight = HasRight(FunctionKeys.ManageUser, Constant.Policy.Read);
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName);
+            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName, isLicenseeGroup: false);
 
             return View(criteria);
         }
@@ -117,25 +117,19 @@
         {
             if (ModelState.IsValid)
             {
-                // Check name exist
-                IGroup group = _groupService.GetByName(criteria.GroupName);
+                criteria.IsLicenseeGroup = false;
+                criteria.SiteId = null;
+                criteria.CreatedBy = CurrentSession.UserId;
+                criteria.CreatedDate = DateTime.Now;
+                ICommandResult result = _groupService.Insert(criteria);
 
-                if (!object.ReferenceEquals(group, null))
+                if (!result.IsSuccessful)
                 {
                     ModelState.AddModelError("SiteName", string.Format(ViewResources.DuplicateMsg, criteria.GroupName));
                     return View(criteria);
                 }
 
-                // Add group
-                criteria.CreatedBy = CurrentSession.UserId;
-                criteria.CreatedDate = DateTime.Now;
-
-                ICommandResult result = _groupService.Insert(criteria);
-
-                if (result != null && result.IsSuccessful)
-                {
-                    ViewBag.Success = true;
-                }
+                ViewBag.Success = true;
             }
 
             return View(criteria);
@@ -410,6 +404,7 @@
         #endregion Assign Permission
 
         #region UnassignPermission
+
         /// <summary>
         /// Assign group permission.
         /// </summary>
@@ -434,14 +429,14 @@
             criteria.GroupName = group.Name;
             criteria.SiteId = site.Id;
 
-
             // assign permission
             ICommandResult result = _groupService.AssignFunction(criteria);
 
             return Json(result);
         }
 
-        #endregion
+        #endregion UnassignPermission
+
         #region Group Info
 
         /// <summary>

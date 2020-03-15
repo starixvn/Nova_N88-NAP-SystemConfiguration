@@ -1,18 +1,20 @@
-﻿@using Fanex.NAP.Core.Model
-@using Fanex.NAP.Core.Business
-@using Fanex.NAP.Core.Criteria.Group
-@model GetAllWithNumOfUserGroupCriteria
+﻿@using Fanex.N88.Core.Model
+@using Fanex.N88.Core.Business
+@using Fanex.N88.Core.Criteria.Group
+@model Fanex.N88.Core.Criteria.Group.GetAllWithNumOfUserGroupCriteria
 @{
+    /**/
+
     ViewBag.Title = string.Format("{0} {1}", ViewResources.Manage, ViewResources.Group);
     var viewFlags = (ViewFlags)ViewBag.ViewFlags;
-    var groupList = (IEnumerable<IGroup>)ViewBag.GroupList;
+    var groupList = (IEnumerable<Fanex.N88.Core.Domain.IGroup>)ViewBag.GroupList;
 }
 @section Head {
-     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+    @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
 }
 @section Headline {
     <span class="title">
-		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+        <span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
     </span>
     <div class="button-action">
         @if (viewFlags.HasEditRight)
@@ -71,90 +73,90 @@
     <tbody id="contentMenuItem">
         @{
             int i = 0;
-            foreach (Group group in groupList)
+            foreach (Fanex.N88.Core.Model.Group group in groupList)
             {
                 string rowCss = i % 2 == 0 ? string.Empty : "class='alt'";
-        
-            <tr @Html.Raw(rowCss)>
-                <td class="text-center">
-                    @(i + 1)
-                </td>
-                <td>
-                    <a href="javascript:;" gid="@group.Id" class="lnk-group-info"
-                    title="@ViewResources.View_details_of '@group.Name'">@group.Name</a>
-                </td>
-                <td class="text-center">
-                    @if (group.NumOfUser > 0 && viewFlags.HasManageUserRight)
-                    {
-                        string title = string.Format("View users of '{0}'", group.Name);
 
-                        <a href="@Url.Action("Manage", "User", new { groupId = group.Id, siteid = -9999 })" target="_blank"
-                            gid="@group.Id" gname="@group.Name" class="num-of-user" title="@title">@group.NumOfUser</a>
-                    }
-                    else
-                    {
-                        @group.NumOfUser
-                    }
-                </td>
-                <td>
-                    @group.Description
-                </td>
-                <td class="text-center">
-                    @group.ModifiedDate.ToFullDateString()
-                </td>
-                <td>
-                    @(group.Modifier == null ? string.Empty : group.Modifier.Username)
-                </td>
-                <td class="text-center">
-                    @if (viewFlags.HasEditRight)
-                    {
-                        string activateText = group.IsActive ? "Deactivate" : "Activate";
+                <tr @Html.Raw(rowCss)>
+                    <td class="text-center">
+                        @(i + 1)
+                    </td>
+                    <td>
+                        <a href="javascript:;" gid="@group.Id" class="lnk-group-info"
+                           title="@ViewResources.View_details_of '@group.Name'">@group.Name</a>
+                    </td>
+                    <td class="text-center">
+                        @if (group.NumOfUser > 0 && viewFlags.HasManageUserRight)
+                        {
+                            string title = string.Format("View users of '{0}'", group.Name);
 
-                        @Html.CheckBox(string.Format("chk-group-{0}", group.Id), group.IsActive,
-                            new
-                            {
-                                gid = group.Id,
-                                gname = group.Name,
-                                title = string.Format("{0} '{1}'", activateText, group.Name)
-                            })
-                    }
-                    else if (group.IsActive)
-                    {
-                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
-                    }
-                </td>
-                <td class="text-center">
-                    <div class="action-wrp">
-                        <span class="btn-action">@ViewResources.Action</span>
-                        <div class="relative">
-                            <ul class="actions">
-                                @if (viewFlags.HasEditRight)
+                            <a href="@Url.Action("Manage", "User", new { groupId = group.Id, siteid = -9999 })" target="_blank"
+                               gid="@group.Id" gname="@group.Name" class="num-of-user" title="@title">@group.NumOfUser</a>
+                        }
+                        else
+                        {
+                            @group.NumOfUser
+                        }
+                    </td>
+                    <td>
+                        @group.Description
+                    </td>
+                    <td class="text-center">
+                        @group.ModifiedDate.ToFullDateString()
+                    </td>
+                    <td>
+                        @(group.Modifier == null ? string.Empty : group.Modifier.Username)
+                    </td>
+                    <td class="text-center">
+                        @if (viewFlags.HasEditRight)
+                        {
+                            string activateText = group.IsActive ? "Deactivate" : "Activate";
+
+                            @Html.CheckBox(string.Format("chk-group-{0}", group.Id), group.IsActive,
+                                new
                                 {
+                                    gid = group.Id,
+                                    gname = group.Name,
+                                    title = string.Format("{0} '{1}'", activateText, group.Name)
+                                })
+                        }
+                        else if (group.IsActive)
+                        {
+                            <img src="~/areas/usercontrol/themes/nap/img/blank.png" width="16" height="15" alt="" class="ico-tick" />
+                        }
+                    </td>
+                    <td class="text-center">
+                        <div class="action-wrp">
+                            <span class="btn-action">@ViewResources.Action</span>
+                            <div class="relative">
+                                <ul class="actions">
+                                    @if (viewFlags.HasEditRight)
+                                    {
+                                        <li>
+                                            @Html.ActionLink(string.Format("Edit '{0}' Details", group.Name),
+                                                "Edit", new { id = group.Id }, new { @class = "dd-edit" })
+                                        </li>
+                                    }
                                     <li>
-                                        @Html.ActionLink(string.Format("Edit '{0}' Details", group.Name),
-                                            "Edit", new { id = group.Id }, new { @class = "dd-edit" })
+                                        @Html.ActionLink(string.Format("View Permission of '{0}'", group.Name),
+                                            "AssignPermission", new { id = group.Id }, new { @class = "dd-permission" })
                                     </li>
-                                }
-                                <li>
-                                    @Html.ActionLink(string.Format("View Permission of '{0}'", group.Name),
-                                        "AssignPermission", new { id = group.Id }, new { @class = "dd-permission" })
-                                </li>
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
 
-                                i++;
+                i++;
             }
 
             if (i == 0)
             {
-            <tr>
-                <td colspan="10" class="text-center">
-                    @ViewResources.NoInformationAvailable
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="10" class="text-center">
+                        @ViewResources.NoInformationAvailable
+                    </td>
+                </tr>
             }
         }
     </tbody>

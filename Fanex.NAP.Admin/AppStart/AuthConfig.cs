@@ -2,11 +2,10 @@
 {
     using System.Web;
     using System.Web.Security;
-
-    using Fanex.NAP.Core.Criteria.User;
-    using Fanex.NAP.Core.Service.Impl;
-    using Fanex.NAP.Core.Web.Auth;
-    using Fanex.NAP.Core.Web.Session;
+    using Fanex.N88.Core.Criteria.User;
+    using Fanex.N88.Core.Service.Impl;
+    using Fanex.N88.Core.Web.Auth;
+    using Fanex.N88.Core.Web.Session;
 
     /// <summary>
     /// Authorize config.

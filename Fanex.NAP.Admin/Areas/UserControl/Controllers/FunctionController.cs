@@ -5,18 +5,18 @@
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configuration;
-    using NAP.Core.Business;
-    using NAP.Core.Command;
-    using NAP.Core.Criteria.Function;
-    using NAP.Core.Criteria.User;
-    using NAP.Core.Domain;
-    using NAP.Core.Helpers;
-    using NAP.Core.Model;
-    using NAP.Core.Model.ValueObject;
-    using NAP.Core.Service.Impl;
-    using NAP.Core.Service.Interface;
-    using NAP.Core.Web;
-    using NAP.Core.Web.Attribute;
+    using Fanex.N88.Core.Business;
+    using Fanex.N88.Core.Criteria.Function;
+    using Fanex.N88.Core.Web.Attribute;
+    using Fanex.NAP.Core.Helpers;
+    using N88.Core.Command;
+    using N88.Core.Criteria.User;
+    using N88.Core.Domain;
+    using N88.Core.Model;
+    using N88.Core.Model.ValueObject;
+    using N88.Core.Service.Impl;
+    using N88.Core.Service.Interface;
+    using N88.Core.Web;
 
     /// <summary>
     /// Function controller.
