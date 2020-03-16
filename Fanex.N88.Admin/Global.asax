@@ -1,0 +1,1 @@
+﻿<%@ Application CodeBehind="Global.asax.cs" Inherits="Fanex.N88.Admin.MvcApplication" Language="C#" %>
