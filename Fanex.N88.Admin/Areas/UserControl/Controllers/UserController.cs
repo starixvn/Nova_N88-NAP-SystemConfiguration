@@ -14,7 +14,7 @@
     using Common.Extensions;
     using Fanex.N88.Admin.Configurations;
     using Fanex.N88.Admin.Core.Configuration;
-    using Fanex.NAP.Core.Helpers;
+    using Fanex.N88.Core.Helpers;
     using N88.Core.Business;
     using N88.Core.Command;
     using N88.Core.Criteria.User;

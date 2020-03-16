@@ -1,4 +1,4 @@
-﻿@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+﻿@using Fanex.N88.Admin.Areas.UserControl.ViewModels.User
 @model AssignPermissionVM
 
 @{
@@ -38,7 +38,7 @@
                 }, new { @class = "back-button" })
     </div>
 }
-@if (viewFlags.IsNapAdminSite)
+@if (viewFlags.IsN88AdminSite)
 {
     using (Html.BeginForm("AssignPermission", "User", FormMethod.Get, new { @class = "form-inline col-sm-12 filter-form" }))
     {

@@ -1,6 +1,6 @@
 ﻿namespace Fanex.N88.Admin.Areas.UserControl.ViewModels.User
 {
-    using Fanex.NAP.Core.Helpers;
+    using Fanex.N88.Core.Helpers;
     using N88.Core.Domain;
 
     public class AddExistingUserVM

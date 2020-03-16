@@ -1,4 +1,4 @@
-﻿namespace Fanex.NAP.Core.Helpers
+﻿namespace Fanex.N88.Core.Helpers
 {
     using System.Collections.Generic;
     using Webdiyer.WebControls.Mvc;

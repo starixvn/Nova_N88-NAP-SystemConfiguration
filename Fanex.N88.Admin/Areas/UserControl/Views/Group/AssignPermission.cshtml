@@ -22,7 +22,7 @@
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })
     </div>
 }
-@if (viewFlags.IsNapAdminSite)
+@if (viewFlags.IsN88AdminSite)
 {
 
     using (Html.BeginForm("AssignPermission", "Group", FormMethod.Get, new { @class = "form-inline col-sm-12 filter-form" }))

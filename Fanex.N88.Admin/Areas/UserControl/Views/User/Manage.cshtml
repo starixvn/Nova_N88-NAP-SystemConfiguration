@@ -1,5 +1,7 @@
 ﻿@using System.Collections
-@using Fanex.NAP.Admin.Areas.UserControl.ViewModels.User
+@using Fanex.N88.Admin.Areas.UserControl.ViewModels.User
+@using Fanex.N88.Core.Helpers
+
     @model PagerList<UserLevel>
     @{
         ViewBag.Title = ViewResources.Manage_User;
@@ -58,7 +60,7 @@
             @Html.Label("GroupId", ViewResources.Group)
             @Html.DropDownList("GroupId", (List<SelectListItem>)ViewBag.GroupSelectList, ViewResources.All_Groups)
         </div>
-        if (viewFlags.IsNapAdminSite)
+        if (viewFlags.IsN88AdminSite)
         {
             <div class="form-group">
                 @Html.Label("SiteId", ViewResources.Site)

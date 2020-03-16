@@ -8,7 +8,7 @@
     using Fanex.N88.Core.Business;
     using Fanex.N88.Core.Criteria.Function;
     using Fanex.N88.Core.Web.Attribute;
-    using Fanex.NAP.Core.Helpers;
+    using Fanex.N88.Core.Helpers;
     using N88.Core.Command;
     using N88.Core.Criteria.User;
     using N88.Core.Domain;
