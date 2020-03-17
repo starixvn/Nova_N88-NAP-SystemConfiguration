@@ -27,5 +27,7 @@
         public int CurrentSiteId { get; set; }
 
         public bool IsPortalAdmin { get; set; }
+
+        public bool IsLicenseeUser { get; set; }
     }
 }

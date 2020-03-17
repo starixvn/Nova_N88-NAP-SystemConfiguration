@@ -260,7 +260,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="N88_User_Search" SpName="N88_User_Search_xtest" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
+    <Setting Key="N88_User_Search" SpName="N88_User_Search" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
     <Setting Key="N88_User_SearchExcludeFunction" SpName="N88_User_SearchExcludeFunction" DbName="DBPOL.N88_UserControl.bodbAdminNet"> </Setting>
     <Setting Key="N88_User_SearchByUsername" SpName="N88_User_SearchByUsername" DbName="DBPOL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />

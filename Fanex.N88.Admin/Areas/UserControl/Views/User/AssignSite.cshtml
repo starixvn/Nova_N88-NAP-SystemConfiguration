@@ -5,7 +5,8 @@
     var viewFlags = (ViewFlags)ViewBag.ViewFlags;
 
     ViewBag.Title = ViewResources.NAP_Admin;
-    string headline = viewFlags.HasAssignSiteRight
+    ViewBag.IsLicenseeUser = Model.IsLicenseeUser;
+    string headline = viewFlags.HasAssignSiteRight && !ViewBag.IsLicenseeUser
         ? string.Format("Assign Site to User '{0}'", Model.UserName)
         : string.Format("Sites of User '{0}'", Model.UserName);
 
@@ -28,19 +29,19 @@
         @headline
     </span>
     <div class="button-action">
-        @if (viewFlags.HasAssignSiteRight && Model.UserId != 0 && !isSelftEdit)
+        @if (viewFlags.HasAssignSiteRight && Model.UserId != 0 && !isSelftEdit && !ViewBag.IsLicenseeUser)
         {
-        @Html.ActionLink("+ " + ViewResources.Assign_New_Site, "GetAvailableSitesForUser", "User",
-                new
-                {
-                    userId = Model.UserId,
-                    userName = Model.UserName,
-                    returnUserName = Model.ReturnData.ReturnUserName,
-                    returnSiteId = Model.ReturnData.ReturnSiteId,
-                    returnGroupId = Model.ReturnData.ReturnGroupId,
-                    returnPageIndex = Model.ReturnData.ReturnPageIndex,
-                    level = level
-                }, new { @class = "add-button" })
+            @Html.ActionLink("+ " + ViewResources.Assign_New_Site, "GetAvailableSitesForUser", "User",
+                    new
+                    {
+                        userId = Model.UserId,
+                        userName = Model.UserName,
+                        returnUserName = Model.ReturnData.ReturnUserName,
+                        returnSiteId = Model.ReturnData.ReturnSiteId,
+                        returnGroupId = Model.ReturnData.ReturnGroupId,
+                        returnPageIndex = Model.ReturnData.ReturnPageIndex,
+                        level = level
+                    }, new { @class = "add-button" })
         }
 
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "User",
@@ -88,7 +89,7 @@
                         </th>
                     }
 
-                    @if (viewFlags.HasAssignSiteRight)
+                    @if (viewFlags.HasAssignSiteRight && !ViewBag.IsLicenseeUser)
                     {
                         <th>
                             @ViewResources.Edit
@@ -198,6 +199,7 @@
                                         <td class="text-center"></td>
                                     }
                                 }
+
                                 @if (Model.UserName.StartsWith("starix"))
                                 {
                                     <td class="text-center">
@@ -232,7 +234,7 @@
                                     </td>
                                 }
 
-                                @if (viewFlags.HasAssignSiteRight)
+                                @if (viewFlags.HasAssignSiteRight && !ViewBag.IsLicenseeUser)
                                 {
                                     <td>
                                         @if (isEditEnabled)

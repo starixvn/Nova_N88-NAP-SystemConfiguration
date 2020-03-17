@@ -131,6 +131,7 @@ var AssignUserPermission = (function ($) {
 }(jQuery));
 
 $(document).ready(function () {
+	console.log('I am here!!!')
     AssignUserPermission.grid = $('.grid:first');
     AssignUserPermission.updateForm = $('form:last');
     AssignUserPermission.disabledParent();

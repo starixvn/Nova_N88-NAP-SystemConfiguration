@@ -305,11 +305,12 @@
             List<SiteLevel> siteLevelList;
             List<SiteLevel> currentUserSiteLevelList;
 
+            var user = _userService.GetById(id);
             if (UserIsPortalAdmin)
             {
                 siteList = _siteService.GetAll(Environment, true).ToList();
                 ViewFlags.HasAssignSiteReadRight = true;
-                ViewFlags.HasAssignSiteRight = true;
+                ViewFlags.HasAssignSiteRight = !user.IsLicenseeUser;
             }
             else
             {
@@ -357,7 +358,8 @@
                 UserName = _userService.GetById(id).Username,
                 IsSelfEdit = CurrentSession.UserId == id,
                 CurrentSiteId = SiteId,
-                IsPortalAdmin = UserIsPortalAdmin
+                IsPortalAdmin = UserIsPortalAdmin,
+                IsLicenseeUser = user.IsLicenseeUser
             };
 
             return View(assignSiteVM);
@@ -1079,14 +1081,16 @@
             ISite site = function.Site;
             List<FunctionPolicy> listUserFuncPolicy = _functionService.GetByUserAndSite(userId, site.Id, Environment).ToList();
 
-            var criteria = new AssignFunctionUserCriteria();
-            criteria.FuncHost = listUserFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
-            criteria.FuncRead = listUserFuncPolicy.Where(p => p.Policy == 1 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
-            criteria.ModifiedBy = CurrentSession.UserId;
-            criteria.ModifiedDate = DateTime.Now;
-            criteria.SiteId = site.Id;
-            criteria.Username = user.Username;
-            criteria.UserId = userId;
+            var criteria = new AssignFunctionUserCriteria
+            {
+                FuncHost = listUserFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray(),
+                FuncRead = listUserFuncPolicy.Where(p => p.Policy == 1 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray(),
+                ModifiedBy = CurrentSession.UserId,
+                ModifiedDate = DateTime.Now,
+                SiteId = site.Id,
+                Username = user.Username,
+                UserId = userId
+            };
 
             ICommandResult result = _userService.AssignFunction(criteria);
 
@@ -1245,7 +1249,7 @@
                     SiteId,
                     FunctionKeys.AssignFunctionToUser);
 
-            return View(new AssignSiteFunctionViewModel
+            var viewModel = new AssignSiteFunctionViewModel
             {
                 LoginUserId = CurrentSession.UserId,
                 UserName = _userService.GetById(id).Username,
@@ -1263,7 +1267,8 @@
                     ReturnPageIndex = returnPageIndex,
                     ReturnSiteId = returnSiteId
                 }
-            });
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -1299,6 +1304,7 @@
         [N88Auth(FunctionKey = FunctionKeys.AssignSiteToUser, Policy = Constant.Policy.Read)]
         public JsonResult GetAllUserSites(int userId)
         {
+            var user = _userService.GetById(userId);
             IEnumerable<ISite> siteList;
 
             siteList = UserIsPortalAdmin || CurrentSession.UserId == userId ?
@@ -1311,8 +1317,11 @@
             var siteLevelList = _siteService.GetSiteLevelByUser(userId, Environment);
             var userSiteList = siteList.Where(s => siteLevelList.Any(sl => sl.Site.Id == s.Id)).ToList();
 
-            userSiteList = userSiteList.Union(GetUserUnassignedSites(userId)).ToList();
-            GetUserHasFunctionPermissionSites(userSiteList);
+            if (!user.IsLicenseeUser)
+            {
+                userSiteList = userSiteList.Union(GetUserUnassignedSites(userId)).ToList();
+                GetUserHasFunctionPermissionSites(userSiteList);
+            }
 
             return Json(userSiteList, JsonRequestBehavior.AllowGet);
         }
