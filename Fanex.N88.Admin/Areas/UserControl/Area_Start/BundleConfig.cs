@@ -2,15 +2,8 @@
 {
     using System.Web.Optimization;
 
-    /// <summary>
-    /// Bundle config.
-    /// </summary>
     public static class BundleConfig
     {
-        /// <summary>
-        /// Register bundle.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.AddAndInclude(
@@ -49,19 +42,11 @@
                 "~/Areas/UserControl/scripts/lib/respond.min.js"));
         }
 
-        /// <summary>
-        /// Register CSS bundles for NapAdmin.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
         private static void RegisterN88AdminCssBundles(ref BundleCollection bundles)
         {
             bundles.AddAndInclude(
                "~/Areas/UserControl/user",
                "~/Areas/UserControl/themes/nap/user/manage.less");
-
-            bundles.AddAndInclude(
-                "~/Areas/UserControl/themes/user/AddExisting",
-                "~/Areas/UserControl/themes/nap/user/add-existing.less");
 
             bundles.AddAndInclude(
                 "~/Areas/UserControl/themes/Site/manage",
@@ -104,10 +89,6 @@
                 "~/Areas/UserControl/themes/nap/trace/logexecsp.less");
         }
 
-        /// <summary>
-        /// Register JavaScript bundles for NapAdmin.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
         private static void RegisterN88AdminJsBundles(ref BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Areas/UserControl/js/User/ChangePassword").Include(

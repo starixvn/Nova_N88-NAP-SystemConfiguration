@@ -39,13 +39,6 @@
                      ReturnGroupId = returnGroupId,
                      ReturnPageIndex = Model.CurrentPageIndex
                  }, new { @class = "add-button" })
-            @Html.ActionLink("+ " + ViewResources.Add_Existing_User, "AddExisting", "User",
-                   new {
-                    ReturnUserName = ViewBag.Username,
-                    ReturnSiteId = siteId,
-                    ReturnGroupId = returnGroupId,
-                    ReturnPageIndex = Model.CurrentPageIndex
-                 }, new { @class = "add-button" })
         }
     </div>
 }

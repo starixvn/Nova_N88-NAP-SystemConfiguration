@@ -249,7 +249,6 @@
     <Compile Include="Areas\UserControl\ViewModels\User\AssignSiteVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\EditUserVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\ReturnData.cs" />
-    <Compile Include="Areas\UserControl\ViewModels\User\AddExistingUserVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\ResetPasswordVM.cs" />
     <Compile Include="Areas\UserLogin\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\UserLogin\Area_Start\BundleExtensions.cs" />
@@ -347,7 +346,6 @@
     <Content Include="Areas\UserControl\scripts\User\ChangePassword.js" />
     <Content Include="Areas\UserControl\scripts\User\AssignPermission.js" />
     <Content Include="Areas\UserControl\scripts\User\AssignSite.js" />
-    <Content Include="Areas\UserControl\scripts\User\AddExisting.js" />
     <Content Include="Areas\UserControl\scripts\User\AssignNewSite.js" />
     <Content Include="Areas\UserControl\scripts\User\Manage.js" />
     <Content Include="Areas\UserControl\themes\bootstrap\css\bootstrap-theme.css" />
@@ -560,8 +558,6 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.n88.config" />
-    <Content Include="Web.ConnectionString.n88.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserControl\Views\User\UserInfo.cshtml" />
@@ -596,7 +592,6 @@
     <Content Include="Areas\UserLogin\Views\Web.config" />
     <Content Include="Areas\UserControl\Views\Site\Edit.cshtml" />
     <Content Include="Areas\UserControl\Views\User\AssignSite.cshtml" />
-    <Content Include="Areas\UserControl\Views\User\AddExisting.cshtml" />
     <Content Include="Areas\UserControl\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\UserControl\Views\Group\AssignPermission.cshtml" />
     <Content Include="Areas\UserControl\Views\User\AssignPermission.cshtml" />
@@ -649,7 +644,6 @@
     <Content Include="Areas\UserControl\Views\Site\EditUrl.cshtml" />
     <Content Include="Areas\UserControl\themes\nap\site\edit-url.less" />
     <Content Include="Areas\UserControl\Views\User\Manage.cshtml" />
-    <Content Include="Areas\UserControl\Views\User\AddExisting_UserList.cshtml" />
     <Content Include="Areas\UserControl\Views\Function\Duplicate.cshtml" />
     <Content Include="Areas\UserControl\themes\nap\function\PrivilegedGroupsAndUsers.less" />
     <Content Include="Areas\UserControl\Views\Function\PrivilegedUsers.cshtml" />
