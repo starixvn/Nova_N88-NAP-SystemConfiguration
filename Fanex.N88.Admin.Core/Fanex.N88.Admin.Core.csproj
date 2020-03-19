@@ -95,7 +95,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.N88.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.N88.Core.1.2.0\lib\net40\Fanex.N88.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.N88.Core.1.5.1-alpha-2\lib\net40\Fanex.N88.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IBCFile.1.0.0.0\lib\net40\IBCFile.dll</HintPath>
