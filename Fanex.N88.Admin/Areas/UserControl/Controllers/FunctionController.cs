@@ -368,7 +368,7 @@
                 FunctionKey = function.Key,
                 Description = function.Description,
                 ParentId = function.Parent == null ? null : (int?)function.Parent.Id,
-                ParentName = function.Parent == null ? null : function.Parent.Name,
+                ParentName = function.Parent?.Name,
                 Readonly = function.Readonly,
                 DisplayOrder = function.DisplayOrder,
                 IsActive = function.IsActive,

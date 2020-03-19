@@ -134,6 +134,7 @@
   <Function Name="MenuItem">
     <Setting Key="N88_MenuItem_GetAll" SpName="N88_MenuItem_GetAll" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_MenuItem_GetById" SpName="N88_MenuItem_GetById" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
+    <Setting Key="N88_MenuItem_GetByKeyAndSite" SpName="N88_MenuItem_GetByKeyAndSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_MenuItem_GetByNameAndSite" SpName="N88_MenuItem_GetByNameAndSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_MenuItem_GetBySite" SpName="N88_MenuItem_GetBySite" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
     <Setting Key="N88_MenuItem_GetByUserAndSiteIncludeGroup" SpName="N88_MenuItem_GetByUserAndSiteIncludeGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>

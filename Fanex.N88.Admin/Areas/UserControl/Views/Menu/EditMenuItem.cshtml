@@ -2,14 +2,13 @@
 @using Fanex.N88.Core.Business
 @model UpdateMenuItemCriteria
 @{
-                /**/
-
-                ViewBag.Title = ViewResources.Update_Menu_Item;
-                bool success = ViewBag.Success != null && ViewBag.Success;
-                var viewFlags = (ViewFlags)ViewBag.ViewFlags;
+    ViewBag.Title = ViewResources.Update_Menu_Item;
+    bool success = ViewBag.Success != null && ViewBag.Success;
+    var viewFlags = (ViewFlags)ViewBag.ViewFlags;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
+    @Styles.Render("~/Areas/UserControl/themes/EditFunction")
 }
 @section Headline {
     <span class="title">
@@ -31,6 +30,18 @@
         </div>
         <div class="col-xs-12 col-sm-8">
             @Html.TextBoxFor(m => m.MenuItemName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group required">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(m => m.MenuItemKey)
+        </div>
+        <div class="col-xs-10 col-sm-8">
+            @Html.TextBox("txtMenuItemKey", Model.MenuItemKey, new { disabled = "disabled", @class = "form-control" })
+            @Html.HiddenFor(m => m.MenuItemKey)
+        </div>
+        <div class="col-xs-2 col-sm-1 lbl-field icon-edit">
+            <a id="lbtn-edit-menuitemkey" href="javascript:;" class="btn-edit" title="@ViewResources.Edit @ViewResources.MenuItemKey"></a>
         </div>
     </div>
     <div class="form-group required">

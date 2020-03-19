@@ -15,9 +15,6 @@
     using N88.Core.Web;
     using N88.Core.Web.Attribute;
 
-    /// <summary>
-    /// Menu controller.
-    /// </summary>
     [N88SuperAuth]
     public class MenuController : BaseController
     {
@@ -50,11 +47,6 @@
 
         #region Manage Menu item
 
-        /// <summary>
-        /// Manage menu.
-        /// </summary>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Read)]
         public ActionResult Manage(int? siteId)
@@ -70,11 +62,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Manage menu.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Read)]
         public ActionResult Manage(GetBySiteMenuItemCriteria criteria)
@@ -88,11 +75,6 @@
 
         #region Add New Menu
 
-        /// <summary>
-        /// Add new menu item.
-        /// </summary>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult AddNewMenuItem(int? siteId = null)
@@ -109,11 +91,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Add new menu item.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult AddNewMenuItem(InsertMenuItemCriteria criteria)
@@ -122,6 +99,16 @@
 
             if (ModelState.IsValid)
             {
+                // check duplicate key
+                criteria.MenuItemKey = ConvertToKey(criteria.MenuItemKey);
+                IMenuItem menu = _menuItemService.GetByKeyAndSite(criteria.MenuItemKey, criteria.SiteId);
+
+                if (menu != null)
+                {
+                    ModelState.AddModelError(nameof(criteria.MenuItemKey), string.Format(ViewResources.DuplicateMsg, criteria.MenuItemKey));
+                    return View(criteria);
+                }
+
                 // Add new
                 criteria.CreatedBy = CurrentSession.UserId;
                 criteria.CreatedDate = DateTime.Now;
@@ -143,11 +130,6 @@
 
         #region Edit Menu Item
 
-        /// <summary>
-        /// Update menu item.
-        /// </summary>
-        /// <param name="menuItemId">Menu item ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult EditMenuItem(int menuItemId)
@@ -159,27 +141,29 @@
                 return RedirectToAction("Manage");
             }
 
-            var criteria = new UpdateMenuItemCriteria();
-
-            criteria.MenuItemId = menuItem.Id;
-            criteria.MenuItemName = menuItem.Name;
-            criteria.Description = menuItem.Description;
-            criteria.DisplayOrder = menuItem.DisplayOrder;
-            criteria.FunctionId = menuItem.Function.Id;
-            criteria.IsActive = menuItem.IsActive;
-            criteria.ParentId = menuItem.Parent != null ? menuItem.Parent.Id : 0;
-            criteria.ParentName = menuItem.Parent != null ? menuItem.Parent.Name : string.Empty;
-            criteria.Policy = menuItem.Policy;
-            criteria.SiteId = menuItem.Site.Id;
-            criteria.SiteName = menuItem.Site.Name;
-            criteria.Url = menuItem.Url;
-            criteria.Environment = menuItem.Environment;
+            var criteria = new UpdateMenuItemCriteria
+            {
+                MenuItemId = menuItem.Id,
+                MenuItemName = menuItem.Name,
+                MenuItemKey = menuItem.Key,
+                Description = menuItem.Description,
+                DisplayOrder = menuItem.DisplayOrder,
+                FunctionId = menuItem.Function.Id,
+                IsActive = menuItem.IsActive,
+                ParentId = menuItem.Parent != null ? menuItem.Parent.Id : 0,
+                ParentName = menuItem.Parent != null ? menuItem.Parent.Name : string.Empty,
+                Policy = menuItem.Policy,
+                SiteId = menuItem.Site.Id,
+                SiteName = menuItem.Site.Name,
+                Url = menuItem.Url,
+                Environment = menuItem.Environment
+            };
 
             ViewBag.Function = _functionService.GetSelectListItemBySite(
-                                                        criteria.SiteId,
-                                                        criteria.Environment,
-                                                        isActive: true,
-                                                        selectedFunctionId: criteria.FunctionId);
+                criteria.SiteId,
+                criteria.Environment,
+                isActive: true,
+                selectedFunctionId: criteria.FunctionId);
 
             ViewBag.Parent = criteria.ParentId == null ?
                 _menuItemService.GetParentSelectListItemById(id: criteria.MenuItemId, env: criteria.Environment) :
@@ -188,20 +172,15 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Update menu item.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult EditMenuItem(UpdateMenuItemCriteria criteria)
         {
             ViewBag.Function = _functionService.GetSelectListItemBySite(
-                                                        criteria.SiteId,
-                                                        criteria.Environment,
-                                                        isActive: true,
-                                                        selectedFunctionId: criteria.FunctionId);
+                criteria.SiteId,
+                criteria.Environment,
+                isActive: true,
+                selectedFunctionId: criteria.FunctionId);
 
             ViewBag.Parent = criteria.ParentId == null ?
                 _menuItemService.GetParentSelectListItemById(criteria.MenuItemId) :
@@ -209,6 +188,19 @@
 
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrWhiteSpace(criteria.MenuItemKey))
+                {
+                    criteria.MenuItemKey = ConvertToKey(criteria.MenuItemKey);
+                }
+
+                // check duplicate key
+                IMenuItem menu = _menuItemService.GetByKeyAndSite(criteria.MenuItemKey, criteria.SiteId);
+                if (menu != null && menu.Id != criteria.MenuItemId)
+                {
+                    ModelState.AddModelError(nameof(criteria.MenuItemKey), string.Format(ViewResources.DuplicateMsg, criteria.MenuItemKey));
+                    return View(criteria);
+                }
+
                 // Update menu item
                 criteria.ModifierId = CurrentSession.UserId;
                 criteria.ModifiedDate = DateTime.Now;
@@ -231,13 +223,6 @@
 
         #region AjaxRequest
 
-        /// <summary>
-        /// Get list menu item by site id.
-        /// </summary>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="menuItemId">The menu item ID.</param>
-        /// <param name="environment">The environment.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult ListMenuItemBySite(int? siteId, int? menuItemId, string environment = EmptyString)
@@ -259,12 +244,6 @@
             return Json(new List<IMenuItem>());
         }
 
-        /// <summary>
-        /// Get list function by site id.
-        /// </summary>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="environment">The environment.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult ListFunctionBySite(int siteId, string environment = EmptyString)
@@ -272,20 +251,14 @@
             if (Request.IsAjaxRequest())
             {
                 return Json(_functionService.GetBySite(
-                                    siteId,
-                                    !string.IsNullOrEmpty(environment) ? environment : Environment,
-                                    isActive: true));
+                    siteId,
+                    !string.IsNullOrEmpty(environment) ? environment : Environment,
+                    isActive: true));
             }
 
             return Json(null);
         }
 
-        /// <summary>
-        /// Update status menu.
-        /// </summary>
-        /// <param name="id">Menu item ID.</param>
-        /// <param name="isActive">Is active or not.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageMenu, Policy = Constant.Policy.Host)]
         public ActionResult Activate(int id, bool isActive)
@@ -301,7 +274,6 @@
                 };
 
                 ICommandResult result = _menuItemService.UpdateStatus(criteria);
-
                 if (result != null && result.IsSuccessful)
                 {
                     return Json(Constant.Ok);
@@ -311,12 +283,29 @@
             return new EmptyResult();
         }
 
+        [HttpPost]
+        [N88Auth(FunctionKey = FunctionKeys.ManageFunction, Policy = Constant.Policy.Host)]
+        public JsonResult GetMenuItemKey(int menuItemId, string menuItemName)
+        {
+            IMenuItem tempMenu = _menuItemService.GetById(menuItemId);
+            if (object.ReferenceEquals(tempMenu, null))
+            {
+                return Json(new { IsSuccessful = false, Message = "Menu is not existed.", MenuItemKey = string.Empty });
+            }
+
+            // check duplicate key
+            string menuItemKey = ConvertToKey(menuItemName);
+            IMenuItem menu = _menuItemService.GetByKeyAndSite(menuItemKey, tempMenu.Site.Id);
+            if (menu != null && menu.Id != tempMenu.Id)
+            {
+                return Json(new { IsSuccessful = false, Message = string.Format("{0} has already existed.", menuItemKey), MenuItemKey = string.Empty });
+            }
+
+            return Json(new { IsSuccessful = true, Message = string.Empty, MenuItemKey = menuItemKey });
+        }
+
         #endregion AjaxRequest
 
-        /// <summary>
-        /// Prepare manage data.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
         private void PrepareManageData(GetBySiteMenuItemCriteria criteria)
         {
             if (CurrentSession.Level == (int)Constant.Level.PortalAdmin)
@@ -326,12 +315,11 @@
             }
             else
             {
-                ViewBag.Site =
-                    _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(
-                                        CurrentSession.UserId,
-                                        FunctionKeys.ManageMenu,
-                                        criteria.Environment,
-                                        selectedSiteId: criteria.SiteId);
+                ViewBag.Site = _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(
+                    CurrentSession.UserId,
+                    FunctionKeys.ManageMenu,
+                    criteria.Environment,
+                    selectedSiteId: criteria.SiteId);
                 ViewFlags.HasEditRight =
                     HasRight(FunctionKeys.ManageMenu, Constant.Policy.Host)
                     && HasRightOnSite(criteria.SiteId, FunctionKeys.ManageMenu, Constant.Policy.Host);
@@ -348,11 +336,11 @@
             ViewBag.Site = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
                 _siteService.GetAllSelectListItem(criteria.Environment, true, criteria.SiteId) :
                 _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(
-                                        CurrentSession.UserId,
-                                        FunctionKeys.ManageMenu,
-                                        criteria.Environment,
-                                        policy: Constant.Policy.Host,
-                                        selectedSiteId: criteria.SiteId);
+                    CurrentSession.UserId,
+                    FunctionKeys.ManageMenu,
+                    criteria.Environment,
+                    policy: Constant.Policy.Host,
+                    selectedSiteId: criteria.SiteId);
         }
     }
 }
