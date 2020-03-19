@@ -8,8 +8,8 @@
     <ProjectGuid>{C8213D62-4705-4F59-AD0A-22E8D058EE18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fanex.NAP.Admin.Core</RootNamespace>
-    <AssemblyName>Fanex.NAP.Admin.Core</AssemblyName>
+    <RootNamespace>Fanex.N88.Admin.Core</RootNamespace>
+    <AssemblyName>Fanex.N88.Admin.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -43,30 +43,19 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Configuration\FunctionKeys.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FunctionKeys.cs</LastGenOutput>
-    </None>
-    <None Include="Configuration\LogAction.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LogAction.cs</LastGenOutput>
-    </None>
     <None Include="Fanex.NAP.Admin.Core.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\FunctionKeys.cs">
-      <DependentUpon>FunctionKeys.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Configuration\LogAction.cs">
-      <DependentUpon>LogAction.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Configuration\FunctionKeys.cs" />
+    <Compile Include="Configuration\LogAction.cs" />
     <Compile Include="Helpers\PagerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ViewLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewLang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Service\Impl\EmailService.cs" />
     <Compile Include="Web\HtmlHelperExtensions.cs" />
     <Compile Include="Web\UserAgentTools.cs" />
@@ -187,6 +176,12 @@
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ViewLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

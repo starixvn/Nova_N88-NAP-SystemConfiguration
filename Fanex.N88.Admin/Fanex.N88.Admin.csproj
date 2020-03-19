@@ -116,7 +116,7 @@
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.N88.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.N88.Core.1.2.1-alpha-1\lib\net40\Fanex.N88.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.N88.Core.1.5.1-alpha-1\lib\net40\Fanex.N88.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IBCFile.1.0.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -181,6 +181,7 @@
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
@@ -240,6 +241,7 @@
     <Compile Include="Areas\UserControl\Controllers\SiteController.cs" />
     <Compile Include="Areas\UserControl\Controllers\UserController.cs" />
     <Compile Include="Areas\UserControl\UserControlAreaRegistration.cs" />
+    <Compile Include="Areas\UserControl\ViewModels\Group\InsertGroupVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\Trace\RevokedSite.cs" />
     <Compile Include="Areas\UserControl\ViewModels\Trace\TaskNAPRevokeUserPermissionVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\AddNewUserVM.cs" />
@@ -248,6 +250,7 @@
     <Compile Include="Areas\UserControl\ViewModels\User\AssignSiteFunctionViewModel.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\AssignSiteVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\EditUserVM.cs" />
+    <Compile Include="Areas\UserControl\ViewModels\User\InsertUserVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\ReturnData.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\ResetPasswordVM.cs" />
     <Compile Include="Areas\UserLogin\Area_Start\BundleConfig.cs" />
@@ -272,9 +275,12 @@
     <Content Include="App_Data\Fanex.Data\N88AdminSpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\Fanex.Data\N88CommonSpNames.xml" />
+    <Content Include="App_Data\Fanex.Data\N88CommonSpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\UserControl\scripts\Function\Duplicate.js" />
     <Content Include="Areas\UserControl\scripts\Function\PrivilegedGroupsAndUsers.js" />
+    <Content Include="Areas\UserControl\scripts\Group\AddNew.js" />
     <Content Include="Areas\UserControl\scripts\lib\crypto\CryptoJS.js" />
     <Content Include="Areas\UserControl\scripts\lib\jquery.cookie.min.js" />
     <Content Include="Areas\UserControl\scripts\lib\jquery.cookie.js" />
@@ -336,6 +342,7 @@
     <Content Include="Areas\UserControl\scripts\Site\Manage.js" />
     <Content Include="Areas\UserControl\scripts\Trace\LogUserLogin.js" />
     <Content Include="Areas\UserControl\scripts\Trace\LogExecSp.js" />
+    <Content Include="Areas\UserControl\scripts\User\AddNew.js" />
     <Content Include="Areas\UserControl\scripts\User\assign-site-function\dist\css\main.css" />
     <Content Include="Areas\UserControl\scripts\User\assign-site-function\dist\css\main.css.map" />
     <Content Include="Areas\UserControl\scripts\User\assign-site-function\dist\main.js" />

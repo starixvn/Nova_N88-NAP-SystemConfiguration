@@ -5,7 +5,10 @@
     using System.Linq;
     using System.Web.Mvc;
     using Common.Extensions;
+    using Fanex.N88.Admin.Areas.UserControl.ViewModels.Group;
+    using Fanex.N88.Admin.Configurations;
     using Fanex.N88.Admin.Core.Configuration;
+    using Fanex.N88.Admin.Core.Resources;
     using N88.Core.Business;
     using N88.Core.Command;
     using N88.Core.Criteria.Group;
@@ -16,9 +19,6 @@
     using N88.Core.Web;
     using N88.Core.Web.Attribute;
 
-    /// <summary>
-    /// Group controller.
-    /// </summary>
     [N88SuperAuth]
     public class GroupController : BaseController
     {
@@ -28,6 +28,7 @@
         private readonly ISiteService _siteService;
         private readonly IFunctionService _functionService;
         private readonly IUserService _userService;
+        private readonly string GroupNamePrefix = AppSettings.GetConfigValue("CoreSiteGroupNamePrefix") ?? string.Empty;
 
         #endregion Members
 
@@ -54,10 +55,6 @@
 
         #region Manage
 
-        /// <summary>
-        /// Manage group.
-        /// </summary>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Read)]
         public ActionResult Manage()
@@ -71,11 +68,6 @@
             return View(new GetAllWithNumOfUserGroupCriteria());
         }
 
-        /// <summary>
-        /// Manage group.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Read)]
         public ActionResult Manage(GetAllWithNumOfUserGroupCriteria criteria)
@@ -95,55 +87,87 @@
 
         #region Add New Group
 
-        /// <summary>
-        /// Add new group.
-        /// </summary>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
         public ActionResult AddNew()
         {
-            return View(new InsertGroupCriteria());
+            var sites = _siteService.GetAll(isActive: true);
+            var viewModel = new InsertGroupVM
+            {
+                IsLicenseeGroup = null,
+                SiteId = null,
+                SiteList = sites.Select(site => new SelectListItem { Value = site.Id.ToString(), Text = site.Name }).ToList(),
+            };
+
+            ViewBag.GroupNamePrefix = GroupNamePrefix;
+            ViewBag.GroupTypes = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "false", Text = ViewLang.InternalGroup},
+                new SelectListItem { Value = "true", Text = ViewLang.LicenseeGroup}
+            };
+            return View(viewModel);
         }
 
-        /// <summary>
-        /// Add new group.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
-        public ActionResult AddNew(InsertGroupCriteria criteria)
+        public ActionResult AddNew(InsertGroupVM viewModel)
         {
+            CheckValidGroupToInsert(viewModel);
+
             if (ModelState.IsValid)
             {
-                criteria.IsLicenseeGroup = false;
-                criteria.SiteId = null;
-                criteria.CreatedBy = CurrentSession.UserId;
-                criteria.CreatedDate = DateTime.Now;
+                var groupName = (viewModel.IsLicenseeGroup != null && viewModel.IsLicenseeGroup == true) ?
+                    viewModel.GroupName : string.Format("{0}{1}", GroupNamePrefix, viewModel.GroupName);
+                var criteria = new InsertGroupCriteria
+                {
+                    GroupName = groupName,
+                    Description = viewModel.Description,
+                    IsLicenseeGroup = viewModel.IsLicenseeGroup != null && viewModel.IsLicenseeGroup == true,
+                    SiteId = viewModel.SiteId,
+                    IsActive = viewModel.IsActive,
+                    CreatedBy = CurrentSession.UserId,
+                    CreatedDate = DateTime.Now,
+                };
                 ICommandResult result = _groupService.Insert(criteria);
+
+                var sites = _siteService.GetAll(isActive: true);
+
+                viewModel.SiteList = sites.Select(site => new SelectListItem { Value = site.Id.ToString(), Text = site.Name }).ToList();
+                ViewBag.GroupTypes = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "false", Text = ViewLang.InternalGroup},
+                    new SelectListItem { Value = "true", Text = ViewLang.LicenseeGroup}
+                };
 
                 if (!result.IsSuccessful)
                 {
                     ModelState.AddModelError("SiteName", string.Format(ViewResources.DuplicateMsg, criteria.GroupName));
-                    return View(criteria);
+                    return View(viewModel);
                 }
 
                 ViewBag.Success = true;
             }
 
-            return View(criteria);
+            return View(viewModel);
+        }
+
+        private void CheckValidGroupToInsert(InsertGroupVM viewModel)
+        {
+            if (viewModel.IsLicenseeGroup == null)
+            {
+                ModelState.AddModelError("IsLicenseeGroup", string.Format(ViewLang.FieldRequired, ViewLang.GroupType));
+            }
+
+            if (viewModel.IsLicenseeGroup != null && viewModel.IsLicenseeGroup == true && (viewModel.SiteId == null || viewModel.SiteId == 0))
+            {
+                ModelState.AddModelError("SiteId", string.Format(ViewLang.FieldRequired, ViewLang.Site));
+            }
         }
 
         #endregion Add New Group
 
         #region Edit Group
 
-        /// <summary>
-        /// Update group.
-        /// </summary>
-        /// <param name="id">The group ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
         public ActionResult Edit(int id)
@@ -155,21 +179,17 @@
                 return RedirectToAction("Manage");
             }
 
-            var criteria = new UpdateGroupCriteria();
-
-            criteria.GroupId = group.Id;
-            criteria.Description = group.Description;
-            criteria.GroupName = group.Name;
-            criteria.IsActive = group.IsActive;
+            var criteria = new UpdateGroupCriteria
+            {
+                GroupId = group.Id,
+                Description = group.Description,
+                GroupName = group.Name,
+                IsActive = group.IsActive
+            };
 
             return View(criteria);
         }
 
-        /// <summary>
-        /// Update group.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Host)]
         public ActionResult Edit(UpdateGroupCriteria criteria)
@@ -239,12 +259,6 @@
 
         #region Assign Permission
 
-        /// <summary>
-        /// Assign group permission.
-        /// </summary>
-        /// <param name="id">The group ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Read)]
         public ActionResult AssignPermission(int id, int siteId = 0)
@@ -259,11 +273,12 @@
                 return RedirectToAction("Manage");
             }
 
-            var criteria = new AssignFunctionGroupCriteria();
-
-            criteria.GroupId = group.Id;
-            criteria.GroupName = group.Name;
-            criteria.SiteId = site.Id;
+            var criteria = new AssignFunctionGroupCriteria
+            {
+                GroupId = group.Id,
+                GroupName = group.Name,
+                SiteId = site.Id
+            };
 
             ViewFlags.HasAssignFunctionRight =
                 HasRightOnSite(criteria.SiteId, FunctionKeys.AssignFunctionToGroup, Constant.Policy.Host);
@@ -285,11 +300,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Assign group permission.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Host)]
 #pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
@@ -298,7 +308,6 @@
 #pragma warning restore S1541 // Methods and properties should not be too complex
 #pragma warning restore S3776 // Cognitive Complexity of methods should not be too high
         {
-            // check group and site
             IGroup group = _groupService.GetById(criteria.GroupId);
             ISite site = _siteService.GetById(criteria.SiteId);
 
@@ -405,11 +414,6 @@
 
         #region UnassignPermission
 
-        /// <summary>
-        /// Assign group permission.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignFunctionToGroup, Policy = Constant.Policy.Host)]
         public ActionResult UnassignPermission(int groupId, int functionId)
@@ -420,16 +424,17 @@
             ISite site = function.Site;
             List<FunctionPolicy> listGroupFuncPolicy = _functionService.GetByGroupAndSite(groupId, site.Id, Environment).ToList();
 
-            var criteria = new AssignFunctionGroupCriteria();
-            criteria.FuncHost = listGroupFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
-            criteria.FuncRead = listGroupFuncPolicy.Where(p => p.Policy == 1 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray();
-            criteria.ModifiedBy = CurrentSession.UserId;
-            criteria.ModifiedDate = DateTime.Now;
-            criteria.GroupId = groupId;
-            criteria.GroupName = group.Name;
-            criteria.SiteId = site.Id;
+            var criteria = new AssignFunctionGroupCriteria
+            {
+                FuncHost = listGroupFuncPolicy.Where(p => p.Policy == 2 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray(),
+                FuncRead = listGroupFuncPolicy.Where(p => p.Policy == 1 && p.Function.Id != functionId).Select(p => (int)p.Function.Id).ToArray(),
+                ModifiedBy = CurrentSession.UserId,
+                ModifiedDate = DateTime.Now,
+                GroupId = groupId,
+                GroupName = group.Name,
+                SiteId = site.Id
+            };
 
-            // assign permission
             ICommandResult result = _groupService.AssignFunction(criteria);
 
             return Json(result);
@@ -439,11 +444,6 @@
 
         #region Group Info
 
-        /// <summary>
-        /// Get group information.
-        /// </summary>
-        /// <param name="id">The group ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageGroup, Policy = Constant.Policy.Read)]
         public ActionResult GroupInfo(int id)
@@ -452,5 +452,12 @@
         }
 
         #endregion Group Info
+
+        [HttpGet]
+        public ActionResult GetGroupByTypeAndSite(bool isLicensee, int? siteId)
+        {
+            var groups = _groupService.GetAll(isLicenseeGroup: isLicensee, siteId: siteId);
+            return Json(groups, JsonRequestBehavior.AllowGet);
+        }
     }
 }

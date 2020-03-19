@@ -1,5 +1,6 @@
-﻿@using Fanex.N88.Core.Criteria.Group
-@model InsertGroupCriteria
+﻿@using Fanex.N88.Admin.Areas.UserControl.ViewModels.Group
+@using Fanex.N88.Admin.Core.Resources
+@model InsertGroupVM
 @{
     /**/
 
@@ -26,10 +27,27 @@
     </div>
     <div class="form-group required">
         <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.IsLicenseeGroup)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(g => g.IsLicenseeGroup, (List<SelectListItem>)ViewBag.GroupTypes, ViewLang.PleaseSelect, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.SiteId)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(g => g.SiteId, new List<SelectListItem>(), ViewLang.PleaseSelect, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group required">
+        <div class="col-xs-12 col-sm-3 lbl-field">
             @Html.LabelFor(g => g.GroupName)
         </div>
         <div class="col-xs-12 col-sm-8">
-            @Html.TextBoxFor(g => g.GroupName, new { @class = "form-control" })
+            <span class="username-prefix">@ViewBag.GroupNamePrefix</span>
+            @Html.TextBoxFor(g => g.GroupName, new { @class = "form-control input-prefix" })
         </div>
     </div>
     <div class="form-group">
@@ -61,6 +79,7 @@
         </div>
     </div>
 }
+
 @section Foot {
     @if (success)
     {
@@ -72,4 +91,5 @@
             });
         </script>
     }
+    <script src="~/Areas/UserControl/scripts/Group/AddNew.js"></script>
 }

@@ -14,6 +14,7 @@
     using Common.Extensions;
     using Fanex.N88.Admin.Configurations;
     using Fanex.N88.Admin.Core.Configuration;
+    using Fanex.N88.Admin.Core.Resources;
     using Fanex.N88.Core.Helpers;
     using N88.Core.Business;
     using N88.Core.Command;
@@ -39,6 +40,7 @@
         private readonly ISiteService _siteService;
         private readonly IFunctionService _functionService;
         private readonly HashAlgorithm _hashAlgorithm;
+        private readonly string UsernamePrefix = AppSettings.GetConfigValue("CoreSiteUsernamePrefix");
 
         #endregion Member
 
@@ -450,13 +452,6 @@
 
         #region Add New User
 
-        /// <summary>
-        /// Add new user.
-        /// </summary>
-        /// <param name="returnSiteId">The site ID.</param>
-        /// <param name="returnPageIndex">The page index.</param>
-        /// <param name="returnGroupId">The group ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
         public ActionResult AddNew(
@@ -474,58 +469,90 @@
             };
 
             ViewBag.Groups = _groupService.GetAllSelectListItem();
-            ViewBag.UsernamePrefix = AppSettings.GetConfigValue("CoreSiteUsernamePrefix") ?? string.Empty;
-
+            ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
+            ViewBag.UserTypes = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "false", Text = ViewLang.InternalUser},
+                new SelectListItem { Value = "true", Text = ViewLang.LicenseeUser}
+            };
+            var viewModel = new InsertUserVM { IsLicenseeUser = null };
             return View(new AddNewUserVM
             {
                 ReturnData = returnData,
-                Criteria = new InsertCustCriteria()
+                ViewModel = viewModel
             });
         }
 
-        /// <summary>
-        /// Add new user.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
         public ActionResult AddNew(AddNewUserVM addNewUserVM)
         {
-            var criteria = addNewUserVM.Criteria;
-
-            ViewBag.Groups = _groupService.GetAllSelectListItem(selectedGroupId: criteria.GroupId);
-
+            var model = addNewUserVM.ViewModel;
+            CheckValidUserToInsert(model);
             if (ModelState.IsValid)
             {
-                criteria.Username = string.Format("{0}{1}", AppSettings.GetConfigValue("CoreSiteUsernamePrefix"), criteria.Username);
-                // check username duplication
-                if (_userService.CheckUsernameExist(criteria.Username))
-                {
-                    ModelState.AddModelError("Username", string.Format(ViewResources.DuplicateMsg, criteria.Username));
-                    return View(addNewUserVM);
-                }
-
-                // add new user
-                criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
-                criteria.FirstName = criteria.FirstName ?? string.Empty;
-                criteria.LastName = criteria.LastName ?? string.Empty;
-                criteria.Email = criteria.Email ?? string.Empty;
-
-                // assign all functions to the new user if he is site admin or portal admin
+                var criteria = GenerateCriteria(model);
                 ICommandResult result = _userService.Insert(criteria);
 
                 if (result != null && result.IsSuccessful)
                 {
                     ViewBag.Success = true;
                     ViewBag.UserId = criteria.CustId;
-                    ViewBag.UsernamePrefix = AppSettings.GetConfigValue("CoreSiteUsernamePrefix") ?? string.Empty;
+                    ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
                 }
             }
 
-            addNewUserVM.Criteria = criteria;
+            addNewUserVM.ViewModel = model;
 
             return View(addNewUserVM);
+        }
+
+        private InsertCustCriteria GenerateCriteria(InsertUserVM model)
+        {
+            var userName = (model.IsLicenseeUser != null && model.IsLicenseeUser == true) ?
+                               model.Username : string.Format("{0}{1}", UsernamePrefix, model.Username);
+
+            var criteria = new InsertCustCriteria
+            {
+                Username = userName,
+                GroupId = model.GroupId,
+                UserPwd = Cryptography.CfsEnCode(model.UserPwd),
+                FirstName = model.FirstName ?? string.Empty,
+                LastName = model.LastName ?? string.Empty,
+                IsLicenseeUser = model.IsLicenseeUser != null && model.IsLicenseeUser == true,
+                SiteId = model.SiteId ?? 0,
+                Email = model.Email ?? string.Empty
+            };
+
+            return criteria;
+        }
+
+        private void CheckValidUserToInsert(InsertUserVM viewModel)
+        {
+            var userName = (viewModel.IsLicenseeUser != null && viewModel.IsLicenseeUser == true) ?
+                   viewModel.Username : string.Format("{0}{1}", AppSettings.GetConfigValue("CoreSiteUsernamePrefix"), viewModel.Username);
+
+            if (viewModel.IsLicenseeUser == null)
+            {
+                ModelState.AddModelError("IsLicenseeGroup", string.Format(ViewLang.FieldRequired, ViewLang.GroupType));
+            }
+
+            if (viewModel.IsLicenseeUser != null && viewModel.IsLicenseeUser == true && (viewModel.SiteId == null || viewModel.SiteId == 0))
+            {
+                ModelState.AddModelError("SiteId", string.Format(ViewLang.FieldRequired, ViewLang.Site));
+            }
+
+            if (_userService.CheckUsernameExist(userName))
+            {
+                ModelState.AddModelError("Username", string.Format(ViewResources.DuplicateMsg, viewModel.Username));
+            }
+
+            ViewBag.Groups = _groupService.GetAllSelectListItem(selectedGroupId: viewModel.GroupId);
+            ViewBag.UserTypes = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "false", Text = ViewLang.InternalUser},
+                new SelectListItem { Value = "true", Text = ViewLang.LicenseeUser}
+            };
         }
 
         #endregion Add New User
@@ -1330,12 +1357,6 @@
 
         #region Ajax
 
-        /// <summary>
-        /// View user list.
-        /// </summary>
-        /// <param name="groupId">The group ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
         public ActionResult UserList(int groupId, int siteId = 0)
@@ -1350,11 +1371,6 @@
             return new EmptyResult();
         }
 
-        /// <summary>
-        /// Get user site.
-        /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
         public ActionResult GetUserSite(int userId)
@@ -1369,11 +1385,6 @@
             return Json(null);
         }
 
-        /// <summary>
-        /// Get user function policy.
-        /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         public ActionResult GetUserFunctionPolicy(int userId)
         {
@@ -1387,11 +1398,6 @@
             return Json(null);
         }
 
-        /// <summary>
-        /// Get group function policy.
-        /// </summary>
-        /// <param name="groupId">The group ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         public ActionResult GetGroupFunctionPolicy(int groupId)
         {
@@ -1405,12 +1411,6 @@
             return Json(null);
         }
 
-        /// <summary>
-        /// Add user to group.
-        /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <param name="groupId">The group ID.</param>
-        /// <returns>Result string.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
         public string AddUserToGroup(int userId, int groupId)
@@ -1441,11 +1441,6 @@
             return Constant.Error;
         }
 
-        /// <summary>
-        /// Get user by group.
-        /// </summary>
-        /// <param name="groupId">The group ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
         public ActionResult GetUserByGroup(int groupId)

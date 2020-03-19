@@ -17,9 +17,6 @@
     using N88.Core.Web;
     using N88.Core.Web.Attribute;
 
-    /// <summary>
-    /// Site controller.
-    /// </summary>
     [N88SuperAuth]
     public class SiteController : BaseController
     {
@@ -518,6 +515,19 @@
         public JsonResult GetSecretAccessKey()
         {
             return Json(GenerateAPPKey());
+        }
+
+        [HttpGet]
+        public ActionResult GetSitesByType(bool isLicensee)
+        {
+            var criteria = new GetSiteByTypeCriteria
+            {
+                IsLicenseeSite = isLicensee,
+                IsActive = true
+            };
+            var sites = _siteService.GetAllSiteByType(criteria);
+
+            return Json(sites, JsonRequestBehavior.AllowGet);
         }
 
         private static string GenerateAPPKey()

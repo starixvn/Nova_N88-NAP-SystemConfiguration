@@ -1,4 +1,6 @@
 ﻿@using Fanex.N88.Admin.Areas.UserControl.ViewModels.User
+@using Fanex.N88.Admin.Core.Resources
+
 @model AddNewUserVM
 @{
     ViewBag.Title = ViewResources.Create_New_User;
@@ -31,43 +33,60 @@
     </div>
     <div class="form-group required">
         <div class="col-xs-12 col-sm-3 lbl-field">
-            @Html.LabelFor(c => c.Criteria.Username)
+            @Html.LabelFor(g => g.ViewModel.IsLicenseeUser)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(g => g.ViewModel.IsLicenseeUser, (List<SelectListItem>)ViewBag.UserTypes, ViewLang.PleaseSelect,
+                                            new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.ViewModel.SiteId)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(g => g.ViewModel.SiteId, new List<SelectListItem>(), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group required">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(c => c.ViewModel.Username)
         </div>
         <div class="col-xs-12 col-sm-8">
             <span class="username-prefix">@ViewBag.UsernamePrefix</span>
-            @Html.TextBoxFor(c => c.Criteria.Username, new { @class = "form-control input-prefix" })
+            @Html.TextBoxFor(c => c.ViewModel.Username, new { @class = "form-control input-prefix" })
         </div>
     </div>
     <div class="form-group required">
         <div class="col-xs-12 col-sm-3 lbl-field">
-            @Html.LabelFor(c => c.Criteria.UserPwd)
+            @Html.LabelFor(c => c.ViewModel.UserPwd)
         </div>
         <div class="col-xs-12 col-sm-8">
-            @Html.PasswordFor(c => c.Criteria.UserPwd, new { @class = "form-control" })
+            @Html.PasswordFor(c => c.ViewModel.UserPwd, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-xs-12 col-sm-3 lbl-field">
-            @Html.LabelFor(c => c.Criteria.FirstName)
+            @Html.LabelFor(c => c.ViewModel.FirstName)
         </div>
         <div class="col-xs-12 col-sm-8">
-            @Html.TextBoxFor(c => c.Criteria.FirstName, new { @class = "form-control", @autocomplete = "off" })
+            @Html.TextBoxFor(c => c.ViewModel.FirstName, new { @class = "form-control", @autocomplete = "off" })
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.Criteria.LastName)</div>
+        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.ViewModel.LastName)</div>
         <div class="col-xs-12 col-sm-8">
-            @Html.TextBoxFor(c => c.Criteria.LastName, new { @class = "form-control", @autocomplete = "off" })
+            @Html.TextBoxFor(c => c.ViewModel.LastName, new { @class = "form-control", @autocomplete = "off" })
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.Criteria.Email)</div>
-        <div class="col-xs-12 col-sm-8">@Html.TextBoxFor(c => c.Criteria.Email, new { @class = "form-control" })</div>
+        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.ViewModel.Email)</div>
+        <div class="col-xs-12 col-sm-8">@Html.TextBoxFor(c => c.ViewModel.Email, new { @class = "form-control" })</div>
     </div>
     <div class="form-group required">
-        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.Criteria.GroupId)</div>
+        <div class="col-xs-12 col-sm-3 lbl-field">@Html.LabelFor(c => c.ViewModel.GroupId)</div>
         <div class="col-xs-12 col-sm-8">
-            @Html.DropDownListFor(c => c.Criteria.GroupId, (List<SelectListItem>)ViewBag.Groups, new { @class = "form-control" })
+            @Html.DropDownListFor(c => c.ViewModel.GroupId, new List<SelectListItem>(), new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -89,9 +108,10 @@
     @Html.HiddenFor(m => m.ReturnData.ReturnPageIndex)
 }
 @section Foot {
+
     @if (success)
     {
-        string dialogMsg = string.Format(ViewResources.Add_New_User_Success, Model.Criteria.Username, 3);
+        string dialogMsg = string.Format(ViewResources.Add_New_User_Success, Model.ViewModel.Username, 3);
 
         <script type="text/javascript">
             $(function () {
@@ -100,4 +120,6 @@
             });
         </script>
     }
+    <script src="~/Areas/UserControl/scripts/User/AddNew.js"></script>
+
 }
