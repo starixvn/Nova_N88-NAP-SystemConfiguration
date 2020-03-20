@@ -38,7 +38,7 @@
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-    <Setting Key="N88_Site_GetByType" SpName="N88_Site_GetByType" DbName="DBPOL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_Site_GetByType" SpName="N88_Site_GetByType" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
