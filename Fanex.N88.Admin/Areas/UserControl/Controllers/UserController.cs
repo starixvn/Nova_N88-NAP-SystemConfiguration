@@ -26,6 +26,7 @@
     using N88.Core.Web;
     using N88.Core.Web.Attribute;
     using ViewModels.User;
+    using static Fanex.N88.Core.Business.Constant;
 
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed")]
     [N88SuperAuth]
@@ -371,16 +372,6 @@
 
         #region Get Available Sites for User
 
-        /// <summary>
-        /// Get available sites for user.
-        /// </summary>
-        /// <param name="userId">The user identity.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="returnSiteId">The site identity.</param>
-        /// <param name="returnGroupId">The group identity.</param>
-        /// <param name="returnPageIndex">The page index.</param>
-        /// <param name="level">The level of current login user.</param>
-        /// <returns>The list sites available for user.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.AssignSiteToUser, Policy = Constant.Policy.Host)]
         public ActionResult GetAvailableSitesForUser(
@@ -408,7 +399,7 @@
                         CurrentSession.UserId,
                         FunctionKeys.AssignSiteToUser,
                         Environment,
-                        policy: Constant.Policy.Host).ToList();
+                        policy: Policy.Host).ToList();
                 }
             }
 
@@ -467,8 +458,12 @@
                 ReturnGroupId = returnGroupId,
                 ReturnPageIndex = returnPageIndex
             };
-
             ViewBag.Groups = _groupService.GetAllSelectListItem();
+            ViewBag.LevelList = new List<SelectListItem>
+            {
+                new SelectListItem { Value= "0", Text = Level.User.ToString()},
+                new SelectListItem { Value= "50", Text = Level.SiteAdmin.ToString()}
+            };
             ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
             ViewBag.UserTypes = new List<SelectListItem>
             {
@@ -492,10 +487,12 @@
             if (ModelState.IsValid)
             {
                 var criteria = GenerateCriteria(model);
+
                 ICommandResult result = _userService.Insert(criteria);
 
                 if (result != null && result.IsSuccessful)
                 {
+                    AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.CustId, model.SiteId, model.Level, true);
                     ViewBag.Success = true;
                     ViewBag.UserId = criteria.CustId;
                     ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
@@ -505,6 +502,25 @@
             addNewUserVM.ViewModel = model;
 
             return View(addNewUserVM);
+        }
+
+        private void AssignSiteToLicenseeUser(bool? isLicenseeUser, int userId, int? siteId, int level, bool isActive)
+        {
+            if (isLicenseeUser != null && isLicenseeUser == true)
+            {
+                var criteria = new AssignSiteUserCriteria
+                {
+                    CreatedBy = CurrentSession.UserId,
+                    CreatedDate = DateTime.Now,
+                    UserId = userId,
+                    SiteId = siteId ?? 0,
+                    Level = level,
+                    IsActive = isActive,
+                    IsNeverExpired = true,
+                };
+
+                _userService.AssignSite(criteria);
+            }
         }
 
         private InsertCustCriteria GenerateCriteria(InsertUserVM model)
@@ -643,14 +659,6 @@
 
         #region Reset Password
 
-        /// <summary>
-        /// Reset user password.
-        /// </summary>
-        /// <param name="id">The user ID.</param>
-        /// <param name="returnSiteId">The site ID.</param>
-        /// <param name="returnGroupId">The group ID.</param>
-        /// <param name="returnPageIndex">The page index.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
         public ActionResult ResetPassword(
@@ -793,15 +801,6 @@
 
         #region Assign Permission
 
-        /// <summary>
-        /// Assign user permission.
-        /// </summary>
-        /// <param name="id">The user ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="returnPageIndex">The page index.</param>
-        /// <param name="returnSiteId">Return site ID.</param>
-        /// <param name="returnGroupId">The group ID.</param>
-        /// <returns>Action result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed.")]
         [HttpGet]
@@ -869,11 +868,6 @@
             return View(assignPermissionVM);
         }
 
-        /// <summary>
-        /// Assign user permission.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignFunctionToUser, Policy = Constant.Policy.Host)]
 #pragma warning disable S1541 // Methods and properties should not be too complex
@@ -1004,11 +998,6 @@
             return View(assignPermissionVM);
         }
 
-        /// <summary>
-        /// Assign user permission.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignFunctionToUser, Policy = Constant.Policy.Host)]
 #pragma warning disable S1541 // Methods and properties should not be too complex

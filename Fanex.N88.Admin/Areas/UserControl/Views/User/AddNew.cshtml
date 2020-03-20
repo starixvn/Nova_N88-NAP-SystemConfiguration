@@ -48,6 +48,14 @@
             @Html.DropDownListFor(g => g.ViewModel.SiteId, new List<SelectListItem>(), new { @class = "form-control" })
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(g => g.ViewModel.Level)
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @Html.DropDownListFor(g => g.ViewModel.Level, new List<SelectListItem>(), new { @class = "form-control" })
+        </div>
+    </div>
     <div class="form-group required">
         <div class="col-xs-12 col-sm-3 lbl-field">
             @Html.LabelFor(c => c.ViewModel.Username)

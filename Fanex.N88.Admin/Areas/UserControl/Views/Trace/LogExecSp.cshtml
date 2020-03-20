@@ -1,11 +1,13 @@
 ﻿@using Fanex.N88.Core.Criteria.Trace
-@using Fanex.NAP.Admin.Core.Configuration
+@using Fanex.N88.Admin.Core.Configuration
+@using Fanex.N88.Core.Helpers
+
 @model GetAllLogCriteria
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = ViewResources.Log_Management;
-                var listLog = (PagerList<LogExecSp>)ViewBag.ListLog;
+    ViewBag.Title = ViewResources.Log_Management;
+    var listLog = (PagerList<LogExecSp>)ViewBag.ListLog;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/Trace/logexecsp")
@@ -67,29 +69,29 @@
                 case 1:
                     <th>
                         @ViewResources.User
-                </th>
-                break;
-            case 2:
-                <th>
-                    @ViewResources.Group
-            </th>
-            break;
-        case 3:
-            <th>
-                @ViewResources.Site
-        </th>
-        break;
-    case 4:
-        <th>
-            @ViewResources.Function
-    </th>
-    break;
-case 5:
-    <th>
-        @ViewResources.Menu
-</th>
-break;
-}
+                    </th>
+                    break;
+                case 2:
+                    <th>
+                        @ViewResources.Group
+                    </th>
+                    break;
+                case 3:
+                    <th>
+                        @ViewResources.Site
+                    </th>
+                    break;
+                case 4:
+                    <th>
+                        @ViewResources.Function
+                    </th>
+                    break;
+                case 5:
+                    <th>
+                        @ViewResources.Menu
+                    </th>
+                    break;
+            }
             <th>
                 @ViewResources.Modified_By
             </th>
@@ -129,7 +131,7 @@ break;
                         @item.ActionName
                     </td>
                     <td class="text-center" style="width: 100px">
-                        @if (item.ActionId != (int)LogAction.NAP_Cust_UpdatePassword)
+                        @if (item.ActionId != (int)LogAction.N88_Cust_UpdatePassword)
                         {
                             <a href="#" logid="@item.Id" class="loginsert">@ViewResources.Details</a>
                         }
@@ -142,7 +144,7 @@ break;
         {
             <tr class="no-info">
                 <td colspan="12" class="text-center">
-                    @
+                    @ViewResources.NoInformationAvailable
                 </td>
             </tr>
         }
@@ -152,26 +154,26 @@ break;
             <td colspan="12">
                 @if (listLog != null && listLog.Count() > 0)
                 {
-                    <span class="items-per-page-wrp">
-                        @
-                    @Html.DropDownList("items-per-page", new List<SelectListItem> {
-                        new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
-                        new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
-                        new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
-                    }, new { id = string.Empty, @class = "items-per-page" })
-                </span>
-                @Html.Pager(listLog, new PagerOptions()
-{
-PageIndexParameterName = "id",
-ShowFirstLast = true,
-CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
-}, new { @class = "jpages" })
-            }
+                    <span class="items-per-page-wrp">@ViewResources.PageSize
+                        @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                        }, new { id = string.Empty, @class = "items-per-page" })
+                    </span>
+                    @Html.Pager(listLog, new PagerOptions()
+    {
+    PageIndexParameterName = "id",
+    ShowFirstLast = true,
+    CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
+    }, new { @class = "jpages" })
+                }
             </td>
         </tr>
     </tfoot>
 </table>
-@
+
+@Html.Hidden("imagePath", (string)@Url.Content("~/Areas/UserControl/themes/img/smoothness/icon-calendar.png"))
 @section Foot {
     <script src="~/Areas/UserControl/scripts/Trace/LogExecSp.js" type="text/javascript"></script>
 }

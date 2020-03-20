@@ -76,12 +76,6 @@
 
         protected IServiceContext ServiceContext => _serviceContext;
 
-        /// <summary>
-        /// Determines whether the specified user has the right on a function.
-        /// </summary>
-        /// <param name="functionKey">The function key.</param>
-        /// <param name="policy">The policy.</param>
-        /// <returns>Whether the specified user has the right on a function.</returns>
         public bool HasRight(string functionKey, Constant.Policy policy)
         {
             int functionPolicy = _userService.GetUserSiteFunctionKeyPolicy(CurrentSession.UserId, _siteId, functionKey);
@@ -89,13 +83,6 @@
             return functionPolicy >= (int)policy;
         }
 
-        /// <summary>
-        /// Determines whether the specified user has the right on a function of a site.
-        /// </summary>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="functionKey">The function key.</param>
-        /// <param name="policy">The policy.</param>
-        /// <returns>Whether the specified user has the right on a function.</returns>
         public bool HasRightOnSite(int siteId, string functionKey, Constant.Policy policy)
         {
             int functionPolicy = _userService.GetUserSiteFunctionKeyPolicy(CurrentSession.UserId, siteId, functionKey);
@@ -103,11 +90,6 @@
             return functionPolicy >= (int)policy;
         }
 
-        /// <summary>
-        /// Generate function key from function name.
-        /// </summary>
-        /// <param name="name">Function name.</param>
-        /// <returns>Function key.</returns>
         protected static string ConvertToKey(string name)
         {
             string functionKey = name.Replace(Constant.Space, string.Empty);

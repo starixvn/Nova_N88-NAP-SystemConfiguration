@@ -69,10 +69,6 @@
 
         #region Add New
 
-        /// <summary>
-        /// Add new site.
-        /// </summary>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageSite, Policy = Constant.Policy.Host)]
         public ActionResult AddNew()
@@ -93,11 +89,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Add new site.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageSite, Policy = Constant.Policy.Host)]

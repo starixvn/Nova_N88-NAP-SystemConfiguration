@@ -8,6 +8,7 @@ var AddNewUser = (function ($) {
 		Site: "#ViewModel_SiteId",
 		Username: "#ViewModel_Username",
 		Group: "#ViewModel_GroupId",
+		Level: "#ViewModel_Level",
 		Prefix: ".username-prefix",
 		PrefixInputClass: "input-prefix"
 	};
@@ -17,13 +18,17 @@ var AddNewUser = (function ($) {
 			var value = $(this).val();
 			if (value === "true") {
 				getSiteList(value);
+				loadLevelSelect();
 				$(domElement.Site).removeAttr("disabled").removeAttr("readonly");
+				$(domElement.Level).removeAttr("disabled").removeAttr("readonly");
 				$(domElement.Prefix).hide();
 				$(domElement.Username).removeClass(domElement.PrefixInputClass);
 			} else {
 				getGroupBySiteId(false);
 				$(domElement.Site).html('');
 				$(domElement.Site).attr("disabled", "disabled").attr("readonly", "readonly");
+				$(domElement.Level).html('');
+				$(domElement.Level).attr("disabled", "disabled").attr("readonly", "readonly");
 				$(domElement.Prefix).show();
 				$(domElement.Username).addClass(domElement.PrefixInputClass);
 			}
@@ -34,6 +39,12 @@ var AddNewUser = (function ($) {
 		$(domElement.Site).on('change', function () {
 			getGroupBySiteId(true);
 		});
+	}
+
+	function loadLevelSelect() {
+		var options = `<option value=0>User</option>
+					  <option value=50>Site Admin</option>`;
+		$(domElement.Level).html(options);
 	}
 
 	function getSiteList(isLicensee) {

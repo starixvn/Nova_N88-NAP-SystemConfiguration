@@ -38,5 +38,8 @@
 
         [Display(Name = "Site", ResourceType = typeof(ViewLang))]
         public int? SiteId { get; set; }
+
+        [Display(Name = "Level", ResourceType = typeof(ViewLang))]
+        public int Level { get; set; }
     }
 }

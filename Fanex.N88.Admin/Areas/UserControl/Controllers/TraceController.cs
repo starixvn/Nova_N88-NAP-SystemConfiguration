@@ -90,16 +90,6 @@
 
         #region Log User Login
 
-        /// <summary>
-        /// Manage user login log.
-        /// </summary>
-        /// <param name="id">The page index.</param>
-        /// <param name="size">The page size.</param>
-        /// <param name="q">The username.</param>
-        /// <param name="from">From date value.</param>
-        /// <param name="to">To date value.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         public ActionResult LogUserLogin(
             int id = 1,
@@ -187,11 +177,6 @@
 
         #region View log
 
-        /// <summary>
-        /// Get user insert log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88UserInsert(LogExecSp log)
         {
             if (log.ActionId == (int)LogAction.N88_User_Insert)
@@ -219,11 +204,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        /// <summary>
-        /// Get customer insert log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88CustInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
@@ -269,11 +249,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        /// <summary>
-        /// Get function insert log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88FunctionInsert(LogExecSp log)
         {
@@ -344,11 +319,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        /// <summary>
-        /// Get group insert log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88GroupInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
@@ -382,11 +352,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        /// <summary>
-        /// Get menu item insert log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88MenuItemInsert(LogExecSp log)
         {
@@ -457,11 +422,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        /// <summary>
-        /// Get insert site log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88SiteInsertWithSiteUrl(LogExecSp log)
         {
@@ -533,11 +493,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Site_InsertWithSiteURL.cshtml");
         }
 
-        /// <summary>
-        /// Get update menu item log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88MenuItemUpdate(LogExecSp log)
         {
@@ -618,11 +573,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update menu item status log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88MenuItemUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -646,11 +596,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update function log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88FunctionUpdate(LogExecSp log)
         {
@@ -732,11 +677,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update function status log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88FunctionUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -760,11 +700,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update site log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88SiteUpdate(LogExecSp log)
         {
@@ -824,11 +759,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update site status log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88SiteUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -852,11 +782,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update group log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88GroupUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -894,11 +819,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update group status log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88GroupUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -922,11 +842,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get update customer log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         public PartialViewResult N88CustUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data ?? "<ROOT/>");
@@ -971,11 +886,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        /// <summary>
-        /// Get site URL log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88SiteUrl(LogExecSp log)
         {
@@ -1033,11 +943,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Site_Url.cshtml");
         }
 
-        /// <summary>
-        /// Get assign permission log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed")]
         [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed", Scope = "method")]
         public PartialViewResult N88AssignPermission(LogExecSp log)
@@ -1132,11 +1037,6 @@
             return listFunctionPolicyOld;
         }
 
-        /// <summary>
-        /// Get assign site log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88AssignSite(LogExecSp log)
         {
@@ -1203,11 +1103,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Assign_Site.cshtml");
         }
 
-        /// <summary>
-        /// Assign new site.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>The partial view result.</returns>
         public PartialViewResult N88AssignNewSite(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
@@ -1279,11 +1174,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Update_Site.cshtml");
         }
 
-        /// <summary>
-        /// Get assign permission to users log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88FunctionAssignToUsers(LogExecSp log)
         {
@@ -1340,11 +1230,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Function_AssignToUsers.cshtml");
         }
 
-        /// <summary>
-        /// Get assign permission to groups log detail.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public PartialViewResult N88FunctionAssignFunctionToGroups(LogExecSp log)
         {
@@ -1401,11 +1286,6 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88_Function_AssignToGroups.cshtml");
         }
 
-        /// <summary>
-        /// Get revoked sites when run job revoke user permission
-        /// </summary>
-        /// <param name="log"></param>
-        /// <returns></returns>
         public PartialViewResult TaskN88RevokeUserPermission(LogExecSp log)
         {
             var taskN88RevokeUserPermissionVM = new TaskN88RevokeUserPermissionVM();

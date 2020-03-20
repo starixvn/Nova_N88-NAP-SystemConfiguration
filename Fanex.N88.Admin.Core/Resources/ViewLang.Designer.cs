@@ -169,6 +169,15 @@ namespace Fanex.N88.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licensee Group.
         /// </summary>
         public static string LicenseeGroup {
