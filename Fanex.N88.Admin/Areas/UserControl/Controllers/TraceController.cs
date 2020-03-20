@@ -9,8 +9,8 @@
     using System.Xml.Linq;
     using Core.Web;
     using Fanex.N88.Admin.Core.Configuration;
+    using Fanex.N88.Core.Helpers;
     using Fanex.N88.Core.Web;
-    using Fanex.NAP.Core.Helpers;
     using N88.Core.Criteria.Trace;
     using N88.Core.Domain;
     using N88.Core.Model;
@@ -20,9 +20,6 @@
     using N88.Core.Web.Attribute;
     using ViewModels.Trace;
 
-    /// <summary>
-    /// Trace controller.
-    /// </summary>
     public class TraceController : BaseController
     {
         private readonly ITraceService _traceService;
@@ -43,17 +40,6 @@
 
         #region Log Exec Sp
 
-        /// <summary>
-        /// Manage execute SP log.
-        /// </summary>
-        /// <param name="id">The page index.</param>
-        /// <param name="size">The page size.</param>
-        /// <param name="q">The item name.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="from">From date value.</param>
-        /// <param name="to">To date value.</param>
-        /// <param name="filterBy">Filter by option.</param>
-        /// <returns>Action result.</returns>
         [N88Auth(FunctionKey = FunctionKeys.ExecSpLog)]
         [HttpGet]
         public ActionResult LogExecSp(
@@ -83,11 +69,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Manage execute SP log.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         public ActionResult LogExecSp(GetAllLogCriteria criteria)
         {
@@ -211,9 +192,9 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPUserInsert(LogExecSp log)
+        public PartialViewResult N88UserInsert(LogExecSp log)
         {
-            if (log.ActionId == (int)LogAction.NAP_User_Insert)
+            if (log.ActionId == (int)LogAction.N88_User_Insert)
             {
                 XElement elementNew = XElement.Parse(log.Data);
 
@@ -235,7 +216,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogInsert.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
         /// <summary>
@@ -243,11 +224,11 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPCustInsert(LogExecSp log)
+        public PartialViewResult N88CustInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_Cust_Insert)
+            if (log.ActionId == (int)LogAction.N88_Cust_Insert)
             {
                 var listLogData = new List<LogData>
                 {
@@ -285,7 +266,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogInsert.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
         /// <summary>
@@ -294,11 +275,11 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPFunctionInsert(LogExecSp log)
+        public PartialViewResult N88FunctionInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_Function_Insert)
+            if (log.ActionId == (int)LogAction.N88_Function_Insert)
             {
                 var listLogData = new List<LogData>
                 {
@@ -360,7 +341,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogInsert.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
         /// <summary>
@@ -368,11 +349,11 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPGroupInsert(LogExecSp log)
+        public PartialViewResult N88GroupInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_Group_Insert)
+            if (log.ActionId == (int)LogAction.N88_Group_Insert)
             {
                 var listLogData = new List<LogData>
                 {
@@ -398,7 +379,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogInsert.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
         /// <summary>
@@ -407,11 +388,11 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPMenuItemInsert(LogExecSp log)
+        public PartialViewResult N88MenuItemInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_MenuItem_Insert)
+            if (log.ActionId == (int)LogAction.N88_MenuItem_Insert)
             {
                 var listLogData = new List<LogData>
                 {
@@ -473,7 +454,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogInsert.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
         /// <summary>
@@ -482,11 +463,11 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPSiteInsertWithSiteUrl(LogExecSp log)
+        public PartialViewResult N88SiteInsertWithSiteUrl(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_Site_InsertWithSiteURL)
+            if (log.ActionId == (int)LogAction.N88_Site_InsertWithSiteURL)
             {
                 var listLogData = new List<LogData>
                 {
@@ -549,7 +530,7 @@
                 ViewBag.SiteUrl = listSiteUrl;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Site_InsertWithSiteURL.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Site_InsertWithSiteURL.cshtml");
         }
 
         /// <summary>
@@ -558,12 +539,12 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPMenuItemUpdate(LogExecSp log)
+        public PartialViewResult N88MenuItemUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_MenuItem_Update)
+            if (log.ActionId == (int)LogAction.N88_MenuItem_Update)
             {
                 var listLogData = new List<LogData>
                 {
@@ -634,7 +615,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -642,12 +623,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPMenuItemUpdateStatus(LogExecSp log)
+        public PartialViewResult N88MenuItemUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_MenuItem_UpdateStatus)
+            if (log.ActionId == (int)LogAction.N88_MenuItem_UpdateStatus)
             {
                 var listLogData = new List<LogData>
                 {
@@ -662,7 +643,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -671,13 +652,13 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPFunctionUpdate(LogExecSp log)
+        public PartialViewResult N88FunctionUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Function_Update
-                || log.ActionId == (int)LogAction.NAP_Function_Duplicate)
+            if (log.ActionId == (int)LogAction.N88_Function_Update
+                || log.ActionId == (int)LogAction.N88_Function_Duplicate)
             {
                 var listLogData = new List<LogData>
                 {
@@ -748,7 +729,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -756,12 +737,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPFunctionUpdateStatus(LogExecSp log)
+        public PartialViewResult N88FunctionUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Function_UpdateStatus)
+            if (log.ActionId == (int)LogAction.N88_Function_UpdateStatus)
             {
                 var listLogData = new List<LogData>
                 {
@@ -776,7 +757,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -785,12 +766,12 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPSiteUpdate(LogExecSp log)
+        public PartialViewResult N88SiteUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Site_Update)
+            if (log.ActionId == (int)LogAction.N88_Site_Update)
             {
                 var listLogData = new List<LogData>
                 {
@@ -840,7 +821,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -848,12 +829,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPSiteUpdateStatus(LogExecSp log)
+        public PartialViewResult N88SiteUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Site_UpdateStatus)
+            if (log.ActionId == (int)LogAction.N88_Site_UpdateStatus)
             {
                 var listLogData = new List<LogData>
                 {
@@ -868,7 +849,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -876,12 +857,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPGroupUpdate(LogExecSp log)
+        public PartialViewResult N88GroupUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Group_Update)
+            if (log.ActionId == (int)LogAction.N88_Group_Update)
             {
                 var listLogData = new List<LogData>
                 {
@@ -910,7 +891,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -918,12 +899,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPGroupUpdateStatus(LogExecSp log)
+        public PartialViewResult N88GroupUpdateStatus(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Group_UpdateStatus)
+            if (log.ActionId == (int)LogAction.N88_Group_UpdateStatus)
             {
                 var listLogData = new List<LogData>
                 {
@@ -938,7 +919,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -946,12 +927,12 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
-        public PartialViewResult NAPCustUpdate(LogExecSp log)
+        public PartialViewResult N88CustUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data ?? "<ROOT/>");
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Cust_Update)
+            if (log.ActionId == (int)LogAction.N88_Cust_Update)
             {
                 var listLogData = new List<LogData>
                 {
@@ -987,7 +968,7 @@
                 ViewBag.LogData = listLogData;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAPLogUpdate.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
         /// <summary>
@@ -996,15 +977,15 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPSiteUrl(LogExecSp log)
+        public PartialViewResult N88SiteUrl(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            // NAP_Site_UpdateSiteURL || NAP_Site_InsertSiteURL || NAP_Site_UpdateDefaultSiteURL
-            if (log.ActionId == (int)LogAction.NAP_Site_UpdateSiteURL
-                || log.ActionId == (int)LogAction.NAP_Site_InsertSiteURL
-                || log.ActionId == (int)LogAction.NAP_Site_UpdateDefaultSiteURL)
+            // N88_Site_UpdateSiteURL || N88_Site_InsertSiteURL || N88_Site_UpdateDefaultSiteURL
+            if (log.ActionId == (int)LogAction.N88_Site_UpdateSiteURL
+                || log.ActionId == (int)LogAction.N88_Site_InsertSiteURL
+                || log.ActionId == (int)LogAction.N88_Site_UpdateDefaultSiteURL)
             {
                 // Old data
                 string strUrlOld = elementOld.Attribute("Value").Value.DecodeXMLValue();
@@ -1049,7 +1030,7 @@
                 ViewBag.SiteUrl = listSiteUrl;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Site_Url.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Site_Url.cshtml");
         }
 
         /// <summary>
@@ -1059,15 +1040,15 @@
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed")]
         [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Reviewed", Scope = "method")]
-        public PartialViewResult NAPAssignPermission(LogExecSp log)
+        public PartialViewResult N88AssignPermission(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            // NAP_Group_AssignFunction || NAP_User_AssignFunction
-            if (log.ActionId == (int)LogAction.NAP_Group_AssignFunction
-                || log.ActionId == (int)LogAction.NAP_User_AssignFunction
-                || log.ActionId == (int)LogAction.NAP_Function_CopyPermission)
+            // N88_Group_AssignFunction || N88_User_AssignFunction
+            if (log.ActionId == (int)LogAction.N88_Group_AssignFunction
+                || log.ActionId == (int)LogAction.N88_User_AssignFunction
+                || log.ActionId == (int)LogAction.N88_Function_CopyPermission)
             {
                 // Get function list
                 int siteId = Convert.ToInt32(elementNew.Attribute("SiteId").Value);
@@ -1104,7 +1085,7 @@
 
             #endregion View log
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Assign_Permission.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Assign_Permission.cshtml");
         }
 
         private static Hashtable GetNewFunctionPolicyList(string strFunctionPolicy)
@@ -1157,12 +1138,12 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPAssignSite(LogExecSp log)
+        public PartialViewResult N88AssignSite(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_User_AssignSite)
+            if (log.ActionId == (int)LogAction.N88_User_AssignSite)
             {
                 // Old data
                 if (elementOld.Attribute("Value") != null
@@ -1219,7 +1200,7 @@
                 }
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Assign_Site.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Assign_Site.cshtml");
         }
 
         /// <summary>
@@ -1227,11 +1208,11 @@
         /// </summary>
         /// <param name="log">Execute SP log.</param>
         /// <returns>The partial view result.</returns>
-        public PartialViewResult NAPAssignNewSite(LogExecSp log)
+        public PartialViewResult N88AssignNewSite(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.NAP_User_AssignNewSite && elementNew != null)
+            if (log.ActionId == (int)LogAction.N88_User_AssignNewSite && elementNew != null)
             {
                 var newSite = new SiteLevel
                 {
@@ -1247,15 +1228,10 @@
                 ViewBag.NewLog = newSite;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Assign_New_Site.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Assign_New_Site.cshtml");
         }
 
-        /// <summary>
-        /// Update site.
-        /// </summary>
-        /// <param name="log">Execute SP log.</param>
-        /// <returns>The partial view result.</returns>
-        public PartialViewResult NAPUpdateSite(LogExecSp log)
+        public PartialViewResult N88UpdateSite(LogExecSp log)
         {
             XElement newElement = XElement.Parse(log.Data);
             XElement oldElement = XElement.Parse(log.OldData ?? "<ROOT/>");
@@ -1300,7 +1276,7 @@
                 ViewBag.newSite = newSite;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Update_Site.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Update_Site.cshtml");
         }
 
         /// <summary>
@@ -1309,12 +1285,12 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPFunctionAssignToUsers(LogExecSp log)
+        public PartialViewResult N88FunctionAssignToUsers(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Function_AssignFunctionToUsers)
+            if (log.ActionId == (int)LogAction.N88_Function_AssignFunctionToUsers)
             {
                 // Old data
                 string strUserPolicyOld = elementOld.Attribute("Value").Value.DecodeXMLValue();
@@ -1361,7 +1337,7 @@
                 ViewBag.UserPolicyNew = listUserPolicy;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Function_AssignToUsers.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Function_AssignToUsers.cshtml");
         }
 
         /// <summary>
@@ -1370,12 +1346,12 @@
         /// <param name="log">Execute SP log.</param>
         /// <returns>Partial view result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public PartialViewResult NAPFunctionAssignFunctionToGroups(LogExecSp log)
+        public PartialViewResult N88FunctionAssignFunctionToGroups(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data);
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.NAP_Function_AssignFunctionToGroups)
+            if (log.ActionId == (int)LogAction.N88_Function_AssignFunctionToGroups)
             {
                 // Old data
                 string strGroupPolicyOld = elementOld.Attribute("Value").Value.DecodeXMLValue();
@@ -1422,7 +1398,7 @@
                 ViewBag.GroupPolicyNew = listGroupPolicy;
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_NAP_Function_AssignToGroups.cshtml");
+            return PartialView("~/Areas/UserControl/Views/Trace/_N88_Function_AssignToGroups.cshtml");
         }
 
         /// <summary>
@@ -1430,13 +1406,13 @@
         /// </summary>
         /// <param name="log"></param>
         /// <returns></returns>
-        public PartialViewResult TaskNAPRevokeUserPermission(LogExecSp log)
+        public PartialViewResult TaskN88RevokeUserPermission(LogExecSp log)
         {
-            var taskNAPRevokeUserPermissionVM = new TaskNAPRevokeUserPermissionVM();
+            var taskN88RevokeUserPermissionVM = new TaskN88RevokeUserPermissionVM();
 
             XElement element = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.Task_NAP_RevokeUserPermission && element != null)
+            if (log.ActionId == (int)LogAction.Task_N88_RevokeUserPermission && element != null)
             {
                 var elementValue = element.Attribute("Value").Value.DecodeXMLValue();
 
@@ -1452,12 +1428,12 @@
                             SiteName = item.Attribute("SiteName").Value
                         };
 
-                        taskNAPRevokeUserPermissionVM.RevokedSites.Add(revokedSite);
+                        taskN88RevokeUserPermissionVM.RevokedSites.Add(revokedSite);
                     }
                 }
             }
 
-            return PartialView("~/Areas/UserControl/Views/Trace/_Task_NAP_RevokeUserPermission.cshtml", taskNAPRevokeUserPermissionVM);
+            return PartialView("~/Areas/UserControl/Views/Trace/_Task_N88_RevokeUserPermission.cshtml", taskN88RevokeUserPermissionVM);
         }
     }
 }

@@ -45,7 +45,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Fanex.NAP.Admin.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>6</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -236,11 +236,12 @@
     <Compile Include="Areas\UserControl\Controllers\MenuController.cs" />
     <Compile Include="Areas\UserControl\Controllers\SharedController.cs" />
     <Compile Include="Areas\UserControl\Controllers\SiteController.cs" />
+    <Compile Include="Areas\UserControl\Controllers\TraceController.cs" />
     <Compile Include="Areas\UserControl\Controllers\UserController.cs" />
     <Compile Include="Areas\UserControl\UserControlAreaRegistration.cs" />
     <Compile Include="Areas\UserControl\ViewModels\Group\InsertGroupVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\Trace\RevokedSite.cs" />
-    <Compile Include="Areas\UserControl\ViewModels\Trace\TaskNAPRevokeUserPermissionVM.cs" />
+    <Compile Include="Areas\UserControl\ViewModels\Trace\TaskN88RevokeUserPermissionVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\AddNewUserVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\AssignNewSiteVM.cs" />
     <Compile Include="Areas\UserControl\ViewModels\User\AssignPermissionVM.cs" />
@@ -663,22 +664,22 @@
     <Content Include="Areas\UserControl\Views\Trace\GetLogInsertDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAPLogInsert.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88LogInsert.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Site_InsertWithSiteURL.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Site_InsertWithSiteURL.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAPLogUpdate.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88LogUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Site_Url.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Site_Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Assign_Permission.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Assign_Permission.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Assign_Site.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Assign_Site.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserControl\Views\Trace\LogUserLogin.cshtml" />
@@ -687,10 +688,10 @@
     <Content Include="Areas\UserControl\Views\Trace\LogFunction.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Function_AssignToUsers.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Function_AssignToUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Function_AssignToGroups.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Function_AssignToGroups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\UserControl\themes\nap\function\edit.less" />
@@ -711,8 +712,8 @@
     <Content Include="Areas\UserControl\Views\Home\Index.cshtml" />
     <Content Include="Areas\UserControl\Views\User\AssignNewSite.cshtml" />
     <Content Include="Areas\UserControl\themes\nap\user\assign-new-site.less" />
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Update_Site.cshtml" />
-    <Content Include="Areas\UserControl\Views\Trace\_NAP_Assign_New_Site.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Update_Site.cshtml" />
+    <Content Include="Areas\UserControl\Views\Trace\_N88_Assign_New_Site.cshtml" />
     <None Include="Areas\UserLogin\themes\fonts\Lucida_Sans.ttf" />
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>

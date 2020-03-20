@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class TaskNAPRevokeUserPermissionVM
+    public class TaskN88RevokeUserPermissionVM
     {
         public IList<RevokedSite> RevokedSites { get; set; } = new List<RevokedSite>();
     }

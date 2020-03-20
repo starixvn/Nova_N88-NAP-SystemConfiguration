@@ -100,7 +100,7 @@
             if (ModelState.IsValid)
             {
                 // check duplicate key
-                criteria.MenuItemKey = ConvertToKey(criteria.MenuItemKey);
+                criteria.MenuItemKey = ConvertToKey(criteria.MenuItemName);
                 IMenuItem menu = _menuItemService.GetByKeyAndSite(criteria.MenuItemKey, criteria.SiteId);
 
                 if (menu != null)
@@ -190,7 +190,7 @@
             {
                 if (string.IsNullOrWhiteSpace(criteria.MenuItemKey))
                 {
-                    criteria.MenuItemKey = ConvertToKey(criteria.MenuItemKey);
+                    criteria.MenuItemKey = ConvertToKey(criteria.MenuItemName);
                 }
 
                 // check duplicate key
