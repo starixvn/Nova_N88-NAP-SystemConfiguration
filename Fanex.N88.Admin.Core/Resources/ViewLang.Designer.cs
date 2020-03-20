@@ -124,6 +124,15 @@ namespace Fanex.N88.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Licensee Group.
+        /// </summary>
+        public static string IncludeLicenseeGroup {
+            get {
+                return ResourceManager.GetString("IncludeLicenseeGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} field must be at least {2} and maximum {1} characters long..
         /// </summary>
         public static string InputLengthValidationMsg {
@@ -156,6 +165,15 @@ namespace Fanex.N88.Admin.Core.Resources {
         public static string InvalidNameValidationMsg {
             get {
                 return ResourceManager.GetString("InvalidNameValidationMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Licensee Site.
+        /// </summary>
+        public static string IsLicenseeSite {
+            get {
+                return ResourceManager.GetString("IsLicenseeSite", resourceCulture);
             }
         }
         
@@ -255,6 +273,15 @@ namespace Fanex.N88.Admin.Core.Resources {
         public static string UserType {
             get {
                 return ResourceManager.GetString("UserType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

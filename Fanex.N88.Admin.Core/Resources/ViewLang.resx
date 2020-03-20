@@ -183,4 +183,13 @@
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="IncludeLicenseeGroup" xml:space="preserve">
+    <value>Include Licensee Group</value>
+  </data>
+  <data name="IsLicenseeSite" xml:space="preserve">
+    <value>Is Licensee Site</value>
+  </data>
 </root>

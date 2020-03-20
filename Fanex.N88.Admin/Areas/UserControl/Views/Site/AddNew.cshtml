@@ -1,4 +1,5 @@
-﻿@model InsertSiteCriteria
+﻿@using Fanex.N88.Admin.Core.Resources
+@model InsertSiteCriteria
 @{
     ViewBag.Title = ViewResources.Create_New_Site;
     bool success = ViewBag.Success != null && ViewBag.Success;
@@ -9,7 +10,7 @@
 }
 @section Headline {
     <span class="title">
-		<span class="first">@ViewResources.Site @ViewResources.Management /</span> @ViewBag.Title
+        <span class="first">@ViewResources.Site @ViewResources.Management /</span> @ViewBag.Title
     </span>
     <div class="button-action">
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Site", null, new { @class = "back-button" })
@@ -67,8 +68,8 @@
                                 @Html.CheckBoxFor(m => m.Urls[i].IsActive, new { id = string.Empty })
                             </td>
                             <td class="text-center">
-                                <input type="radio" value="Urls[@i].IsDefault" name="Urls" 
-                                @(Model.Urls[i].IsDefault ? "checked=checked" : string.Empty) />
+                                <input type="radio" value="Urls[@i].IsDefault" name="Urls"
+                                       @(Model.Urls[i].IsDefault ? "checked=checked" : string.Empty) />
                             </td>
                             @if (i == 0)
                             {
@@ -101,6 +102,15 @@
         </div>
     </div>
     <div class="form-group">
+        <div class="col-xs-12 col-sm-3 lbl-field">
+            @Html.LabelFor(m => m.IsLicenseeSite)
+        </div>
+        <div class="col-xs-12 col-sm-8 chk-field">
+            @Html.CheckBoxFor(m => m.IsLicenseeSite, new { @class = "chkActive" })
+            @Html.LabelFor(m => m.IsLicenseeSite, new { @class = "lbActive" })
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-xs-12 col-sm-3">
         </div>
         <div class="col-xs-12 col-sm-8">
@@ -110,7 +120,7 @@
                 <button class="cancel-button" onclick="NAP.redirect('Site/Manage', 0); return false;">@ViewResources.Cancel</button>
             }
         </div>
-    </div>	
+    </div>
 }
 @section Foot {
     <script src="~/Areas/UserControl/scripts/Site/AddNew.js" type="text/javascript"></script>

@@ -1,7 +1,9 @@
 ﻿@using Fanex.N88.Core.Model
 @using Fanex.N88.Core.Business
 @using Fanex.N88.Core.Criteria.Group
+@using Fanex.N88.Admin.Core.Resources
 @model Fanex.N88.Core.Criteria.Group.GetAllWithNumOfUserGroupCriteria
+
 @{
     /**/
 
@@ -31,6 +33,10 @@
         @Html.TextBoxFor(m => m.GroupName)
     </div>
     <div class="form-group">
+        <label>@ViewLang.IncludeLicenseeGroup</label>
+        @Html.CheckBoxFor(m => m.IsLicenseeGroup)
+    </div>
+    <div class="form-group">
         <input type="submit" value="@ViewResources.Submit" />
     </div>
 }
@@ -49,6 +55,7 @@
             <th>
                 @ViewResources.Description
             </th>
+            <th>Licensee Group</th>
             <th>
                 @ViewResources.Modified_Date
             </th>
@@ -100,6 +107,12 @@
                     </td>
                     <td>
                         @group.Description
+                    </td>
+                    <td class="text-center" style="width: 80px">
+                        @if (group.IsLicenseeGroup)
+                        {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                        }
                     </td>
                     <td class="text-center">
                         @group.ModifiedDate.ToFullDateString()

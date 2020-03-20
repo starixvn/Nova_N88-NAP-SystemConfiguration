@@ -63,9 +63,9 @@
             ViewFlags.HasAssignFunctionRight = HasRight(FunctionKeys.AssignFunctionToGroup, Constant.Policy.Read);
             ViewFlags.HasManageUserRight = HasRight(FunctionKeys.ManageUser, Constant.Policy.Read);
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, Environment, isLicenseeGroup: false);
+            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(string.Empty, Environment);
 
-            return View(new GetAllWithNumOfUserGroupCriteria());
+            return View(new GetAllWithNumOfUserGroupCriteria { IsLicenseeGroup = true });
         }
 
         [HttpPost]
@@ -78,7 +78,7 @@
             ViewFlags.HasAssignFunctionRight = HasRight(FunctionKeys.AssignFunctionToGroup, Constant.Policy.Read);
             ViewFlags.HasManageUserRight = HasRight(FunctionKeys.ManageUser, Constant.Policy.Read);
 
-            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName, isLicenseeGroup: false);
+            ViewBag.GroupList = _groupService.GetAllWithNumOfUser(criteria.GroupName, isLicenseeGroup: criteria.IsLicenseeGroup);
 
             return View(criteria);
         }

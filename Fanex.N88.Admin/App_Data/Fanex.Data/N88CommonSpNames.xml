@@ -216,7 +216,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername_xtest" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
+    <Setting Key="N88_User_GetByUsername" SpName="N88_User_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="UserId" ObjectProperty="Id" />
       <Mapping DataField="userpwd" ObjectProperty="Password" />
       <Mapping DataField="GroupId" ObjectProperty="Id" />
@@ -290,7 +290,7 @@
       <Mapping DataField="ModifierId" ObjectProperty="Id" />
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
-    <Setting Key="N88_User_GetAllByUsernameGroupSite" SpName="N88_User_GetAllByUsernameGroupSite_xtest" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_GetAllByUsernameGroupSite" SpName="N88_User_GetAllByUsernameGroupSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_SSOGetTime" SpName="N88_User_SSOGetTime" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
   </Function>
   <Function Name="Site">

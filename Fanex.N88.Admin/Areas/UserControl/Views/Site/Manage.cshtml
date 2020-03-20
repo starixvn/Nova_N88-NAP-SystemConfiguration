@@ -42,6 +42,9 @@
             <th style="width: 80px">
                 @ViewResources.Active
             </th>
+            <th style="width: 80px">
+                @ViewResources.Licensee_site
+            </th>
             @if (!viewFlags.IsLive)
 			{
                 <th style="width: 80px">
@@ -135,6 +138,12 @@
 					{
                         <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
 					}
+                </td>
+                <td class="text-center">
+                    @if (site.IsLicenseeSite)
+                    {
+                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                    }
                 </td>
                 @if (!viewFlags.IsLive)
 				{

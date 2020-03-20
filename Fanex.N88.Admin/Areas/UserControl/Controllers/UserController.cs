@@ -91,15 +91,6 @@
 
         #region Manage
 
-        /// <summary>
-        /// Manage user.
-        /// </summary>
-        /// <param name="id">The page index.</param>
-        /// <param name="size">The page size.</param>
-        /// <param name="userName">The username.</param>
-        /// <param name="groupId">The group ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
 #pragma warning disable S1541 // Methods and properties should not be too complex
@@ -130,7 +121,7 @@
                 && HasRightOnSite(selectedSiteId, FunctionKeys.AssignSiteToUser, Constant.Policy.Read);
 
             // if users choose a specific site (siteId == 0 means users choose [No Site])
-            bool isSpecificSiteChosen = siteIdValue != 0;
+            bool isSpecificSiteChosen = siteIdValue != 0 && siteIdValue != Constant.SearchAllSite;
 
             ViewFlags.IsShowLevelColumn = isSpecificSiteChosen;
 
@@ -251,14 +242,6 @@
             }
         }
 
-        /// <summary>
-        /// Manage user.
-        /// </summary>
-        /// <param name="size">The page size.</param>
-        /// <param name="userName">The username.</param>
-        /// <param name="groupId">The group ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
         public ActionResult Manage(
@@ -285,14 +268,6 @@
 
         #region Assign Site
 
-        /// <summary>
-        /// Assign site.
-        /// </summary>
-        /// <param name="id">The user ID.</param>
-        /// <param name="returnSiteId">The site ID.</param>
-        /// <param name="returnGroupId">The group ID.</param>
-        /// <param name="returnPageIndex">The page index.</param>
-        /// <returns>Action result.</returns>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         [HttpGet]
         [N88Auth(FunctionKey = FunctionKeys.AssignSiteToUser, Policy = Constant.Policy.Read)]
@@ -697,11 +672,6 @@
             return View(resetPasswordVM);
         }
 
-        /// <summary>
-        /// Reset user password.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
         public ActionResult ResetPassword(ResetPasswordVM resetPasswordVM)
@@ -979,7 +949,7 @@
                     _functionService.GetByGroupAndSite(user.Group.Id, criteria.SiteId, Environment).ToList();
             }
 
-            assignPermissionVM.Sites = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
+            assignPermissionVM.Sites = CurrentSession.Level == (int)Level.PortalAdmin ?
                 _siteService.GetAllSelectListItem(Environment, true, criteria.SiteId).ToList() :
                 _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(
                     CurrentSession.UserId,
@@ -1027,14 +997,6 @@
             return Json(result);
         }
 
-        /// <summary>
-        /// Assign site to user.
-        /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="level">The user level.</param>
-        /// <param name="isActive">Is active or not.</param>
-        /// <returns>Result string.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignSiteToUser, Policy = Constant.Policy.Host)]
         public string AssignSiteToUser(int userId, int siteId, int level, bool isActive)
@@ -1064,14 +1026,6 @@
 
         #region Update Site To User
 
-        /// <summary>
-        /// Update information of site to user.
-        /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <param name="siteId">The site ID.</param>
-        /// <param name="level">The level.</param>
-        /// <param name="isActive">The is active.</param>
-        /// <returns>The result string.</returns>
         [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.AssignSiteToUser, Policy = Constant.Policy.Host)]
         public string UpdateSiteToUser(int userId, int siteId, int level, bool isActive, DateTime expiredDate, bool isNeverExpired)
