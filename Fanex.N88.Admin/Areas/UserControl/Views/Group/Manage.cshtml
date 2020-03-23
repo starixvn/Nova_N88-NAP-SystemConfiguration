@@ -96,8 +96,8 @@
                         @if (group.NumOfUser > 0 && viewFlags.HasManageUserRight)
                         {
                             string title = string.Format("View users of '{0}'", group.Name);
-
-                            <a href="@Url.Action("Manage", "User", new { groupId = group.Id, siteid = -9999 })" target="_blank"
+                            int groupId = group.IsLicenseeGroup ? group.SourceSiteId : -9999;
+                            <a href="@Url.Action("Manage", "User", new { groupId = group.Id, siteid = groupId })" target="_blank"
                                gid="@group.Id" gname="@group.Name" class="num-of-user" title="@title">@group.NumOfUser</a>
                         }
                         else

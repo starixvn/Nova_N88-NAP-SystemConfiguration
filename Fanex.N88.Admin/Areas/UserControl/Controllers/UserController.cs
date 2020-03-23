@@ -171,7 +171,7 @@
                 ViewBag.Level = _userService.GetUserSiteLevel(CurrentSession.UserId, siteIdValue);
             }
 
-            if (siteIdValue == Constant.SearchAllSite)
+            if (siteIdValue == SearchAllSite)
             {
                 var searchAllSiteCriteria = new GetAllByUsernameGroupSiteUserCriteria
                 {
