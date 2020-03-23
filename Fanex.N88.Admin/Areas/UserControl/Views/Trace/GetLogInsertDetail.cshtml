@@ -1,120 +1,120 @@
-﻿@using Fanex.NAP.Admin.Core.Configuration
+﻿@using Fanex.N88.Admin.Core.Configuration
 @{
     Layout = null;
 }
 @model LogExecSp
 @if (!ReferenceEquals(Model, null))
 {
-    if (Model.ActionId == (int)LogAction.NAP_Cust_Insert)
+    if (Model.ActionId == (int)LogAction.N88_Cust_Insert)
     { 
-    @Html.Action("NAPCustInsert", "Trace", Model)
+    @Html.Action("N88CustInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_User_Insert)
+    if (Model.ActionId == (int)LogAction.N88_User_Insert)
     { 
-    @Html.Action("NAPUserInsert", "Trace", Model)
+    @Html.Action("N88UserInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Function_Insert)
+    if (Model.ActionId == (int)LogAction.N88_Function_Insert)
     { 
-    @Html.Action("NAPFunctionInsert", "Trace", Model)
+    @Html.Action("N88FunctionInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Group_Insert)
+    if (Model.ActionId == (int)LogAction.N88_Group_Insert)
     { 
-    @Html.Action("NAPGroupInsert", "Trace", Model)
+    @Html.Action("N88GroupInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_MenuItem_Insert)
+    if (Model.ActionId == (int)LogAction.N88_MenuItem_Insert)
     { 
-    @Html.Action("NAPMenuItemInsert", "Trace", Model)
+    @Html.Action("N88MenuItemInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Site_InsertWithSiteURL)
+    if (Model.ActionId == (int)LogAction.N88_Site_InsertWithSiteURL)
     {
-    @Html.Action("NAPSiteInsertWithSiteUrl", "Trace", Model)
+    @Html.Action("N88SiteInsertWithSiteUrl", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_MenuItem_Update)
+    if (Model.ActionId == (int)LogAction.N88_MenuItem_Update)
     { 
-    @Html.Action("NAPMenuItemUpdate", "Trace", Model)
+    @Html.Action("N88MenuItemUpdate", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_MenuItem_UpdateStatus)
+    if (Model.ActionId == (int)LogAction.N88_MenuItem_UpdateStatus)
     { 
-    @Html.Action("NAPMenuItemUpdateStatus", "Trace", Model)
+    @Html.Action("N88MenuItemUpdateStatus", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Function_Update
-        || Model.ActionId == (int)LogAction.NAP_Function_Duplicate)
+    if (Model.ActionId == (int)LogAction.N88_Function_Update
+        || Model.ActionId == (int)LogAction.N88_Function_Duplicate)
     { 
-    @Html.Action("NAPFunctionUpdate", "Trace", Model)
+    @Html.Action("N88FunctionUpdate", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Function_UpdateStatus)
+    if (Model.ActionId == (int)LogAction.N88_Function_UpdateStatus)
     { 
-    @Html.Action("NAPFunctionUpdateStatus", "Trace", Model)
+    @Html.Action("N88FunctionUpdateStatus", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Site_Update)
+    if (Model.ActionId == (int)LogAction.N88_Site_Update)
     { 
-    @Html.Action("NAPSiteUpdate", "Trace", Model)
+    @Html.Action("N88SiteUpdate", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Site_UpdateStatus)
+    if (Model.ActionId == (int)LogAction.N88_Site_UpdateStatus)
     { 
-    @Html.Action("NAPSiteUpdateStatus", "Trace", Model)
+    @Html.Action("N88SiteUpdateStatus", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Group_Update)
+    if (Model.ActionId == (int)LogAction.N88_Group_Update)
     { 
-    @Html.Action("NAPGroupUpdate", "Trace", Model)
+    @Html.Action("N88GroupUpdate", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Group_UpdateStatus)
+    if (Model.ActionId == (int)LogAction.N88_Group_UpdateStatus)
     { 
-    @Html.Action("NAPGroupUpdateStatus", "Trace", Model)
+    @Html.Action("N88GroupUpdateStatus", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Cust_Update)
+    if (Model.ActionId == (int)LogAction.N88_Cust_Update)
     { 
-    @Html.Action("NAPCustUpdate", "Trace", Model)
+    @Html.Action("N88CustUpdate", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.NAP_Site_UpdateSiteURL
-        || Model.ActionId == (int)LogAction.NAP_Site_InsertSiteURL
-        || Model.ActionId == (int)LogAction.NAP_Site_UpdateDefaultSiteURL)
+    if (Model.ActionId == (int)LogAction.N88_Site_UpdateSiteURL
+        || Model.ActionId == (int)LogAction.N88_Site_InsertSiteURL
+        || Model.ActionId == (int)LogAction.N88_Site_UpdateDefaultSiteURL)
     {
-    @Html.Action("NAPSiteUrl", "Trace", Model)
+    @Html.Action("N88SiteUrl", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_Group_AssignFunction
-        || Model.ActionId == (int)LogAction.NAP_User_AssignFunction
-        || Model.ActionId == (int)LogAction.NAP_Function_CopyPermission)
+    if (Model.ActionId == (int)LogAction.N88_Group_AssignFunction
+        || Model.ActionId == (int)LogAction.N88_User_AssignFunction
+        || Model.ActionId == (int)LogAction.N88_Function_CopyPermission)
     {
-    @Html.Action("NAPAssignPermission", "Trace", Model)
+    @Html.Action("N88AssignPermission", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_User_AssignNewSite)
+    if (Model.ActionId == (int)LogAction.N88_User_AssignNewSite)
     {
-        @Html.Action("NAPAssignNewSite", "Trace", Model)
+        @Html.Action("N88AssignNewSite", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_User_UpdateSite)
+    if (Model.ActionId == (int)LogAction.N88_User_UpdateSite)
     {
-        @Html.Action("NAPUpdateSite", "Trace", Model)
+        @Html.Action("N88UpdateSite", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_User_AssignSite)
+    if (Model.ActionId == (int)LogAction.N88_User_AssignSite)
     {
-    @Html.Action("NAPAssignSite", "Trace", Model)
+    @Html.Action("N88AssignSite", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_Function_AssignFunctionToUsers)
+    if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToUsers)
     {
-    @Html.Action("NAPFunctionAssignToUsers", "Trace", Model)
+    @Html.Action("N88FunctionAssignToUsers", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.NAP_Function_AssignFunctionToGroups)
+    if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToGroups)
     {
-    @Html.Action("NAPFunctionAssignFunctionToGroups", "Trace", Model)
+    @Html.Action("N88FunctionAssignFunctionToGroups", "Trace", Model)
     }
-    if (Model.ActionId == (int)LogAction.Task_NAP_RevokeUserPermission)
+    if (Model.ActionId == (int)LogAction.Task_N88_RevokeUserPermission)
     {
-        @Html.Action("TaskNAPRevokeUserPermission", "Trace", Model)
+        @Html.Action("TaskN88RevokeUserPermission", "Trace", Model)
     }
 }
