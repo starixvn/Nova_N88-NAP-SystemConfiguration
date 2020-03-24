@@ -33,14 +33,13 @@
     <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_AddToGroup" SpName="N88_User_AddToGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
+    <Setting Key="N88_User_AddUserToGroup" SpName="N88_User_AddUserToGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
     <Setting Key="N88_User_GetAvailableSites" SpName="N88_User_GetAvailableSites" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
       <Mapping DataField="SiteId" ObjectProperty="Id" />
       <Mapping DataField="SiteName" ObjectProperty="Name" />
     </Setting>
-  </Function>
-  <Function Name="Cust">
-    <Setting Key="N88_Cust_Insert" SpName="N88_Cust_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Cust_Update" SpName="N88_Cust_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_Cust_UpdatePassword" SpName="N88_Cust_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
   </Function>
 </Functions>

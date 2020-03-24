@@ -130,11 +130,6 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Manage user login log.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
         public ActionResult LogUserLogin(GetAllLogUserLoginCriteria criteria)
         {
@@ -177,7 +172,7 @@
 
         #region View log
 
-        public PartialViewResult N88UserInsert(LogExecSp log)
+        public PartialViewResult N88UserAddToGroup(LogExecSp log)
         {
             if (log.ActionId == (int)LogAction.N88_User_Insert)
             {
@@ -204,11 +199,11 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogInsert.cshtml");
         }
 
-        public PartialViewResult N88CustInsert(LogExecSp log)
+        public PartialViewResult N88UserInsert(LogExecSp log)
         {
             XElement element = XElement.Parse(log.Data);
 
-            if (log.ActionId == (int)LogAction.N88_Cust_Insert)
+            if (log.ActionId == (int)LogAction.N88_User_Insert)
             {
                 var listLogData = new List<LogData>
                 {
@@ -240,6 +235,18 @@
                     {
                         FieldName = ViewResources.Email,
                         NewValue = element.Attribute("Email").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = "Licensee User",
+                        NewValue = element.Attribute("IsLicenseeUser").Value == "1" ? "true" : "false"
+                    },
+
+                     new LogData
+                    {
+                        FieldName = "Source Site",
+                        NewValue = element.Attribute("SourceSiteId").Value
                     }
                 };
 
@@ -343,6 +350,18 @@
                     {
                         FieldName = ViewResources.Active,
                         NewValue = element.Attribute("IsActive").Value == "1" ? "true" : "false"
+                    },
+
+                     new LogData
+                    {
+                        FieldName = "Licensee Group",
+                        NewValue = element.Attribute("IsLicenseeGroup").Value == "1" ? "true" : "false"
+                    },
+
+                     new LogData
+                    {
+                        FieldName = "Source Site",
+                        NewValue = element.Attribute("SourceSiteId").Value
                     }
                 };
 
@@ -465,6 +484,12 @@
                     {
                         FieldName = ViewResources.Active,
                         NewValue = elementNew.Attribute("IsActive").Value == "1" ? "true" : "false"
+                    },
+
+                    new LogData
+                    {
+                        FieldName = ViewResources.IsLicenseeSite,
+                        NewValue = elementNew.Attribute("IsLicenseeSite").Value == "1" ? "true" : "false"
                     }
                 };
 
@@ -842,12 +867,12 @@
             return PartialView("~/Areas/UserControl/Views/Trace/_N88LogUpdate.cshtml");
         }
 
-        public PartialViewResult N88CustUpdate(LogExecSp log)
+        public PartialViewResult N88UserUpdate(LogExecSp log)
         {
             XElement elementNew = XElement.Parse(log.Data ?? "<ROOT/>");
             XElement elementOld = XElement.Parse(log.OldData ?? "<ROOT/>");
 
-            if (log.ActionId == (int)LogAction.N88_Cust_Update)
+            if (log.ActionId == (int)LogAction.N88_User_Update)
             {
                 var listLogData = new List<LogData>
                 {

@@ -6,6 +6,6 @@
     {
         public ReturnData ReturnData { get; set; } = new ReturnData();
 
-        public UpdateCustCriteria Criteria { get; set; }
+        public UpdateUserCriteria Criteria { get; set; }
     }
 }

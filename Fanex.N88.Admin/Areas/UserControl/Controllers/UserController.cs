@@ -467,9 +467,9 @@
 
                 if (result != null && result.IsSuccessful)
                 {
-                    AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.CustId, model.SiteId, model.Level, true);
+                    AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.UserId, model.SiteId, model.Level, true);
                     ViewBag.Success = true;
-                    ViewBag.UserId = criteria.CustId;
+                    ViewBag.UserId = criteria.UserId;
                     ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
                 }
             }
@@ -498,12 +498,12 @@
             }
         }
 
-        private InsertCustCriteria GenerateCriteria(InsertUserVM model)
+        private InsertUserCriteria GenerateCriteria(InsertUserVM model)
         {
             var userName = (model.IsLicenseeUser != null && model.IsLicenseeUser == true) ?
                                model.Username : string.Format("{0}{1}", UsernamePrefix, model.Username);
 
-            var criteria = new InsertCustCriteria
+            var criteria = new InsertUserCriteria
             {
                 Username = userName,
                 GroupId = model.GroupId,
@@ -567,7 +567,7 @@
             int returnGroupId = 0,
             int returnPageIndex = 1)
         {
-            var criteria = new UpdateCustCriteria();
+            var criteria = new UpdateUserCriteria();
 
             IUser user = _userService.GetById(id);
 
@@ -576,7 +576,7 @@
                 return RedirectToAction("Manage");
             }
 
-            criteria.CustId = user.Id;
+            criteria.UserId = user.Id;
             criteria.FirstName = user.FirstName;
             criteria.LastName = user.LastName;
             criteria.Email = user.Email;
@@ -661,7 +661,7 @@
                 },
                 Criteria = new ResetPasswordCustCriteria
                 {
-                    CustId = user.Id,
+                    UserId = user.Id,
                     Username = user.Username,
                     UserPwd = string.Empty,
                     ConfirmUserPwd = string.Empty,
@@ -682,7 +682,7 @@
 
             if (CheckValidToken(criteria.Token))
             {
-                IUser user = _userService.GetById(criteria.CustId);
+                IUser user = _userService.GetById(criteria.UserId);
 
                 if (user == null)
                 {
@@ -715,7 +715,7 @@
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            var criteria = new UpdatePasswordCustCriteria
+            var criteria = new UpdateUserPasswordCriteria
             {
                 Username = CurrentSession.Username,
                 Token = GenerateToken()
@@ -724,20 +724,9 @@
             return View(criteria);
         }
 
-        /// <summary>
-        /// Change user password.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Action result.</returns>
         [HttpPost]
-        public ActionResult ChangePassword(UpdatePasswordCustCriteria criteria)
+        public ActionResult ChangePassword(UpdateUserPasswordCriteria criteria)
         {
-            // The password values are encoded at client side by calling CryptoJS.CfsEnCode.
-            // The result of this action is the encrypted strings which totally break the password valiadtion rules.
-            // They also cannot be decoded to the original ones since CryptoJS.CfsEnCode is one-way encryption algorithm.
-            // Because of those reasons, so we will validate the form at client side only and not check the model state here.
-            ////if (ModelState.IsValid)
-
             ModelState.Clear();
 
             if (CheckValidToken(criteria.Token))
@@ -747,7 +736,7 @@
 
                 if (hashPassword.Equals(criteria.OldUserPwd))
                 {
-                    criteria.CustId = user.Id;
+                    criteria.UserId = user.Id;
 
                     ICommandResult result = _userService.InsertOrUpdate(criteria);
 
@@ -1069,10 +1058,10 @@
         [HttpGet]
         public ActionResult UserProfile()
         {
-            var criteria = new UpdateCustCriteria();
+            var criteria = new UpdateUserCriteria();
             var user = _userService.GetById(CurrentSession.UserId);
 
-            criteria.CustId = user.Id;
+            criteria.UserId = user.Id;
             criteria.Username = user.Username;
             criteria.FirstName = user.FirstName;
             criteria.LastName = user.LastName;
@@ -1088,11 +1077,11 @@
         /// <param name="criteria">The criteria.</param>
         /// <returns>Action result.</returns>
         [HttpPost]
-        public ActionResult UserProfile(UpdateCustCriteria criteria)
+        public ActionResult UserProfile(UpdateUserCriteria criteria)
         {
             if (ModelState.IsValid)
             {
-                criteria.CustId = CurrentSession.UserId;
+                criteria.UserId = CurrentSession.UserId;
                 criteria.Username = CurrentSession.Username;
                 criteria.FirstName = criteria.FirstName ?? string.Empty;
                 criteria.LastName = criteria.LastName ?? string.Empty;
@@ -1360,7 +1349,7 @@
         {
             if (Request.IsAjaxRequest() && userId > 0 && groupId > 0)
             {
-                var criteria = new InsertUserCriteria
+                var criteria = new AddUserToGroupCriteria
                 {
                     UserId = userId,
                     GroupId = groupId,

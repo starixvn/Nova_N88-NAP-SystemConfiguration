@@ -303,9 +303,6 @@
       <Mapping DataField="ModifierUsername" ObjectProperty="Username" />
     </Setting>
   </Function>
-  <Function Name="Cust">
-    <Setting Key="N88_Cust_GetByUsername" SpName="N88_Cust_GetByUsername" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-  </Function>
   <Function Name="LogExecSp">
     <Setting Key="N88_LogExecSp_Search" SpName="N88_LogExecSp_Search" DbName="DBN88LOG.bodb_N88LOG.bodbAdminNet" />
     <Setting Key="N88_LogExecSp_GetById" SpName="N88_LogExecSp_GetById" DbName="DBN88LOG.bodb_N88LOG.bodbAdminNet" />

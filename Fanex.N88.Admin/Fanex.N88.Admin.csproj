@@ -116,7 +116,7 @@
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.4\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.N88.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.N88.Core.1.5.1-alpha-6\lib\net40\Fanex.N88.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.N88.Core.1.6.0-alpha-2\lib\net40\Fanex.N88.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IBCFile.1.0.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -761,7 +761,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>54325</DevelopmentServerPort>
           <DevelopmentServerVPath>/NAPAdmin</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54325/N88Admin</IISUrl>
+          <IISUrl>http://localhost:54326/N88Admin</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

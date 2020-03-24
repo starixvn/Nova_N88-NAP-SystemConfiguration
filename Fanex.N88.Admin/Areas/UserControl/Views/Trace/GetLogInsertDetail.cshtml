@@ -5,93 +5,93 @@
 @model LogExecSp
 @if (!ReferenceEquals(Model, null))
 {
-    if (Model.ActionId == (int)LogAction.N88_Cust_Insert)
-    { 
-    @Html.Action("N88CustInsert", "Trace", Model)
+    if (Model.ActionId == (int)LogAction.N88_User_Insert)
+    {
+        @Html.Action("N88UserInsert", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.N88_User_Insert)
-    { 
-    @Html.Action("N88UserInsert", "Trace", Model)
+    if (Model.ActionId == (int)LogAction.N88_User_AddToGroup)
+    {
+        @Html.Action("N88UserAddToGroup", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Function_Insert)
-    { 
-    @Html.Action("N88FunctionInsert", "Trace", Model)
+    {
+        @Html.Action("N88FunctionInsert", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Group_Insert)
-    { 
-    @Html.Action("N88GroupInsert", "Trace", Model)
+    {
+        @Html.Action("N88GroupInsert", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_MenuItem_Insert)
-    { 
-    @Html.Action("N88MenuItemInsert", "Trace", Model)
+    {
+        @Html.Action("N88MenuItemInsert", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Site_InsertWithSiteURL)
     {
-    @Html.Action("N88SiteInsertWithSiteUrl", "Trace", Model)
+        @Html.Action("N88SiteInsertWithSiteUrl", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_MenuItem_Update)
-    { 
-    @Html.Action("N88MenuItemUpdate", "Trace", Model)
+    {
+        @Html.Action("N88MenuItemUpdate", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_MenuItem_UpdateStatus)
-    { 
-    @Html.Action("N88MenuItemUpdateStatus", "Trace", Model)
+    {
+        @Html.Action("N88MenuItemUpdateStatus", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Function_Update
         || Model.ActionId == (int)LogAction.N88_Function_Duplicate)
-    { 
-    @Html.Action("N88FunctionUpdate", "Trace", Model)
+    {
+        @Html.Action("N88FunctionUpdate", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Function_UpdateStatus)
-    { 
-    @Html.Action("N88FunctionUpdateStatus", "Trace", Model)
+    {
+        @Html.Action("N88FunctionUpdateStatus", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Site_Update)
-    { 
-    @Html.Action("N88SiteUpdate", "Trace", Model)
+    {
+        @Html.Action("N88SiteUpdate", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Site_UpdateStatus)
-    { 
-    @Html.Action("N88SiteUpdateStatus", "Trace", Model)
+    {
+        @Html.Action("N88SiteUpdateStatus", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Group_Update)
-    { 
-    @Html.Action("N88GroupUpdate", "Trace", Model)
+    {
+        @Html.Action("N88GroupUpdate", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Group_UpdateStatus)
-    { 
-    @Html.Action("N88GroupUpdateStatus", "Trace", Model)
+    {
+        @Html.Action("N88GroupUpdateStatus", "Trace", Model)
     }
 
-    if (Model.ActionId == (int)LogAction.N88_Cust_Update)
-    { 
-    @Html.Action("N88CustUpdate", "Trace", Model)
+    if (Model.ActionId == (int)LogAction.N88_User_Update)
+    {
+        @Html.Action("N88UserUpdate", "Trace", Model)
     }
 
     if (Model.ActionId == (int)LogAction.N88_Site_UpdateSiteURL
         || Model.ActionId == (int)LogAction.N88_Site_InsertSiteURL
         || Model.ActionId == (int)LogAction.N88_Site_UpdateDefaultSiteURL)
     {
-    @Html.Action("N88SiteUrl", "Trace", Model)
+        @Html.Action("N88SiteUrl", "Trace", Model)
     }
     if (Model.ActionId == (int)LogAction.N88_Group_AssignFunction
         || Model.ActionId == (int)LogAction.N88_User_AssignFunction
         || Model.ActionId == (int)LogAction.N88_Function_CopyPermission)
     {
-    @Html.Action("N88AssignPermission", "Trace", Model)
+        @Html.Action("N88AssignPermission", "Trace", Model)
     }
     if (Model.ActionId == (int)LogAction.N88_User_AssignNewSite)
     {
@@ -103,15 +103,15 @@
     }
     if (Model.ActionId == (int)LogAction.N88_User_AssignSite)
     {
-    @Html.Action("N88AssignSite", "Trace", Model)
+        @Html.Action("N88AssignSite", "Trace", Model)
     }
     if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToUsers)
     {
-    @Html.Action("N88FunctionAssignToUsers", "Trace", Model)
+        @Html.Action("N88FunctionAssignToUsers", "Trace", Model)
     }
     if (Model.ActionId == (int)LogAction.N88_Function_AssignFunctionToGroups)
     {
-    @Html.Action("N88FunctionAssignFunctionToGroups", "Trace", Model)
+        @Html.Action("N88FunctionAssignFunctionToGroups", "Trace", Model)
     }
     if (Model.ActionId == (int)LogAction.Task_N88_RevokeUserPermission)
     {

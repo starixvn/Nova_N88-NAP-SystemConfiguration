@@ -26,13 +26,12 @@
 }
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @role = "form", @class = "form-horizontal col-sm-7 col-md-5 common-form" }))
 {
-    @Html.HiddenFor(c => c.Criteria.CustId)
+    @Html.HiddenFor(c => c.Criteria.UserId)
     @Html.HiddenFor(c => c.Criteria.Username)
     @Html.HiddenFor(m => m.ReturnData.ReturnUserName)
     @Html.HiddenFor(m => m.ReturnData.ReturnSiteId)
     @Html.HiddenFor(m => m.ReturnData.ReturnGroupId)
     @Html.HiddenFor(m => m.ReturnData.ReturnPageIndex)
-
 
     <div class="form-group summary">
         <div class="col-sm-3">
@@ -42,7 +41,7 @@
         </div>
     </div>
     <div class="form-group required">
-        <div class="col-xs-3 col-sm-3 lbl-field">@Html.LabelFor(m => m.Criteria.CustId, ViewResources.Username, new { @class = "read-only" })</div>
+        <div class="col-xs-3 col-sm-3 lbl-field">@Html.LabelFor(m => m.Criteria.UserId, ViewResources.Username, new { @class = "read-only" })</div>
         <div class="col-xs-9 col-sm-8">
             @Html.Label(Model.Criteria.Username, new { @class = "read-only pull-left" })
         </div>

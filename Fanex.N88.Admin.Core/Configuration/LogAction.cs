@@ -2,11 +2,11 @@
 {
     public enum LogAction
     {
-        N88_Cust_Insert = 100,
+        N88_User_Insert = 100,
 
-        N88_Cust_Update = 200,
+        N88_User_Update = 200,
 
-        N88_Cust_UpdatePassword = 3,
+        N88_User_UpdatePassword = 3,
 
         N88_Function_AssignFunctionToGroups = 300,
 
@@ -60,7 +60,7 @@
 
         N88_User_CheckIn = 27,
 
-        N88_User_Insert = 107,
+        N88_User_AddToGroup = 107,
 
         N88_User_SSOCheckIn = 28,
 
