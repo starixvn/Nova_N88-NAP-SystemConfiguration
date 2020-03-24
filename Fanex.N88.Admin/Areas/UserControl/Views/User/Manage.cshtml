@@ -64,8 +64,7 @@
             @Html.DropDownList("StatusId", new List<SelectListItem> {
             new SelectListItem { Text = "All", Value = "0"  },
             new SelectListItem { Text = "Active", Value = "1" , Selected = true },
-            new SelectListItem { Text = "Inactive", Value = "2"  },
-            new SelectListItem { Text = "Closed", Value = "3"  }
+            new SelectListItem { Text = "Inactive", Value = "2"  }
         })
         </div>
     }
@@ -180,7 +179,7 @@
                     <td class="text-center" style="width: 80px">
                         @if (item.User.IsLicenseeUser)
                         {
-                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                            <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
                         }
                     </td>
                     <td class="text-center">
