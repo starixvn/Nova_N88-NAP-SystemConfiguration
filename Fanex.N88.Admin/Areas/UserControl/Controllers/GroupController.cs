@@ -117,7 +117,7 @@
             if (ModelState.IsValid)
             {
                 var groupName = (viewModel.IsLicenseeGroup != null && viewModel.IsLicenseeGroup == true) ?
-                    viewModel.GroupName : string.Format("{0}{1}", GroupNamePrefix, viewModel.GroupName);
+                    viewModel.GroupName : string.Format("{0}{1}", GroupNamePrefix, viewModel.GroupName.Trim());
                 var criteria = new InsertGroupCriteria
                 {
                     GroupName = groupName,

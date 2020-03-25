@@ -515,7 +515,7 @@
         private InsertUserCriteria GenerateCriteria(InsertUserVM model)
         {
             var userName = (model.IsLicenseeUser != null && model.IsLicenseeUser == true) ?
-                               model.Username : string.Format("{0}{1}", UsernamePrefix, model.Username);
+                               model.Username : string.Format("{0}{1}", UsernamePrefix, model.Username.Trim());
 
             var criteria = new InsertUserCriteria
             {
@@ -831,13 +831,20 @@
             ViewFlags.HasAssignFunctionRight = HasRightOnSite(criteria.SiteId, FunctionKeys.AssignFunctionToUser, Constant.Policy.Host)
                 && id != CurrentSession.UserId;
 
-            assignPermissionVM.Sites = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
+            var siteSelectList = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
                 _siteService.GetAllSelectListItem(Environment, true, criteria.SiteId).ToList() :
                 _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(
                     CurrentSession.UserId,
                     FunctionKeys.AssignFunctionToUser,
                     Environment,
                     selectedSiteId: criteria.SiteId).ToList();
+
+            if (user.IsLicenseeUser)
+            {
+                siteSelectList = siteSelectList.Where(s => s.Value == user.SourceSiteId.ToString()).ToList();
+            }
+
+            assignPermissionVM.Sites = siteSelectList;
 
             assignPermissionVM.FunctionList = _functionService.GetBySiteInHierarchy(criteria.SiteId, Environment, true).ToList();
             assignPermissionVM.UserFuncPolicyList =
