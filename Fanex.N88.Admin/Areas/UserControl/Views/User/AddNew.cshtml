@@ -6,6 +6,7 @@
     ViewBag.Title = ViewResources.Create_New_User;
 
     bool success = ViewBag.Success != null && ViewBag.Success;
+    bool IsLicenseeUser = ViewBag.IsLicenseeUser != null && ViewBag.IsLicenseeUser;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/BasicStyles")
@@ -120,11 +121,10 @@
     @if (success)
     {
         string dialogMsg = string.Format(ViewResources.Add_New_User_Success, Model.ViewModel.Username, 3);
-
+        string url = IsLicenseeUser ? "User/Manage" : string.Format("User/AssignSite/{0}?returnUserName={1}&returnGroupId={2}&returnSiteId={3}", ViewBag.UserId, Model.ReturnData.ReturnUserName, Model.ReturnData.ReturnGroupId, Model.ReturnData.ReturnSiteId);
         <script type="text/javascript">
             $(function () {
-                var url = 'User/AssignSite/' + '@ViewBag.UserId' + '?returnUserName=' + '@Model.ReturnData.ReturnUserName' + '&returnGroupId=' + '@Model.ReturnData.ReturnGroupId' + '&returnSiteId=' + '@Model.ReturnData.ReturnSiteId';
-                NAP.showSuccessMsg('@dialogMsg', url, 3000);
+                NAP.showSuccessMsg('@dialogMsg', '@url', 3000);
             });
         </script>
     }

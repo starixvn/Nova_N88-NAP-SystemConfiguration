@@ -468,6 +468,8 @@
                 if (result != null && result.IsSuccessful)
                 {
                     ViewBag.Success = true;
+                    ViewBag.UserId = criteria.UserId;
+                    ViewBag.IsLicenseeUser = criteria.IsLicenseeUser;
                     AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.UserId, model.SiteId, model.Level, true);
                 }
                 else
