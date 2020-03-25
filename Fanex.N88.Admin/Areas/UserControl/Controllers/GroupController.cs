@@ -196,25 +196,23 @@
         {
             if (ModelState.IsValid)
             {
-                // check name exist
-                IGroup group = _groupService.GetByName(criteria.GroupName);
-
-                if (!ReferenceEquals(group, null) && group.Id != criteria.GroupId)
-                {
-                    ModelState.AddModelError("SiteName", string.Format(ViewResources.DuplicateMsg, criteria.GroupName));
-
-                    return View(criteria);
-                }
-
-                // update function
+                var currentGroup = _groupService.GetById(criteria.GroupId);
                 criteria.ModifiedBy = CurrentSession.UserId;
                 criteria.ModifiedDate = DateTime.Now;
+                criteria.IsLicenseeGroup = currentGroup.IsLicenseeGroup;
+                criteria.SiteId = currentGroup.SourceSiteId;
 
                 ICommandResult result = _groupService.Update(criteria);
 
                 if (result != null && result.IsSuccessful)
                 {
                     ViewBag.Success = true;
+                }
+                else
+                {
+                    ModelState.AddModelError("SiteName", string.Format(ViewResources.DuplicateMsg, criteria.GroupName));
+
+                    return View(criteria);
                 }
             }
 

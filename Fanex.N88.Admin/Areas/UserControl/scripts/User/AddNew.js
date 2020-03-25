@@ -16,24 +16,34 @@ var AddNewUser = (function ($) {
 	function initEventChangeGroupType() {
 		$(domElement.UserType).on('change', function () {
 			var value = $(this).val();
-			if (value === "true") {
-				getSiteList(value);
-				loadLevelSelect();
-				$(domElement.Site).removeAttr("disabled").removeAttr("readonly");
-				$(domElement.Level).removeAttr("disabled").removeAttr("readonly");
-				$(domElement.Prefix).hide();
-				$(domElement.Username).removeClass(domElement.PrefixInputClass);
-			} else {
-				getGroupBySiteId(false);
-				$(domElement.Site).html('');
-				$(domElement.Site).attr("disabled", "disabled").attr("readonly", "readonly");
-				$(domElement.Level).html('');
-				$(domElement.Level).attr("disabled", "disabled").attr("readonly", "readonly");
-				$(domElement.Prefix).show();
-				$(domElement.Username).addClass(domElement.PrefixInputClass);
-			}
+			userTypeChange(value);
 		});
 	}
+
+	function userTypeChange(value) {
+		if (value === "") {
+			$(domElement.Site).html('');
+			$(domElement.Level).html('');
+			$(domElement.Group).html('');
+		} else if (value === "true") {
+			getSiteList(value);
+			loadLevelSelect();
+			$(domElement.Site).removeAttr("disabled").removeAttr("readonly");
+			$(domElement.Level).removeAttr("disabled").removeAttr("readonly");
+			$(domElement.Prefix).hide();
+			$(domElement.Username).removeClass(domElement.PrefixInputClass);
+		} else {
+			getGroupBySiteId(false);
+			$(domElement.Site).html('');
+			$(domElement.Site).attr("disabled", "disabled").attr("readonly", "readonly");
+			$(domElement.Level).html('');
+			$(domElement.Level).attr("disabled", "disabled").attr("readonly", "readonly");
+			$(domElement.Prefix).show();
+			$(domElement.Username).addClass(domElement.PrefixInputClass);
+		}
+
+	}
+
 
 	function initEventChangeSite() {
 		$(domElement.Site).on('change', function () {
@@ -98,6 +108,8 @@ var AddNewUser = (function ($) {
 	}
 
 	function init() {
+		var userType = $(domElement.UserType).val();
+		userTypeChange(userType);
 		initEventChangeSite();
 		initEventChangeGroupType();
 	}

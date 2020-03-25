@@ -42,7 +42,6 @@ var AddNewGroup = (function ($) {
 			},
 			success: function (sites) {
 				var options = generateSiteOptions(sites);
-				console.log(options);
 				$(domElement.Site).html(options);
 			}
 		});
@@ -56,8 +55,16 @@ var AddNewGroup = (function ($) {
 		return options;
 	}
 
+	function init() {
+		var isLicenseeGroup = $('#IsLicenseeGroup').val();
+		if (isLicenseeGroup) {
+			reloadSiteList(isLicenseeGroup);
+		}
+		initEventChangeGroupType();
+	}
+
 	return {
-		init: initEventChangeGroupType
+		init: init
 	};
 })(jQuery);
 

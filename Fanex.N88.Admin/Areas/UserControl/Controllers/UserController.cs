@@ -433,7 +433,7 @@
                 ReturnGroupId = returnGroupId,
                 ReturnPageIndex = returnPageIndex
             };
-            ViewBag.Groups = _groupService.GetAllSelectListItem();
+
             ViewBag.LevelList = new List<SelectListItem>
             {
                 new SelectListItem { Value= "0", Text = Level.User.ToString()},
@@ -462,18 +462,30 @@
             if (ModelState.IsValid)
             {
                 var criteria = GenerateCriteria(model);
-
+                model.Username = criteria.Username;
                 ICommandResult result = _userService.Insert(criteria);
 
                 if (result != null && result.IsSuccessful)
                 {
-                    AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.UserId, model.SiteId, model.Level, true);
                     ViewBag.Success = true;
-                    ViewBag.UserId = criteria.UserId;
+                    AssignSiteToLicenseeUser(model.IsLicenseeUser, criteria.UserId, model.SiteId, model.Level, true);
+                }
+                else
+                {
+                    ViewBag.LevelList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value= "0", Text = Level.User.ToString()},
+                        new SelectListItem { Value= "50", Text = Level.SiteAdmin.ToString()}
+                    };
                     ViewBag.UsernamePrefix = UsernamePrefix ?? string.Empty;
+                    ViewBag.UserTypes = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "false", Text = ViewLang.InternalUser},
+                        new SelectListItem { Value = "true", Text = ViewLang.LicenseeUser}
+                    };
+                    ModelState.AddModelError("Username", string.Format(ViewResources.DuplicateMsg, criteria.Username));
                 }
             }
-
             addNewUserVM.ViewModel = model;
 
             return View(addNewUserVM);
@@ -583,9 +595,16 @@
             criteria.Username = user.Username;
             criteria.GroupId = user.Group != null ? user.Group.Id : 0;
 
-            ViewBag.Groups = user.Group == null ?
-                _groupService.GetAllSelectListItem() :
-                _groupService.GetAllSelectListItem(selectedGroupId: user.Group.Id);
+            IEnumerable<IGroup> groups = user.IsLicenseeUser
+                ? _groupService.GetAll(isActive: true, isLicenseeGroup: true, siteId: user.SourceSiteId)
+                : _groupService.GetAll(isActive: true, isLicenseeGroup: false);
+
+            ViewBag.Groups = groups.Select(group => new SelectListItem
+            {
+                Value = group.Id.ToString(),
+                Text = group.Name,
+                Selected = user.Group != null && user.Group.Id == group.Id
+            });
 
             return View(new EditUserVM
             {
@@ -624,7 +643,18 @@
                 }
             }
 
-            ViewBag.Groups = _groupService.GetAllSelectListItem(selectedGroupId: criteria.GroupId);
+            IUser user = _userService.GetById(criteria.UserId);
+
+            IEnumerable<IGroup> groups = user.IsLicenseeUser
+                ? _groupService.GetAll(isActive: true, isLicenseeGroup: true, siteId: user.SourceSiteId)
+                : _groupService.GetAll(isActive: true, isLicenseeGroup: false);
+
+            ViewBag.Groups = groups.Select(group => new SelectListItem
+            {
+                Value = group.Id.ToString(),
+                Text = group.Name,
+                Selected = user.Group != null && user.Group.Id == group.Id
+            });
 
             editUserVM.Criteria = criteria;
             return View(editUserVM);
