@@ -281,12 +281,22 @@
             ViewFlags.HasAssignFunctionRight =
                 HasRightOnSite(criteria.SiteId, FunctionKeys.AssignFunctionToGroup, Constant.Policy.Host);
 
-            ViewBag.SiteSelectList = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
-                _siteService.GetAllSelectListItem(Environment, true, criteria.SiteId) :
-                _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(CurrentSession.UserId,
-                                                                                FunctionKeys.AssignFunctionToGroup,
-                                                                                Environment,
-                                                                                selectedSiteId: criteria.SiteId);
+            var siteList = new List<SelectListItem>();
+            if (group.IsLicenseeGroup)
+            {
+                siteList.Add(new SelectListItem { Value = site.Id.ToString(), Text = site.Name, Selected = true });
+            }
+            else
+            {
+                siteList = CurrentSession.Level == (int)Constant.Level.PortalAdmin ?
+                               _siteService.GetAllSelectListItem(Environment, true, criteria.SiteId).ToList() :
+                               _siteService.GetSelectListItemByUserAndFunctionKeyIncludeGroup(CurrentSession.UserId,
+                                                                                               FunctionKeys.AssignFunctionToGroup,
+                                                                                               Environment,
+                                                                                               selectedSiteId: criteria.SiteId).ToList();
+            }
+
+            ViewBag.SiteSelectList = siteList;
 
             ViewBag.FunctionList = _functionService.GetBySiteInHierarchy(criteria.SiteId, Environment, true);
             ViewBag.GroupFuncPolicyList =

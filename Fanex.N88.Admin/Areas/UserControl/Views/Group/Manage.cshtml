@@ -111,7 +111,7 @@
                     <td class="text-center" style="width: 80px">
                         @if (group.IsLicenseeGroup)
                         {
-                        <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
+                            <img src="~/areas/usercontrol/themes/nap/img/blank.png" alt="" class="ico-tick" />
                         }
                     </td>
                     <td class="text-center">
@@ -152,7 +152,7 @@
                                     }
                                     <li>
                                         @Html.ActionLink(string.Format("View Permission of '{0}'", group.Name),
-                                            "AssignPermission", new { id = group.Id }, new { @class = "dd-permission" })
+                                            "AssignPermission", new { id = group.Id, siteId = group.SourceSiteId }, new { @class = "dd-permission" })
                                     </li>
                                 </ul>
                             </div>

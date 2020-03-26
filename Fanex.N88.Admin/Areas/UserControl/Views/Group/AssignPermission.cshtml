@@ -1,22 +1,24 @@
 ﻿@model AssignFunctionGroupCriteria
 @{
-    var viewFlags = ViewBag.ViewFlags as ViewFlags;
-    ViewBag.Title = viewFlags.HasAssignFunctionRight
-        ? string.Format("Assign Permission to Group '{0}'", Model.GroupName)
-        : string.Format("Permission of Group '{0}'", Model.GroupName);
+                /**/
 
-    bool success = ViewBag.Success != null && ViewBag.Success;
-    var functionList = ViewBag.FunctionList as List<IFunction>;
-    var groupFuncPolicyList = ViewBag.GroupFuncPolicyList as List<FunctionPolicy>;
-    var userFuncPolicyList = ViewBag.UserFuncPolicyList as List<FunctionPolicy>;
-    var userLevel = ViewBag.UserLevel as int?;
+                var viewFlags = ViewBag.ViewFlags as ViewFlags;
+                ViewBag.Title = viewFlags.HasAssignFunctionRight
+                    ? string.Format("Assign Permission to Group '{0}'", Model.GroupName)
+                    : string.Format("Permission of Group '{0}'", Model.GroupName);
+
+                bool success = ViewBag.Success != null && ViewBag.Success;
+                var functionList = ViewBag.FunctionList as List<IFunction>;
+                var groupFuncPolicyList = ViewBag.GroupFuncPolicyList as List<FunctionPolicy>;
+                var userFuncPolicyList = ViewBag.UserFuncPolicyList as List<FunctionPolicy>;
+                var userLevel = ViewBag.UserLevel as int?;
 }
 @section Head {
     @Styles.Render("~/Areas/UserControl/themes/Group/AssignPermission")
 }
 @section Headline {
     <span class="title">
-		<span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
+        <span class="first">@ViewResources.Group @ViewResources.Management /</span> @ViewBag.Title
     </span>
     <div class="button-action">
         @Html.ActionLink("← " + ViewResources.Back_To_List, "Manage", "Group", null, new { @class = "back-button" })
@@ -27,13 +29,13 @@
 
     using (Html.BeginForm("AssignPermission", "Group", FormMethod.Get, new { @class = "form-inline col-sm-12 filter-form" }))
     {
-    <div class="form-group">
-        @Html.LabelFor(m => m.SiteId)
-        @Html.DropDownListFor(m => m.SiteId, ViewBag.SiteSelectList as List<SelectListItem>)
-    </div>
-    <div class="form-group">
-        <input type="submit" value="@ViewResources.Submit" />
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SiteId)
+            @Html.DropDownListFor(m => m.SiteId, ViewBag.SiteSelectList as List<SelectListItem>)
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@ViewResources.Submit" />
+        </div>
     }
 }
 @using (Html.BeginForm())
@@ -82,22 +84,23 @@
                         || userFuncPolicy == null || userFuncPolicy.Policy < (int)Constant.Policy.Read
                         || (groupFuncPolicy != null && userFuncPolicy.Policy < groupFuncPolicy.Policy));
 
-                <tr>
-                    <td class="@Html.Raw(funcNameStyle)">@IndentChildFunctions(functionList, function)
+                    <tr>
+                        <td class="@Html.Raw(funcNameStyle)">
+                            @IndentChildFunctions(functionList, function)
                     </td>
                     <td class="text-center">
                         @if (isReadDisabled)
                         {
                             <input disabled="disabled" type="checkbox" @Html.Raw(checkedReadCss) />
                             if (!string.IsNullOrWhiteSpace(checkedReadCss))
-                            { 
-                            <input id="@chkReadId" name="funcRead" value="@function.Id" pid="@parentId" type="hidden"/>
+                            {
+                                <input id="@chkReadId" name="funcRead" value="@function.Id" pid="@parentId" type="hidden" />
                             }
                         }
                         else
                         {
-                            <input id="@chkReadId" name="funcRead" value="@function.Id" pid="@parentId" 
-                        type="checkbox" @Html.Raw(checkedReadCss) />
+                            <input id="@chkReadId" name="funcRead" value="@function.Id" pid="@parentId"
+                                   type="checkbox" @Html.Raw(checkedReadCss) />
                         }
                     </td>
                     <td class="text-center">
@@ -113,30 +116,30 @@
 
                             if (isHostDisabled)
                             {
-                            <input disabled="disabled" type="checkbox" @Html.Raw(checkedHostCss) />
+                                <input disabled="disabled" type="checkbox" @Html.Raw(checkedHostCss) />
                                 if (!string.IsNullOrWhiteSpace(checkedHostCss))
-                                { 
-                            <input id="@chkHostId" name="funcHost" value="@function.Id" pid="@parentId" type="hidden"/>
+                                {
+                                    <input id="@chkHostId" name="funcHost" value="@function.Id" pid="@parentId" type="hidden" />
                                 }
                             }
                             else
                             {
-                            <input id="@chkHostId" name="funcHost" value="@function.Id" pid="@parentId" 
-                                type="checkbox" @Html.Raw(checkedHostCss) />
+                                <input id="@chkHostId" name="funcHost" value="@function.Id" pid="@parentId"
+                                       type="checkbox" @Html.Raw(checkedHostCss) />
                             }
                         }
                     </td>
                 </tr>
-                }
             }
-            else
-            {
-                <tr>
-                    <td colspan="3" class="text-center">
-                        @ViewResources.NoInformationAvailable
-                    </td>
-                </tr>
-            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">
+                    @ViewResources.NoInformationAvailable
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
     <input type="hidden" name="GroupId" value="@Model.GroupId" />
@@ -144,7 +147,7 @@
     <input type="hidden" name="SiteId" value="@Model.SiteId" />
     <input type="hidden" id="HasAssignFunction" value="@viewFlags.HasAssignFunctionRight" />
     <div class="form">
-        <input type="submit" value="@ViewResources.Save" id="btnSaveAssign"/>
+        <input type="submit" value="@ViewResources.Save" id="btnSaveAssign" />
         <button class="cancel-button" onclick="NAP.redirect('Group/Manage', 0); return false;">@ViewResources.Cancel</button>
     </div>
 }
@@ -160,30 +163,32 @@
     }
 }
 @helper IndentChildFunctions(List<IFunction> functionList, IFunction function, int level = 0)
-    {
-        if (function.Parent != null)
-        {
-            var parent = functionList.Where(x => x.Id == function.Parent.Id).SingleOrDefault();
+{
+                    /**/
 
-    @IndentChildFunctions(functionList, parent, level + 1)
-        }
-        else
-        {
-            for (int i = 0; i < level; i++)
-            {
-                if (i == level - 1)
-                {
-    <span>&#9492;&#9472;&#9472;</span>
-                }
-                else
-                {
-    <span class="invisible">&#9492;&#9472;&#9472;</span>
-                }
-            }
-        }
+                    if (function.Parent != null)
+                    {
+                        var parent = functionList.Where(x => x.Id == function.Parent.Id).SingleOrDefault();
 
-        if (level == 0)
-        {
-    @function.Name
-        }
+                        @IndentChildFunctions(functionList, parent, level + 1)
+                    }
+                    else
+                    {
+                        for (int i = 0; i < level; i++)
+                        {
+                            if (i == level - 1)
+                            {
+                                <span>&#9492;&#9472;&#9472;</span>
+                            }
+                            else
+                            {
+                                <span class="invisible">&#9492;&#9472;&#9472;</span>
+                            }
+                        }
+                    }
+
+                    if (level == 0)
+                    {
+                        @function.Name
+                    }
 }

@@ -1383,36 +1383,6 @@
         }
 
         [HttpPost]
-        [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Host)]
-        public string AddUserToGroup(int userId, int groupId)
-        {
-            if (Request.IsAjaxRequest() && userId > 0 && groupId > 0)
-            {
-                var criteria = new AddUserToGroupCriteria
-                {
-                    UserId = userId,
-                    GroupId = groupId,
-                    CreatedBy = CurrentSession.UserId,
-                    CreatedDate = DateTime.Now
-                };
-
-                IUser user = _userService.GetById(userId);
-
-                if (user == null)
-                {
-                    ICommandResult result = _userService.InsertOrUpdate(criteria);
-
-                    if (result != null && result.IsSuccessful)
-                    {
-                        return Constant.Ok;
-                    }
-                }
-            }
-
-            return Constant.Error;
-        }
-
-        [HttpPost]
         [N88Auth(FunctionKey = FunctionKeys.ManageUser, Policy = Constant.Policy.Read)]
         public ActionResult GetUserByGroup(int groupId)
         {
