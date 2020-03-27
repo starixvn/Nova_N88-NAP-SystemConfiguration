@@ -691,7 +691,7 @@
                     ReturnGroupId = returnGroupId,
                     ReturnPageIndex = returnPageIndex
                 },
-                Criteria = new ResetPasswordCustCriteria
+                Criteria = new ResetUserPasswordCriteria
                 {
                     UserId = user.Id,
                     Username = user.Username,

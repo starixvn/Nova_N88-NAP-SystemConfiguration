@@ -6,6 +6,6 @@
     {
         public ReturnData ReturnData { get; set; } = new ReturnData();
 
-        public ResetPasswordCustCriteria Criteria { get; set; }
+        public ResetUserPasswordCriteria Criteria { get; set; }
     }
 }

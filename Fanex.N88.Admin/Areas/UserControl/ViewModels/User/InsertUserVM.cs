@@ -20,7 +20,7 @@
         [Display(Name = "Username", ResourceType = typeof(ViewLang))]
         [RegularExpression("^[\\w\\s]{1,}$", ErrorMessageResourceName = "InvalidNameValidationMsg", ErrorMessageResourceType = typeof(ViewLang))]
         [Required]
-        [StringLength(50, MinimumLength = 2, ErrorMessageResourceName = "InputLengthValidationMsg", ErrorMessageResourceType = typeof(ViewLang))]
+        [StringLength(50, MinimumLength = 1, ErrorMessageResourceName = "InputLengthValidationMsg", ErrorMessageResourceType = typeof(ViewLang))]
         public string Username { get; set; }
 
         [DataType(DataType.Password)]
