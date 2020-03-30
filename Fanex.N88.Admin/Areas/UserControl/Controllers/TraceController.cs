@@ -113,12 +113,6 @@
             IQueryable<LogUserLogin> listLog = _traceService.SearchUserLogin(criteria);
 
             var listSite = _siteService.GetAll().ToList();
-            listSite.Add(new Site
-            {
-                Id = 0,
-                Name = ViewResources.NAP_Hub
-            });
-
             ViewBag.ListSite = listSite.Select(s => new SelectListItem
             {
                 Text = s.Name,
