@@ -237,10 +237,29 @@
                         NewValue = element.Attribute("IsLicenseeUser").Value == "1" ? "true" : "false"
                     },
 
+                    new LogData
+                    {
+                        FieldName = "Source Site Id",
+                        NewValue = element.Attribute("SourceSiteId").Value
+                    },
+
                      new LogData
                     {
-                        FieldName = "Source Site",
-                        NewValue = element.Attribute("SourceSiteId").Value
+                        FieldName = "Source Site Name",
+                        NewValue = element.Attribute("SourceSiteName").Value
+                    },
+
+
+                     new LogData
+                    {
+                        FieldName = "Default Base Currency Id",
+                        NewValue = element.Attribute("DefaultBaseCurrencyId").Value
+                    },
+
+                     new LogData
+                    {
+                        FieldName = "Default Base Currency Code",
+                        NewValue = element.Attribute("DefaultBaseCurrencyCode").Value
                     }
                 };
 
@@ -896,6 +915,20 @@
                         FieldName = ViewResources.Email,
                         OldValue = elementOld.Attribute("Email").Value,
                         NewValue = elementNew.Attribute("Email").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = "Default Base Currency Id",
+                        OldValue = elementOld.Attribute("DefaultBaseCurrencyId").Value,
+                        NewValue = elementNew.Attribute("DefaultBaseCurrencyId").Value
+                    },
+
+                    new LogData
+                    {
+                        FieldName = "Default Base Currency Code",
+                        OldValue = elementOld.Attribute("DefaultBaseCurrencyCode").Value,
+                        NewValue = elementNew.Attribute("DefaultBaseCurrencyCode").Value
                     }
                 };
 
