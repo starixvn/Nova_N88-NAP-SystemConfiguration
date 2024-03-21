@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
-  <Function Name="Site">
-    <Setting Key="N88_Site_InsertSiteURL" SpName="N88_Site_InsertSiteURL" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Site_InsertWithSiteURL" SpName="N88_Site_InsertWithSiteURL" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Site_Update" SpName="N88_Site_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Site_UpdateSiteURL" SpName="N88_Site_UpdateSiteURL" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Site_UpdateStatus" SpName="N88_Site_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Site_UpdateDefaultSiteURL" SpName="N88_Site_UpdateDefaultSiteURL" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-  </Function>
-  <Function Name="Function">
-    <Setting Key="N88_Function_Duplicate" SpName="N88_Function_Duplicate" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_CopyPermission" SpName="N88_Function_CopyPermission" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_Insert" SpName="N88_Function_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_Update" SpName="N88_Function_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Function_UpdateStatus" SpName="N88_Function_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-  </Function>
-  <Function Name="MenuItem">
-    <Setting Key="N88_MenuItem_Insert" SpName="N88_MenuItem_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_MenuItem_Update" SpName="N88_MenuItem_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_MenuItem_UpdateStatus" SpName="N88_MenuItem_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_MenuItem_Search" SpName="N88_MenuItem_Search" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_MenuItem_GetParentById" SpName="N88_MenuItem_GetParentById" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-  </Function>
-  <Function Name="Group">
-    <Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-    <Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.bodbAdminNet"></Setting>
-  </Function>
-  <Function Name="User">
-    <Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_AddToGroup" SpName="N88_User_AddToGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_AddUserToGroup" SpName="N88_User_AddUserToGroup" DbName="DBN88POL.N88_UserControl.bodbAdminNet" />
-    <Setting Key="N88_User_GetAvailableSites" SpName="N88_User_GetAvailableSites" DbName="DBN88POL.N88_UserControl.bodbAdminNet">
-      <Mapping DataField="SiteId" ObjectProperty="Id" />
-      <Mapping DataField="SiteName" ObjectProperty="Name" />
-    </Setting>
-  </Function>
+	<Function Name="Site">
+		<Setting Key="N88_Site_InsertSiteURL" SpName="N88_Site_InsertSiteURL" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Site_InsertWithSiteURL" SpName="N88_Site_InsertWithSiteURL" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Site_Update" SpName="N88_Site_Update" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Site_UpdateSiteURL" SpName="N88_Site_UpdateSiteURL" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Site_UpdateStatus" SpName="N88_Site_UpdateStatus" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Site_UpdateDefaultSiteURL" SpName="N88_Site_UpdateDefaultSiteURL" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+	</Function>
+	<Function Name="Function">
+		<Setting Key="N88_Function_Duplicate" SpName="N88_Function_Duplicate" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Function_CopyPermission" SpName="N88_Function_CopyPermission" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Function_Insert" SpName="N88_Function_Insert" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Function_Update" SpName="N88_Function_Update" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Function_UpdateStatus" SpName="N88_Function_UpdateStatus" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+	</Function>
+	<Function Name="MenuItem">
+		<Setting Key="N88_MenuItem_Insert" SpName="N88_MenuItem_Insert" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_MenuItem_Update" SpName="N88_MenuItem_Update" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_MenuItem_UpdateStatus" SpName="N88_MenuItem_UpdateStatus" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_MenuItem_Search" SpName="N88_MenuItem_Search" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_MenuItem_GetParentById" SpName="N88_MenuItem_GetParentById" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+	</Function>
+	<Function Name="Group">
+		<Setting Key="N88_Group_AssignFunction" SpName="N88_Group_AssignFunction" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Group_Insert" SpName="N88_Group_Insert" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Group_Update" SpName="N88_Group_Update" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+		<Setting Key="N88_Group_UpdateStatus" SpName="N88_Group_UpdateStatus" DbName="DBN88POL.N88_UserControl.wsv_nap"></Setting>
+	</Function>
+	<Function Name="User">
+		<Setting Key="N88_User_AssignFunction" SpName="N88_User_AssignFunction" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_AssignNewSite" SpName="N88_User_AssignNewSite" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_UpdateSite" SpName="N88_User_UpdateSite" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_Insert" SpName="N88_User_Insert" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_AddToGroup" SpName="N88_User_AddToGroup" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_Update" SpName="N88_User_Update" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_UpdatePassword" SpName="N88_User_UpdatePassword" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_AddUserToGroup" SpName="N88_User_AddUserToGroup" DbName="DBN88POL.N88_UserControl.wsv_nap" />
+		<Setting Key="N88_User_GetAvailableSites" SpName="N88_User_GetAvailableSites" DbName="DBN88POL.N88_UserControl.wsv_nap">
+			<Mapping DataField="SiteId" ObjectProperty="Id" />
+			<Mapping DataField="SiteName" ObjectProperty="Name" />
+		</Setting>
+	</Function>
 </Functions>
