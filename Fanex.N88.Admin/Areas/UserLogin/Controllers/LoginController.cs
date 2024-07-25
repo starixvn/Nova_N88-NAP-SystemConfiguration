@@ -16,8 +16,8 @@
     using N88.Core.Service.Interface;
     using N88.Core.Web;
     using N88.Core.Web.Session;
+    using ONEbook.UM;
     using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
 
     /// <summary>
     /// Login controller.
@@ -57,7 +57,12 @@
             _siteService = siteService ?? new SiteService();
             _menuItemService = menuItemService ?? new MenuItemService();
             CurrentSession = currentSession ?? new CurrentSession();
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
+            _maintenanceService = maintenanceService ?? new MaintenanceService(
+                      UMClientManager.RestClient,
+                      UMClientManager.CacheService,
+                      UMClientManager.UMClientConfigs,
+                      UMClientManager.HttpContext);
+
             _hashAlgorithm = new SHA256Managed();
         }
 
