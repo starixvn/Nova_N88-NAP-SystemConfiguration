@@ -156,19 +156,19 @@
                 {
                     <span class="items-per-page-wrp">
                         @ViewResources.PageSize
-                    @Html.DropDownList("items-per-page", new List<SelectListItem> {
-                        new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
-                        new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
-                        new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
-                    }, new { id = string.Empty, @class = "items-per-page" })
-                </span>
-                @Html.Pager(listLog, new PagerOptions()
-{
-PageIndexParameterName = "id",
-ShowFirstLast = true,
-CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
-}, new { @class = "jpages" })
-            }
+                        @Html.DropDownList("items-per-page", new List<SelectListItem> {
+                            new SelectListItem { Value = "10", Text = "10", Selected = "10" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "20", Text = "20", Selected = "20" == Model.PageSize.ToString() },
+                            new SelectListItem { Value = "30", Text = "30", Selected = "30" == Model.PageSize.ToString() }
+                        }, new { id = string.Empty, @class = "items-per-page" })
+                    </span>
+                    @Html.Pager(listLog, new PagerOptions()
+                    {
+                        PageIndexParameterName = "id",
+                        ShowFirstLast = true,
+                        CurrentPagerItemTemplate = "<a class='jp-current'>{0}</a>"
+                    })
+                }
             </td>
         </tr>
     </tfoot>
