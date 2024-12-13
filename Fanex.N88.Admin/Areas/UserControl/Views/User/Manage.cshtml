@@ -1,5 +1,4 @@
 ﻿@using System.Collections
-@using Fanex.N88.Admin.Areas.UserControl.ViewModels.User
 @using Fanex.N88.Core.Helpers
 
 @model PagerList<UserLevel>
@@ -430,11 +429,11 @@
                     }, new { id = string.Empty, @class = "items-per-page" })
                     </span>
                     @Html.Pager(Model, new PagerOptions()
-           {
-               PageIndexParameterName = "id",
-               ShowFirstLast = true,
-               CurrentPagerItemWrapperFormatString = "<a class='jp-current'>{0}</a>"
-           }, new { @class = "jpages" })
+                   {
+                       PageIndexParameterName = "id",
+                       ShowFirstLast = true,
+                       CurrentPagerItemTemplate = "<a class='jp-current'>{0}</a>"
+                   })
                 }
             </td>
         </tr>

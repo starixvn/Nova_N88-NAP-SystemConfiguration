@@ -88,7 +88,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.N88.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.N88.Core.1.7.1\lib\net40\Fanex.N88.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.N88.Core.1.7.4\lib\net40\Fanex.N88.Core.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IBCFile.1.0.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -127,9 +127,6 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvcPager, Version=1.5.0.28157, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvcPager.1.5.0.28157\lib\net40\MvcPager.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -162,6 +159,9 @@
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Webdiyer.MvcPager.3.0.1.1\lib\Webdiyer.MvcPager.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
