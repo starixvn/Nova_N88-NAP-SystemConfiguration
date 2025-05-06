@@ -546,9 +546,6 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Web.backupMNL.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -575,6 +572,9 @@
     <Content Include="Web.ConnectionString.uat.config">
       <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
+    <Content Include="Web.ConnectionString.kldr.config">
+	  <DependentUpon>Web.ConnectionString.config</DependentUpon>
+    </Content>
     <Content Include="Web.ConnectionString.local.config">
       <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
@@ -595,6 +595,9 @@
     </Content>
     <Content Include="Web.sit2.config">
       <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.kldr.config">
+	  <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -751,9 +754,6 @@
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Web.ConnectionString.backupMNL.config">
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
