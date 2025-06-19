@@ -506,11 +506,6 @@ Leave all other color names or hex values as-specified.</xs:documentation>
 						<xs:documentation>Flag indicating whether to always escape non-ASCII characters as \uXXXX or to let the output encoding object handle that via the JsEncoderFallback object for the specified output encoding format</xs:documentation>
 					</xs:annotation>				
 				</xs:attribute>
-				<xs:attribute name="amdSupport" type="Boolean_SchemaType" use="optional" default="false">
-					<xs:annotation>
-						<xs:documentation>Flag indicating whether to perform extra tasks on AMD-style defines</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 				<xs:attribute name="collapseToLiteral" type="Boolean_SchemaType" use="optional" default="true">
 					<xs:annotation>
 						<xs:documentation>Flag for whether to collapse new Array() to [] and new Object() to {} (true) or leave as-is (false)</xs:documentation>
@@ -1379,11 +1374,6 @@ to preserve references to external symbols.</xs:documentation>
 				<xs:documentation>Flag for whether to enable usual minification</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ejectCharset" type="Boolean_SchemaType" use="optional" default="true">
-			<xs:annotation>
-				<xs:documentation>Flag for whether to eject the `@charset` rules before minification</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
 	</xs:complexType>
 	<!-- /WebGrease settings -->
 	
@@ -1436,7 +1426,7 @@ to preserve references to external symbols.</xs:documentation>
 				<xs:documentation>Flag for whether to disable advanced optimizations (selector and property merging, reduction, etc)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="compatibility" use="optional" default="Ie7">
+		<xs:attribute name="compatibility" use="optional" default="Ie8">
 			<xs:annotation>
 				<xs:documentation>Compatibility mode</xs:documentation>
 			</xs:annotation>
@@ -1445,11 +1435,6 @@ to preserve references to external symbols.</xs:documentation>
 					<xs:enumeration value="None">
 						<xs:annotation>
 							<xs:documentation>None</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="Ie7">
-						<xs:annotation>
-							<xs:documentation>IE7 compatibility mode</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 					<xs:enumeration value="Ie8">
