@@ -168,10 +168,11 @@
                                         BrowserName = CurrentContext.BrowserName,
                                         CountryCode = CurrentContext.CountryCode,
                                         Domain = CurrentContext.DomainName,
-                                        Platform = CurrentContext.Platform
+                                        Platform = CurrentContext.Platform,
+                                        OnUserId = user.Id
                                     };
 
-                                    _userService.UserCheckIn(criteria);
+                                    //_userService.UserCheckIn(criteria);
 
                                     int level = _userService.GetUserSiteLevel(user.Id, SiteId);
 
