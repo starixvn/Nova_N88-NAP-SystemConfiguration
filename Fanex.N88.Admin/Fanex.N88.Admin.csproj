@@ -574,13 +574,7 @@
     <None Include="Properties\PublishProfiles\Local-3-202.pubxml" />
     <None Include="Properties\PublishProfiles\Local-3-209.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
-    <Content Include="Web.ConnectionString.pro.config">
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
-    </Content>
     <Content Include="Web.ConnectionString.uat.config">
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.kldr.config">
       <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
     <Content Include="Web.ConnectionString.local.config">
@@ -595,16 +589,10 @@
     <Content Include="Web.local.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Web.pro.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.sit.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.sit2.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.kldr.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.ConnectionString.klprod.config">
